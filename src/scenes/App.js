@@ -2,8 +2,7 @@ import React from 'react';
 import 'bulma/css/bulma.css';
 import './App.css';
 
-import Welcome from './Welcome';
-import Credits from './Credits';
+import { Welcome, Credits } from '../sections';
 
 function App() {
   return (

@@ -5,8 +5,7 @@ import {
   Title,
   HeroBody,
 } from 'bloomer';
-import Gravatar from './Gravatar';
-import SocialMedia from './SocialMedia';
+import { Gravatar, SocialMedia } from '../components';
 
 
 export default function Welcome() {

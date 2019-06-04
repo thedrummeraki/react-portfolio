@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container} from 'bloomer';
-import {github, linkedin, skype} from './icons';
+import {github, linkedin, skype} from '../icons';
 
 
 export default function SocialMedia(props) {
