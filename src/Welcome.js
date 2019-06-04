@@ -1,21 +1,9 @@
 import React from 'react';
 import {
   Hero,
-  HeroHeader,
-  Nav,
-  NavLeft,
-  NavItem,
-  NavCenter,
-  NavRight,
-  Icon,
   Container,
   Title,
-  Tabs,
-  TabList,
-  Tab,
-  TabLink,
   HeroBody,
-  HeroFooter,
 } from 'bloomer';
 import Gravatar from './Gravatar';
 import SocialMedia from './SocialMedia';
