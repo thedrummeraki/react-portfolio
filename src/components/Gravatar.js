@@ -13,9 +13,11 @@ export default function Gravatar(props) {
   }
 
   return (
-    <Image
-      isSize={size}
-      src={src}
-      className={classes} />
+    <div style={{margin: '30px auto'}}>
+      <Image
+        isSize={size}
+        src={src}
+        className={classes} />
+    </div>
   );
 }

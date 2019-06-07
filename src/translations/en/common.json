@@ -1,0 +1,68 @@
+{
+  "translations": {
+    "welcome": {
+      "intro": "Hi! I am a software developer, thinker, designer.",
+      "title": {
+        "welcome": "Hi there! My name is Akinyele",
+        "punchline": "FORWARD THINKING"
+      },
+      "discover": "Discover more..."
+    },
+    "about": {
+      "title": "My life story",
+      "entries": {
+        "graduation": {
+          "title": "Graduation!",
+          "when": "(expected in June 2020)"
+        },
+        "shopify": {
+          "company": "Shopify",
+          "title": "Backend Developer",
+          "start": "May 2019"
+        },
+        "rakuten": {
+          "company": "Rakuten, Inc.",
+          "title": "Database Software Engineer",
+          "start": "May 2018",
+          "end": "December 2018"
+        },
+        "crc": {
+          "company": "Communications Research Centre (CRC)",
+          "title": "Software Researcher",
+          "start": "September 2017",
+          "end": "December 2017"
+        },
+        "cbn": {
+          "company": "Canadian Bank Note Company",
+          "title-1": "Linux Software Developer (x1)",
+          "title-2": "Linux Software Developer (x2)",
+          "start-1": "May 2016",
+          "end-1": "August 2016",
+          "start-2": "January 2017",
+          "end-2": "April 2017"
+        },
+        "uottawa": {
+          "program": "BASc in Software Engineering (COOP)",
+          "school": "University of Ottawa",
+          "start": "September 2014"
+        }
+      }
+    },
+    "credits": {
+      "made-with-love": "Made with {{icon}} by Akinyele Cafe-Febrissy",
+      "copyright": "Copyright © 2014-{{year}} Akinyele Cafe-Febrissy"
+    },
+    "misc": {
+      "name": "Akinyele Cafe-Febrissy",
+      "date": {
+        "starts": "Start on {{date}}",
+        "until": "Until {{date}}",
+        "separator": "-"
+      },
+      "locations": {
+        "ottawa": "Ottawa, Ontario",
+        "tokyo": "Tokyo, Japan"
+      }
+    }
+  }
+}

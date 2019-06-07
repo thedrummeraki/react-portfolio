@@ -1,16 +1,21 @@
 import React from 'react';
+
 import 'bulma/css/bulma.css';
 import './App.css';
 
-import { Welcome, Credits } from '../sections';
+import {
+  Welcome,
+  AboutMe,
+  //Projects,
+  Credits
+} from '../sections';
 
-function App() {
+export default function App(props) {
   return (
-    <div>
+    <div className="App">
       <Welcome />
+      <AboutMe />
       <Credits />
     </div>
   );
 }
-
-export default App;

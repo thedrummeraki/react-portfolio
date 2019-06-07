@@ -1,0 +1,68 @@
+{
+  "translations": {
+    "welcome": {
+      "intro": "Concevoir des logiciels me fait rêver, donc bienvenue dans mon monde !",
+      "title": {
+        "welcome": "Bonjour ! Je m'appelle Akinyélé",
+        "punchline": "À L'AVANT GARDE"
+      },
+      "discover": "Voir plus..."
+    },
+    "about": {
+      "title": "Mon parcours de vie",
+      "entries": {
+        "graduation": {
+          "title": "Remise de diplômes !",
+          "when": "(prévue en juin 2020)"
+        },
+        "shopify": {
+          "company": "Shopify",
+          "title": "Développeur logiciel backend",
+          "start": "mai 2019"
+        },
+        "rakuten": {
+          "company": "Rakuten, Inc.",
+          "title": "Ingénierie de bases de données",
+          "start": "mai 2018",
+          "end": "décembre 2018"
+        },
+        "crc": {
+          "company": "Centre de recherches sur les communications (CRC)",
+          "title": "Recherchiste logiciel",
+          "start": "septembre 2017",
+          "end": "décembre 2017"
+        },
+        "cbn": {
+          "company": "Canadian Bank Note Company",
+          "title-1": "Développeur logiciel Linux (x1)",
+          "title-2": "Développeur logiciel Linux (x2)",
+          "start-1": "mai 2016",
+          "end-1": "août 2016",
+          "start-2": "janvier 2017",
+          "end-2": "avril 2017"
+        },
+        "uottawa": {
+          "program": "B.A.Sc en Ingénierie logicelle (Coop)",
+          "school": "Université d'Ottawa",
+          "start": "septembre 2014"
+        }
+      }
+    },
+    "credits": {
+      "made-with-love": "Fait avec {{icon}} par Akinyélé Café-Fébrissy",
+      "copyright": "Copyright © 2014-{{year}} Akinyélé Café-Fébrissy"
+    },
+    "misc": {
+      "name": "Akinyélé Café-Fébrissy",
+      "date": {
+        "starts": "Début : {{date}}",
+        "until": "Jusqu'en {{date}}",
+        "separator": "-"
+      },
+      "locations": {
+        "ottawa": "Ottawa, Canada",
+        "tokyo": "Tokyo, Japon"
+      }
+    }
+  }
+}

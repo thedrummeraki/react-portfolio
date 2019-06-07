@@ -7,23 +7,24 @@ import {
   Column,
   Icon
 } from 'bloomer';
+import {useTranslation} from 'react-i18next';
 
 
 export default function Credits(props) {
+  const {t} = useTranslation();
   return (
     <Footer id='footer'>
       <Container>
         <Content>
           <Columns>
-            <Column isFull>
+            <Column>
               <p>
-                Made with<Icon hasTextColor="danger" className="fa fa-heart"></Icon>
-                by <b>Akinyele Cafe-Febrissy</b>
+                {t('credits.made-with-love', {icon: '❤'})}
               </p>
             </Column>
           </Columns>
           <Content isSize='small'>
-            <p>Copyright © 2014-2019 Akinyele Cafe-Febrissy</p>
+            <p>{t('credits.copyright')}</p>
             {renderIconsCredits()}
           </Content>
         </Content>

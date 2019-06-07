@@ -1,0 +1,68 @@
+{
+  "translations": {
+    "welcome": {
+      "intro": "こんにちは！ソフトウェア工学者上に、ソフトのデザイナーです。",
+      "title": {
+        "welcome": "こんにちは。アキニエレです。",
+        "punchline": "「前向きな考え方」"
+      },
+      "discover": "革新へ"
+    },
+    "about": {
+      "title": "My life story",
+      "entries": {
+        "graduation": {
+          "title": "卒業式",
+          "when": "２０２０年６月予定です"
+        },
+        "shopify": {
+          "company": "ショプファイ (Shopify)",
+          "title": "開発者",
+          "start": "２０１９年９月"
+        },
+        "rakuten": {
+          "company": "楽天株式会社",
+          "title": "データベース開発者",
+          "start": "２０１８年５月",
+          "end": "２０１８年１２月"
+        },
+        "crc": {
+          "company": "カナダ通信技術研究センター (CRC)",
+          "title": "ソフトウェア研究者",
+          "start": "２０１７年９月",
+          "end": "２０１７年１２月"
+        },
+        "cbn": {
+          "company": "Canadian Bank Note Company",
+          "title-1": "Linux開発者 (x1)",
+          "title-2": "Linux開発者 (x2)",
+          "start-1": "２０１６年５月",
+          "end-1": "２０１６年８月",
+          "start-2": "２０１７年１月",
+          "end-2": "２０１７年４月"
+        },
+        "uottawa": {
+          "program": "BASc in Software Engineering (COOP)",
+          "school": "オタワ大学",
+          "start": "２０１４年９月"
+        }
+      }
+    },
+    "credits": {
+      "made-with-love": "Made with {{icon}} by アキニエレ・カフェフェブリシー",
+      "copyright": "アキニエレ・カフェフェブリシーによりCopyright © 2014-{{year}}"
+    },
+    "misc": {
+      "name": "アキニエレ・カフェフェブリシー",
+      "date": {
+        "starts": "{{date}}から",
+        "until": "{{date}}まで",
+        "separator": "〜"
+      },
+      "locations": {
+        "ottawa": "オタワ、カナダ",
+        "tokyo": "東京"
+      }
+    }
+  }
+}

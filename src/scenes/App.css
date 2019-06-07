@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  -webkit-animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -ms-animation: fadein 2s;
+  -o-animation: fadein 2s;
+  animation: fadein 2s;
+  user-select: none;
 }
 
 .App-logo {
@@ -19,6 +25,10 @@
   color: white;
 }
 
+.title {
+  color: #dfdfdf !important;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -31,10 +41,44 @@ img.social-media {
   height: 30px;
 }
 
+.padded {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
 a img.social-media {
   padding-left: 10px;
   padding-right: 10px;
 }
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Firefox */
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}​
+
+/* Opera */
+@-o-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}​
 
 @keyframes App-logo-spin {
   from {

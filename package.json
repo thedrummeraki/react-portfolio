@@ -5,9 +5,13 @@
   "dependencies": {
     "bloomer": "^0.6.5",
     "bulma": "^0.7.5",
+    "i18next": "^17.0.1",
+    "i18next-browser-languagedetector": "^3.0.1",
     "node-sass": "^4.12.0",
+    "radium": "^0.25.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-i18next": "^10.11.0",
     "react-scripts": "3.0.1"
   },
   "scripts": {
@@ -30,5 +34,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "json-loader": "^0.5.7"
   }
 }
