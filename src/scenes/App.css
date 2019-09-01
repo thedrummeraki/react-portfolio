@@ -46,6 +46,10 @@ img.social-media {
   padding-bottom: 40px;
 }
 
+div.inline {
+  display: inline-flex;
+}
+
 a img.social-media {
   padding-left: 10px;
   padding-right: 10px;

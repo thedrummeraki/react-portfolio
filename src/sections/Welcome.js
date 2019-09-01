@@ -1,5 +1,6 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
+import LazyLoad from "vanilla-lazyload";
 import './Welcome.css';
 
 import {
@@ -8,16 +9,17 @@ import {
   Title,
   Button,
   Nav,
-  NavLeft,
-  NavCenter,
   NavRight,
-  NavItem,
   HeroHeader,
   HeroBody,
   HeroFooter,
 } from 'bloomer';
-import { /*Gravatar,*/ SocialMedia } from '../components';
+import { /*Gravatar,*/ SocialMedia, TranslationButtons } from '../components';
 
+if (!document.lazyLoadInstance) {
+  const lazyloadConfig = {elements_selector: ".lazy"};
+  document.lazyLoadInstance = new LazyLoad(lazyloadConfig);
+}
 
 class Welcome extends React.PureComponent {
   state = {
@@ -31,20 +33,37 @@ class Welcome extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.timer = setInterval(this.switchBackground, 10000);
+    this.timer = setInterval(this.switchBackground, 7500);
     this.shuffledBackgrounds = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+    document.lazyLoadInstance.update();
     this.switchBackground();
   }
 
   componentDidUpdate() {
-    const newBackgroundFilename = `/bg${this.state.background}.jpg`;
-    this.rootRef.current.style.background = `url('${newBackgroundFilename}') no-repeat center center fixed`;
-    this.rootRef.current.style.backgroundSize = 'cover';
+    const newBackgroundSelector = `.bg${this.state.background}`;
+    const newBackground = document.querySelector(newBackgroundSelector);
+    const previousBackground = document.querySelector('.fadein');
+
+    previousBackground.classList.add('fadeout');
+
+    setTimeout(() => {
+      previousBackground.classList.remove('fadein');
+      setTimeout(() => {
+        newBackground.classList.remove('fadeout');
+        newBackground.classList.add('fadein');
+      }, 1000);
+    }, 1000);
+
+    //const newBackground = `url('${newBackgroundFilename}')`;
+    //this.rootRef.current.style.backgroundSize = 'cover';
+
+    // this.rootRef.current.setAttribute('data-bg', newBackground);
     [].forEach.call(document.querySelectorAll('button[tag]'), (button) => {
       button.classList.remove('is-primary');
     });
     document.querySelector('button[tag="' + this.state.current_locale + '"]').classList.add('is-primary');
+    document.lazyLoadInstance.update();
   }
 
   componentWillUnmount() {
@@ -68,8 +87,18 @@ class Welcome extends React.PureComponent {
 
     return (
       <div ref={this.rootRef} className="Welcome">
-        <div className="film">
-          <div className="overlay">
+        <div className="bg">
+          <div className="bg1 img fadein"></div>
+          <div className="bg2 img fadeout"></div>
+          <div className="bg3 img fadeout"></div>
+          <div className="bg4 img fadeout"></div>
+          <div className="bg5 img fadeout"></div>
+          <div className="bg6 img fadeout"></div>
+          <div className="bg7 img fadeout"></div>
+          <div className="bg8 img fadeout"></div>
+          <div className="bg9 img fadeout"></div>
+        </div>
+        <div className="overlay">
           <Hero
             className="has-text-white-ter Welcome"
             isSize='medium' isFullHeight>
@@ -77,33 +106,7 @@ class Welcome extends React.PureComponent {
             <HeroHeader>
               <Nav>
                 <NavRight isMenu>
-                  <NavItem>
-                    <button
-                      className="button"
-                      tag="en"
-                      onClick={() => {changeLanguage('en')}}
-                      >
-                        English
-                    </button>
-                  </NavItem>
-                  <NavItem>
-                    <button
-                      className="button"
-                      tag="fr"
-                      onClick={() => {changeLanguage('fr')}}
-                      >
-                        Français
-                    </button>
-                  </NavItem>
-                  <NavItem>
-                    <button
-                      className="button"
-                      tag="ja"
-                      onClick={() => {changeLanguage('ja')}}
-                      >
-                        日本語
-                    </button>
-                  </NavItem>
+                  <TranslationButtons selected={this.state.current_locale} changeLanguage={changeLanguage} />
                 </NavRight>
               </Nav>
             </HeroHeader>
@@ -122,7 +125,6 @@ class Welcome extends React.PureComponent {
               <Button className="discover">{t('welcome.discover')}</Button>
             </HeroFooter>
           </Hero>
-          </div>
         </div>
       </div>
     )

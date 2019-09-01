@@ -5,7 +5,6 @@ import {
   Content,
   Columns,
   Column,
-  Icon
 } from 'bloomer';
 import {useTranslation} from 'react-i18next';
 

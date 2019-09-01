@@ -36,7 +36,7 @@ function renderLogo(logo, link) {
   if (logo) {
     const image = <Image className="container" isSize="32x32" src={logo} />;
     if (link) {
-      return <a href={link} target="_blank">{image}</a>;
+      return <a href={link} rel="noopener noreferrer" target="_blank">{image}</a>;
     }
     return image;
   }
