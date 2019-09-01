@@ -1,6 +1,5 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import LazyLoad from "vanilla-lazyload";
 import './Welcome.css';
 
 import {
@@ -15,11 +14,8 @@ import {
   HeroFooter,
 } from 'bloomer';
 import { /*Gravatar,*/ SocialMedia, TranslationButtons } from '../components';
-
-if (!document.lazyLoadInstance) {
-  const lazyloadConfig = {elements_selector: ".lazy"};
-  document.lazyLoadInstance = new LazyLoad(lazyloadConfig);
-}
+import Background from '../components/Background';
+import SmoothScroll from 'smooth-scroll';
 
 class Welcome extends React.PureComponent {
   state = {
@@ -30,30 +26,31 @@ class Welcome extends React.PureComponent {
   constructor(props) {
     super(props);
     this.rootRef = React.createRef();
+    this.scrollRef = React.createRef();
   }
 
   componentDidMount() {
     this.timer = setInterval(this.switchBackground, 7500);
-    this.shuffledBackgrounds = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-    document.lazyLoadInstance.update();
     this.switchBackground();
+
+    new SmoothScroll('a[href*="#"]', {
+      speed: 1500,
+      easing: 'easeInOutQuint'
+    });
   }
 
   componentDidUpdate() {
     const newBackgroundSelector = `.bg${this.state.background}`;
     const newBackground = document.querySelector(newBackgroundSelector);
-    const previousBackground = document.querySelector('.fadein');
+    const previousBackground = document.querySelector('.showing');
 
-    previousBackground.classList.add('fadeout');
+    if (previousBackground) {
+      previousBackground.classList.remove('showing');
+    }
 
-    setTimeout(() => {
-      previousBackground.classList.remove('fadein');
-      setTimeout(() => {
-        newBackground.classList.remove('fadeout');
-        newBackground.classList.add('fadein');
-      }, 1000);
-    }, 1000);
+    if (newBackground)
+      newBackground.classList.add('showing');
 
     //const newBackground = `url('${newBackgroundFilename}')`;
     //this.rootRef.current.style.backgroundSize = 'cover';
@@ -63,7 +60,6 @@ class Welcome extends React.PureComponent {
       button.classList.remove('is-primary');
     });
     document.querySelector('button[tag="' + this.state.current_locale + '"]').classList.add('is-primary');
-    document.lazyLoadInstance.update();
   }
 
   componentWillUnmount() {
@@ -71,8 +67,11 @@ class Welcome extends React.PureComponent {
   }
 
   switchBackground = () => {
-    const newBackgroundId = this.shuffledBackgrounds[this.state.background % 9];
-    this.setState({background: newBackgroundId});
+    const count = document.backgroundIds.length;
+    const newBackgroundId = document.backgroundIds[this.state.background % count];
+    if (newBackgroundId) {
+      this.setState({background: newBackgroundId});
+    }
   }
 
   render() {
@@ -87,17 +86,11 @@ class Welcome extends React.PureComponent {
 
     return (
       <div ref={this.rootRef} className="Welcome">
-        <div className="bg">
-          <div className="bg1 img fadein"></div>
-          <div className="bg2 img fadeout"></div>
-          <div className="bg3 img fadeout"></div>
-          <div className="bg4 img fadeout"></div>
-          <div className="bg5 img fadeout"></div>
-          <div className="bg6 img fadeout"></div>
-          <div className="bg7 img fadeout"></div>
-          <div className="bg8 img fadeout"></div>
-          <div className="bg9 img fadeout"></div>
-        </div>
+        <Background 
+          selected={this.state.background}
+          from={1}
+          to={19}
+          config={{}} />
         <div className="overlay">
           <Hero
             className="has-text-white-ter Welcome"
@@ -112,17 +105,19 @@ class Welcome extends React.PureComponent {
             </HeroHeader>
 
             <HeroBody>
-              <Container hasTextAlign='centered'>
-                <Title isSize={1} className="name-title">{t('misc.name')}</Title>
-                <p className="intro">{t('welcome.intro')}</p>
+              <Container hasTextAlign='centered' className="title">
+                <Title className="name-title major">{t('misc.name')}</Title>
+                <Title className="intro minor">{t('welcome.intro')}</Title>
 
-                <Title isSize={5}>{t('welcome.title.punchline')}</Title>
+                <Title className="medium">{t('welcome.title.punchline')}</Title>
 
                 <SocialMedia />
               </Container>
             </HeroBody>
             <HeroFooter>
-              <Button className="discover">{t('welcome.discover')}</Button>
+              <a ref={this.scrollRef} href="#about-me">
+                <Button className="discover">{t('welcome.discover')}</Button>
+              </a>
             </HeroFooter>
           </Hero>
         </div>

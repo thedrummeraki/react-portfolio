@@ -17,7 +17,7 @@ import {
 export default function AboutMe() {
   const {t} = i18n();
   return (
-    <div className="has-background-grey-dark">
+    <div id="about-me" className="has-background-grey-dark">
       <Container className="padded">
         <Title className="has-text-centered">{t('about.title')}</Title>
         <StyleRoot>
