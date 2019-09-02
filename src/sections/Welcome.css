@@ -53,6 +53,10 @@
   z-index: 10;
 }
 
+.Welcome .language {
+  padding: 10px;
+}
+
 .Welcome button.discover:focus {
   border: #00d1b2 solid 1px;
 }

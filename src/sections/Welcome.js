@@ -62,7 +62,7 @@ class Welcome extends React.PureComponent {
     [].forEach.call(document.querySelectorAll('button[tag]'), (button) => {
       button.classList.remove('is-primary');
     });
-    document.querySelector('button[tag="' + this.state.current_locale + '"]').classList.add('is-primary');
+    //document.querySelector('button[tag="' + this.state.current_locale + '"]').classList.add('is-primary');
   }
 
   componentWillUnmount() {

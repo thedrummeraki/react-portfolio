@@ -52,6 +52,9 @@
       "made-with-love": "Made with {{icon}} by アキニエレ・カフェフェブリシー",
       "copyright": "アキニエレ・カフェフェブリシーによりCopyright © 2014-{{year}}"
     },
+    "language": {
+      "change": "言語を変わりたい方：こちらへ"
+    },
     "location": {
       "unknown": "所在不明",
       "tooltip": "「{{location}}」で撮影",

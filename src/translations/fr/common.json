@@ -52,6 +52,9 @@
       "made-with-love": "Fait avec {{icon}} par Akinyélé Café-Fébrissy",
       "copyright": "Copyright © 2014-{{year}} Akinyélé Café-Fébrissy"
     },
+    "language": {
+      "change": "Changez de langue ici"
+    },
     "location": {
       "unknown": "Endroit inconnu",
       "tooltip": "Prise à « {{location}} »",
