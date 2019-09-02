@@ -13,6 +13,7 @@
     "react-dom": "^16.8.6",
     "react-i18next": "^10.11.0",
     "react-scripts": "3.0.1",
+    "react-tooltip": "^3.11.0",
     "smooth-scroll": "^16.1.0"
   },
   "scripts": {

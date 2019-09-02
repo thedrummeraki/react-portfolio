@@ -1,0 +1,41 @@
+import React from 'react';
+import {
+  Container,
+  Title
+} from 'bloomer';
+import { useTranslation as i18n } from 'react-i18next';
+import './Introduction.css';
+
+export default function Introduction() {
+  const {t} = i18n();
+
+  return (
+    <div id="introduction" className="introduction has-background-light">
+      <Container className="padded is-size-5">
+        <Title className="has-text-centered">{t('introduction.title')}</Title>
+        <div className="paragraph intro is-size-4">
+          <p>{t('introduction.paragraph.intro.stat1')}</p>
+          <p>{t('introduction.paragraph.intro.stat2')}</p>
+        </div>
+        <div className="paragraph why">
+          <p>{t('introduction.paragraph.why.stat1')}</p>
+          <p>{t('introduction.paragraph.why.stat2')}</p>
+        </div>
+        <div className="paragraph kaizen">
+          <p>{t('introduction.paragraph.kaizen.stat1')}</p>
+        </div>
+        <div className="paragraph life">
+          <p>{t('introduction.paragraph.life.motto')}</p>
+          <p>{t('introduction.paragraph.life.stat1')}</p>
+        </div>
+        <div className="paragraph experiences">
+          <p>{t('introduction.paragraph.experiences.languages')}</p>
+          <p>{t('introduction.paragraph.experiences.skills')}</p>
+        </div>
+        <div className="paragraph outro">
+          <p><strong>{t('introduction.paragraph.outro')}</strong></p>
+        </div>
+      </Container>
+    </div>
+  );
+}

@@ -1,11 +1,7 @@
 import React from 'react';
 
-
-
-
-
 export default function Background(props) {
-  const {showing, config, from, to} = props;
+  const {showing, from, to} = props;
   setBackgroundIds(from, to);
 
   const backgrounds = document.backgroundIds.map(bgId => {

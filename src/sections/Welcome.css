@@ -40,16 +40,24 @@
   color: #fff;
 }
 
+.Welcome .nav {
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 3.25rem;
+  position: relative;
+  text-align: center;
+  z-index: 10;
+}
+
 .Welcome button.discover:focus {
   border: #00d1b2 solid 1px;
 }
 
-.Welcome .nav-right {
-  user-select: auto;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-
+.Welcome .nav-left, .nav-right {
   -webkit-overflow-scrolling: touch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -64,6 +72,20 @@
   flex-shrink: 0;
   max-width: 100%;
   overflow: auto;
+}
+
+.Welcome .nav-left {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  white-space: nowrap;
+}
+
+.Welcome .nav-right {
+  user-select: auto;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
 
 .Welcome .nav-item {

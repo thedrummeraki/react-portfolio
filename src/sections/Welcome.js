@@ -8,14 +8,17 @@ import {
   Title,
   Button,
   Nav,
+  NavLeft,
   NavRight,
   HeroHeader,
   HeroBody,
   HeroFooter,
+  NavItem,
 } from 'bloomer';
 import { /*Gravatar,*/ SocialMedia, TranslationButtons } from '../components';
-import Background from '../components/Background';
+import {Background, BackgroundLocation} from '../components';
 import SmoothScroll from 'smooth-scroll';
+import locationsConfig from '../config/locations';
 
 class Welcome extends React.PureComponent {
   state = {
@@ -84,13 +87,15 @@ class Welcome extends React.PureComponent {
 
     document.title = t('misc.name');
 
+    console.log("State background: ", this.state.background)
+
     return (
       <div ref={this.rootRef} className="Welcome">
         <Background 
-          selected={this.state.background}
+          showing={this.state.background}
           from={1}
-          to={19}
-          config={{}} />
+          to={19} />
+
         <div className="overlay">
           <Hero
             className="has-text-white-ter Welcome"
@@ -98,6 +103,13 @@ class Welcome extends React.PureComponent {
 
             <HeroHeader>
               <Nav>
+                <NavLeft>
+                  <NavItem isBrand>
+                    <BackgroundLocation
+                      showing={this.state.background}
+                      config={locationsConfig}  />
+                  </NavItem>
+                </NavLeft>
                 <NavRight isMenu>
                   <TranslationButtons selected={this.state.current_locale} changeLanguage={changeLanguage} />
                 </NavRight>
@@ -115,9 +127,11 @@ class Welcome extends React.PureComponent {
               </Container>
             </HeroBody>
             <HeroFooter>
-              <a ref={this.scrollRef} href="#about-me">
-                <Button className="discover">{t('welcome.discover')}</Button>
-              </a>
+              <p>
+                <a ref={this.scrollRef} href="#about-me">
+                  <Button className="discover">{t('welcome.discover')}</Button>
+                </a>
+              </p>
             </HeroFooter>
           </Hero>
         </div>

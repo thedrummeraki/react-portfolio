@@ -48,9 +48,66 @@
         }
       }
     },
+    "introduction": {
+      "title": "About myself",
+      "paragraph": {
+        "intro": {
+          "stat1": "Behind technology, there is software...",
+          "stat2": "behind software, there are humans."
+        },
+        "why": {
+          "stat1": "Engineering solutions to make people's lives run smoothly, without glitch and well-designed.",
+          "stat2": "Personally, I believe in effortless, and this led me to study Software Engineering."
+        },
+        "kaizen": {
+          "stat1": "I am fascinated by the philosophy of Continuous Improvement, or Kaizen, as I learnt during my 8-month COOP internship in Japan, where I was immersed in the cradle of technology combined with efficiency."
+        },
+        "life": {
+          "motto": "\"Make it better\" is my personnal motto.",
+          "stat1": "I apply that in virtually every aspect of my life - when I bake, play drums, ride my bike or connect with people."
+        },
+        "experiences": {
+          "languages": "I speak and write French, English and Japanese fluenty and I design software solutions, from ideation to implementation. I am also quite comfortable with undertaking with in progress and get involved at any stage of development.",
+          "skills": "I have experience e-commerce retail, telecommunications and gaming."
+        },
+        "outro": "Let's make your next project happen!"
+      }
+    },
     "credits": {
       "made-with-love": "Made with {{icon}} by Akinyele Cafe-Febrissy",
       "copyright": "Copyright © 2014-{{year}} Akinyele Cafe-Febrissy"
+    },
+    "location": {
+      "unknown": "Unknown location",
+      "tooltip": "Taken in \"{{location}}\"",
+      "japan": {
+        "hakone": "Hakone, Japan",
+        "numazu": "Numazu, Japan",
+        "tokyo": {
+          "shibuya": "Shibuya, Tokyo, Japan",
+          "palace": "Emperor's Palace, Tokyo, Japan"
+        },
+        "kamakura": {
+          "beach": "Beach of Yuigahama, Kamakura, Japan"
+        },
+        "chiba": "Narita, Japan"
+      },
+      "canada": {
+        "montebello": "Montebello, Canada",
+        "montreal": {
+          "lachine": "Canal de Lachine, Montreal, Canada"
+        },
+        "ottawa": {
+          "university": "University of Ottawa, Canada",
+          "rideau": "Canal Rideau, Ottawa, Canada",
+          "mooneys": "Mooney's Bay, Ottawa, Canada",
+          "parliament": "Parliament of Canada, Ottawa"
+        },
+        "toronto": {
+          "nathan": "Nathan Phillips Square, Toronto, Canada",
+          "norris": "Norris Crescent Parkette, Toronto, Canada"
+        }
+      }
     },
     "misc": {
       "name": "Akinyele Cafe-Febrissy",

@@ -3,7 +3,7 @@ import {Container} from 'bloomer';
 import {github, linkedin, skype} from '../icons';
 
 
-export default function SocialMedia(props) {
+export default function SocialMedia() {
   return (
     <Container>
       <SocialMediaIcon

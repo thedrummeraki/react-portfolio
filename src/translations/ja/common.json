@@ -52,6 +52,38 @@
       "made-with-love": "Made with {{icon}} by アキニエレ・カフェフェブリシー",
       "copyright": "アキニエレ・カフェフェブリシーによりCopyright © 2014-{{year}}"
     },
+    "location": {
+      "unknown": "所在不明",
+      "tooltip": "「{{location}}」で撮影",
+      "japan": {
+        "hakone": "日本、神奈川県箱根町",
+        "numazu": "日本、静岡県沼津市",
+        "tokyo": {
+          "shibuya": "日本、東京都渋谷区、渋谷駅",
+          "palace": "日本、東京都千代田区、皇居"
+        },
+        "kamakura": {
+          "beach": "日本、神奈川県鎌倉市、由比ヶ浜海浴場"
+        },
+        "chiba": "日本、千葉県成田市"
+      },
+      "canada": {
+        "montebello": "カナダ、ケベック州、モンテベロ",
+        "montreal": {
+          "lachine": "カナダ、ケベック州、モントリオール、Lachine運河"
+        },
+        "ottawa": {
+          "university": "カナダ、オンタリオ州、オタワ、オタワ大学",
+          "rideau": "カナダ、オンタリオ州、オタワ、リドー運河",
+          "mooneys": "カナダ、オンタリオ州、オタワ、Mooney's Bay",
+          "parliament": "カナダ議会（カナダの首都、オタワ、で存在）"
+        },
+        "toronto": {
+          "nathan": "カナダ、オンタリオ州、トロント、Nathan Phillips Square",
+          "norris": "カナダ、オンタリオ州、トロント、Norris Crescent Parkette"
+        }
+      }
+    },
     "misc": {
       "name": "アキニエレ・カフェフェブリシー",
       "date": {

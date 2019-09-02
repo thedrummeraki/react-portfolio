@@ -52,6 +52,38 @@
       "made-with-love": "Fait avec {{icon}} par Akinyélé Café-Fébrissy",
       "copyright": "Copyright © 2014-{{year}} Akinyélé Café-Fébrissy"
     },
+    "location": {
+      "unknown": "Endroit inconnu",
+      "tooltip": "Prise à « {{location}} »",
+      "japan": {
+        "hakone": "Hakone, Japon",
+        "numazu": "Numazu, Japon",
+        "tokyo": {
+          "shibuya": "Shibuya, Tokyo, Japon",
+          "palace": "Palais de l'empereur, Tokyo, Japon"
+        },
+        "kamakura": {
+          "beach": "Beach of Yuigahama, Kamakura, Japon"
+        },
+        "chiba": "Narita, Japon"
+      },
+      "canada": {
+        "montebello": "Montébello, Canada",
+        "montreal": {
+          "lachine": "Canal de Lachine, Montréal, Canada"
+        },
+        "ottawa": {
+          "university": "University d'Ottawa, Canada",
+          "rideau": "Canal Rideau, Ottawa, Canada",
+          "mooneys": "Mooney's Bay, Ottawa, Canada",
+          "parliament": "Parlement du Canada, Ottawa"
+        },
+        "toronto": {
+          "nathan": "Nathan Phillips Square, Toronto, Canada",
+          "norris": "Norris Crescent Parkette, Toronto, Canada"
+        }
+      }
+    },
     "misc": {
       "name": "Akinyélé Café-Fébrissy",
       "date": {
