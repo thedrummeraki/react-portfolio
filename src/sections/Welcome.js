@@ -124,6 +124,8 @@ class Welcome extends React.PureComponent {
                 <Title className="medium">{t('welcome.title.punchline')}</Title>
 
                 <SocialMedia />
+
+                <a href="mailto:me@akinyele.ca" className="contact-me">me@akinyele.ca</a>
               </Container>
             </HeroBody>
             <HeroFooter>

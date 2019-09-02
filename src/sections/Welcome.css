@@ -112,12 +112,14 @@
   padding: .5rem .75rem;
 }
 
-.slideshow {
-  -webkit-animation-name: slideshow;
-  -webkit-animation-duration: 5s;
-  animation-name: slideshow;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
+.contact-me {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.contact-me:hover {
+  color: #ccc;
+  text-decoration: underline;
 }
 
 .bg {
@@ -220,26 +222,6 @@
 .bg .img.bg19  {
   background: url('/bg19.jpg') no-repeat center/cover;
   height: 100%;
-}
-
-.fadeout {
-  display: none !important;
-  animation: fadeout 1s linear forwards;
-}
-
-.fadein {
-  display: block !important;
-  animation: fadein 1s linear forwards;
-}
-
-@keyframes fadeout {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes fadein {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
 }
 
 @media screen and (min-width: 1216px) {
