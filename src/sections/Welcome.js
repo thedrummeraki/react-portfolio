@@ -128,7 +128,7 @@ class Welcome extends React.PureComponent {
               </Container>
             </HeroBody>
             <HeroFooter>
-              <p>
+              <p style={{display: 'none'}}>
                 <a ref={this.scrollRef} href="#about-me">
                   <Button className="discover">{t('welcome.discover')}</Button>
                 </a>
