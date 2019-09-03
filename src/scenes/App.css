@@ -25,6 +25,12 @@
   color: white;
 }
 
+.profile {
+  width: 234px;
+  height: 234px;
+  border-radius: 234px;
+}
+
 .title {
   color: #dfdfdf !important;
 }

@@ -3,16 +3,17 @@ import {
   Container,
   Title
 } from 'bloomer';
-import { useTranslation as i18n } from 'react-i18next';
+import {useTranslation as i18n} from 'react-i18next';
+import {myFace} from '../icons';
 import './Introduction.css';
 
 export default function Introduction() {
   const {t} = i18n();
 
   return (
-    <div id="introduction" className="introduction has-background-light">
+    <div id="introduction" className="introduction has-akinyele-background">
       <Container className="padded is-size-5">
-        <Title className="has-text-centered">{t('introduction.title')}</Title>
+        <img src={myFace} className="profile" alt={t('misc.name')} />
         <div className="paragraph intro is-size-4">
           <p>{t('introduction.paragraph.intro.stat1')}</p>
           <p>{t('introduction.paragraph.intro.stat2')}</p>

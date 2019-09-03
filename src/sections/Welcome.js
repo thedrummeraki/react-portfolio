@@ -118,8 +118,7 @@ class Welcome extends React.PureComponent {
 
             <HeroBody>
               <Container hasTextAlign='centered' className="title">
-                <Title className="name-title major">{t('misc.name')}</Title>
-                <Title className="intro minor">{t('welcome.intro')}</Title>
+                <Title isSize={1} className="name-title">{t('misc.name')}</Title>
 
                 <Title className="medium">{t('welcome.title.punchline')}</Title>
 
