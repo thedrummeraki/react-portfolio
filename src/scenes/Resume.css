@@ -1,0 +1,17 @@
+.Resume .details {
+  margin: 0 auto;
+  width: 30%;
+}
+
+.Resume .details .icon {
+  vertical-align: middle;
+  margin: 5px;
+}
+
+.Resume .details a {
+  color: #fff;
+}
+
+.Resume .details a:hover {
+  color: #aaa;
+}

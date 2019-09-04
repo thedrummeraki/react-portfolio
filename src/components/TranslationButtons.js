@@ -9,7 +9,10 @@ export default function TranslationButtons(props) {
   const {t} = i18n();
   const translationsRef = useRef();
 
-  const onTranslationsClick = useCallback(() => {
+  const onTranslationsClick = useCallback((e) => {
+    if (e) {
+      e.preventDefault();
+    }
     if (translationsRef.current) {
       translationsRef.current.classList.toggle('showing');
     }

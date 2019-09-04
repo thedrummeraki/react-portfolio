@@ -113,7 +113,14 @@
       }
     },
     "misc": {
-      "name": "アキニエレ・カフェフェブリシー",
+      "name": {
+        "oneline": "アキニエレ・カフェフェブリシー",
+        "multiline": {
+          "line1": "アキニエレ",
+          "line2": "カフェフェブリシー",
+          "separator": "・"
+        }
+      },
       "date": {
         "starts": "{{date}}から",
         "until": "{{date}}まで",
@@ -122,6 +129,12 @@
       "locations": {
         "ottawa": "オタワ、カナダ",
         "tokyo": "東京"
+      },
+      "not-found": {
+        "title": " このページは存在しておりません。 - Akinyele.ca",
+        "woops": "「あれ？」お迷いですか？",
+        "statement": "このサイトには、入力されたリンクがございません。",
+        "home-page": "トップへ"
       }
     }
   }

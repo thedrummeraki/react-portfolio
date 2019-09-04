@@ -13,7 +13,7 @@ export default function Introduction() {
   return (
     <div id="introduction" className="introduction has-akinyele-background">
       <Container className="padded is-size-5">
-        <img src={myFace} className="profile" alt={t('misc.name')} />
+        <img src={myFace} className="profile" alt={t('misc.name.oneline')} />
         <div className="paragraph intro is-size-4">
           <p>{t('introduction.paragraph.intro.stat1')}</p>
           <p>{t('introduction.paragraph.intro.stat2')}</p>

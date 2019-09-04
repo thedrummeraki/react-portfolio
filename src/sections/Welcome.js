@@ -85,7 +85,7 @@ class Welcome extends React.PureComponent {
       localStorage['current_locale'] = lng;
     };
 
-    document.title = t('misc.name');
+    document.title = t('misc.name.oneline');
 
     console.log("State background: ", this.state.background)
 
@@ -118,9 +118,12 @@ class Welcome extends React.PureComponent {
 
             <HeroBody>
               <Container hasTextAlign='centered' className="title">
-                <Title isSize={1} className="name-title">{t('misc.name')}</Title>
+                <div className="name">
+                  <Title isSize={1} className="name-title">{t('misc.name.multiline.line1')}</Title>
+                  <Title isSize={1} className="name-title line2 has-text-primary">{t('misc.name.multiline.line2')}</Title>
+                </div>
 
-                <Title className="medium">{t('welcome.title.punchline')}</Title>
+                <Title isSize={3}>{t('welcome.title.punchline')}</Title>
 
                 <SocialMedia />
 

@@ -113,7 +113,14 @@
       }
     },
     "misc": {
-      "name": "Akinyele Cafe-Febrissy",
+      "name": {
+        "oneline": "Akinyele Cafe-Febrissy",
+        "multiline": {
+          "line1": "Akinyele",
+          "line2": "Cafe-Febrissy",
+          "separator": " "
+        }
+      },
       "date": {
         "starts": "Start on {{date}}",
         "until": "Until {{date}}",
@@ -122,6 +129,12 @@
       "locations": {
         "ottawa": "Ottawa, Ontario",
         "tokyo": "Tokyo, Japan"
+      },
+      "not-found": {
+        "title": "This page does not exist - Akinyele.ca",
+        "woops": "Woops...",
+        "statement": "It seems like we weren't able to find the page you were looking for.",
+        "home-page": "Home page"
       }
     }
   }
