@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import "./i18n";
-import App from './scenes/App';
 import * as serviceWorker from './serviceWorker';
+import AppRouter from './AppRouter';
 
 ReactDOM.render(
-  <App/>,
+  <AppRouter />,
   document.getElementById('root')
 );
 

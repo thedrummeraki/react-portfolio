@@ -91,7 +91,7 @@ class Welcome extends React.PureComponent {
 
     return (
       <div ref={this.rootRef} className="Welcome">
-        <Background 
+        <Background
           showing={this.state.background}
           from={1}
           to={19} />

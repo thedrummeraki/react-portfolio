@@ -112,6 +112,10 @@
   padding: .5rem .75rem;
 }
 
+.Welcome .title {
+  color: #dfdfdf !important;
+}
+
 .contact-me {
   color: #fff;
   font-size: 1rem;
