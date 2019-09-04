@@ -48,6 +48,31 @@
         }
       }
     },
+    "introduction": {
+      "title": "À propos de moi",
+      "paragraph": {
+        "intro": {
+          "stat1": "Qui dit \"technologie\" dit \"logiciel\"...",
+          "stat2": "Si nous avons à faire aux logiciels, nous avons à faire aux êtres humains !"
+        },
+        "why": {
+          "stat1": "L'ingénierie permet aux personnes de vivre de manière confortable, sans trop s'inquiéter des soucis de la conception.",
+          "stat2": "La raison pour laquelle j'étudie en ingénierie logicielle est que j'aime bien m'assurer que les choses soient faites avec le plus de facilité possible."
+        },
+        "kaizen": {
+          "stat1": "Le concept d'amélioration continue, ou de Kaizen, comme je l'ait appris durant mon stage de 8 mois au Japon, me fascine vraiment. J'ai eu l'occasion d'être dans le berceau de l'efficacité et de la technologie durant cette période."
+        },
+        "life": {
+          "motto": "\"L'amélioration est toujours possible\" est ma devise.",
+          "stat1": "Je pense comme ça en faisant à manger, en jouant à la batterie, en faisant du vélo... preque tout le temps ! Si quelque chose a déjà été amélioré, on peut toujours l'améliorer."
+        },
+        "experiences": {
+          "languages": "Je parle couramment l'anglais, le français et le japonais. Je conçois des produits logiciels du prototype à la vente. Travailler sur un projet en cours de développement ne me pose aucun problème.",
+          "skills": "J'ai travaillé dans le domaine de la vente en ligne, les télécommunications et un peu de jeux-vidéos."
+        },
+        "outro": "Travaillons ensemble sur votre prochain projet !"
+      }
+    },
     "credits": {
       "made-with-love": "Fait avec {{icon}} par Akinyélé Café-Fébrissy",
       "copyright": "Copyright © 2014-{{year}} Akinyélé Café-Fébrissy"

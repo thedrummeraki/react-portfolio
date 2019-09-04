@@ -1,7 +1,14 @@
 .introduction .paragraph {
-  margin: 20px;
+  margin: 30px auto;
+  width: 60%;
 }
 
 .has-akinyele-background {
   background: #f3eef4;
+}
+
+@media screen and (max-width: 1216px) {
+  .introduction .paragraph {
+    width: 90%;
+  }
 }

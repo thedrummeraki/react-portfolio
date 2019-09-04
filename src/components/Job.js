@@ -10,7 +10,7 @@ export default function Job(props) {
       {renderLogo(props.logo, props.link)}
       <Title contents={props.company} />
       <p><u>{props.title}</u></p>
-      <p><i>{getDates(props.start, props.end, t)}</i></p>
+      <p className="has-text-grey-dark"><i>{getDates(props.start, props.end, t)}</i></p>
       <p>{props.location}</p>
     </div>
   );
@@ -24,7 +24,7 @@ function Title(props) {
 
 function getDates(start, end, t) {
   if (start && end) {
-    return `${start} -> ${end}`;
+    return `${start} → ${end}`;
   } else if (start) {
     return `${t('misc.date.starts', {date: start})}`
   } else if (end) {

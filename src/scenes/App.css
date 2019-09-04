@@ -25,6 +25,34 @@
   color: white;
 }
 
+.locales {
+  padding-top: 4px;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s all;
+  -moz-transition: 0.3s all;
+  -o-transition: 0.3s all;
+  -webkit-transition: 0.3s all;
+}
+
+.locales.showing {
+  opacity: 1;
+  visibility: visible;
+}
+
+.locales img {
+  margin: 0 3px;
+  width: 40px;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.locales img.inactive {
+  cursor: default;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
 .profile {
   width: 234px;
   height: 234px;
