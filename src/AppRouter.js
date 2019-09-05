@@ -1,7 +1,7 @@
 import React from "react";
 import {App, NotFound, Resume} from './scenes';
 
-import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 export default function AppRouter() {
   return(

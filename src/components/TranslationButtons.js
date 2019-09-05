@@ -1,12 +1,9 @@
 import React, {useCallback, useRef} from 'react';
 import {language} from '../icons';
-import {useTranslation as i18n} from 'react-i18next';
-import ReactTooltip from 'react-tooltip';
 
 import {locale} from '../icons';
 
 export default function TranslationButtons(props) {
-  const {t} = i18n();
   const translationsRef = useRef();
 
   const onTranslationsClick = useCallback((e) => {
@@ -38,9 +35,9 @@ export default function TranslationButtons(props) {
           />
       </div>
 
-      <a href="#" onClick={onTranslationsClick}className="language">
+      <div onClick={onTranslationsClick}className="language">
         <img alt="lang-switch" src={language} className="social-media" />
-      </a>
+      </div>
     </div>
   );
 }

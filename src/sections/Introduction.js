@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-  Container,
-  Title
+  Container
 } from 'bloomer';
 import {useTranslation as i18n} from 'react-i18next';
 import {myFace} from '../icons';

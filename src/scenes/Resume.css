@@ -15,3 +15,15 @@
 .Resume .details a:hover {
   color: #aaa;
 }
+
+.Resume .info-card:not(:last-child) {
+  margin-top: 4rem;
+}
+
+.Resume .info-card:last-child {
+  margin-bottom: 4rem;
+}
+
+.Resume .info-card.details {
+  width: 100%;
+}

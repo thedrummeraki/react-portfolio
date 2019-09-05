@@ -19,7 +19,7 @@ export default function AboutMe() {
   return (
     <div id="about-me" className="has-background-grey-dark">
       <Container className="padded">
-        <Title className="has-text-centered">{t('about.title')}</Title>
+        <Title className="has-text-centered has-text-white">{t('about.title')}</Title>
         <StyleRoot>
           <Timeline animations={false} activeColor='#00d1b2'>
             <Job
@@ -32,7 +32,7 @@ export default function AboutMe() {
               logo={shopify}
               title={t('about.entries.shopify.title')}
               start={t('about.entries.shopify.start')}
-              location="Ottawa, Canada" />
+              location={t('misc.locations.ottawa')} />
             <Job
               isInternship
               company={t('about.entries.rakuten.company')}
@@ -40,7 +40,7 @@ export default function AboutMe() {
               title={t('about.entries.rakuten.title')}
               start={t('about.entries.rakuten.start')}
               end={t('about.entries.rakuten.end')}
-              location="Tokyo, Japan" />
+              location={t('misc.locations.tokyo')} />
             <Job
               isInternship
               company={t('about.entries.crc.company')}
@@ -48,7 +48,7 @@ export default function AboutMe() {
               title={t('about.entries.crc.title')}
               start={t('about.entries.crc.start')}
               end={t('about.entries.crc.end')}
-              location="Ottawa, Canada" />
+              location={t('misc.locations.ottawa')} />
             <Job
               isInternship
               company={t('about.entries.cbn.company')}
@@ -56,7 +56,7 @@ export default function AboutMe() {
               title={t('about.entries.cbn.title-2')}
               start={t('about.entries.cbn.start-2')}
               end={t('about.entries.cbn.end-2')}
-              location="Ottawa, Canada" />
+              location={t('misc.locations.ottawa')} />
             <Job
               isInternship
               company={t('about.entries.cbn.company')}
@@ -64,14 +64,14 @@ export default function AboutMe() {
               title={t('about.entries.cbn.title-1')}
               start={t('about.entries.cbn.start-1')}
               end={t('about.entries.cbn.end-1')}
-              location="Ottawa, Canada" />
+              location={t('misc.locations.ottawa')} />
             <Job
               isInternship
               company={t('about.entries.uottawa.program')}
               logo={uottawa}
               title={t('about.entries.uottawa.school')}
               start={t('about.entries.uottawa.start')}
-              location="Ottawa, Canada" />
+              location={t('misc.locations.ottawa')} />
           </Timeline>
         </StyleRoot>
       </Container>

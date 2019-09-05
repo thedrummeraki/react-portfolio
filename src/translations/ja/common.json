@@ -73,6 +73,10 @@
         "outro": "一緒に発想を広げましょう！"
       }
     },
+    "resume": {
+      "title": "履歴書",
+      "home": "ホームページへ"
+    },
     "credits": {
       "made-with-love": "Made with {{icon}} by アキニエレ・カフェフェブリシー",
       "copyright": "アキニエレ・カフェフェブリシーによりCopyright © 2014-{{year}}"
@@ -128,7 +132,7 @@
       },
       "locations": {
         "ottawa": "オタワ、カナダ",
-        "tokyo": "東京"
+        "tokyo": "日本、東京"
       },
       "not-found": {
         "title": " このページは存在しておりません。 - Akinyele.ca",

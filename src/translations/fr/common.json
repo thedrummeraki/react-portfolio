@@ -73,6 +73,10 @@
         "outro": "Travaillons ensemble sur votre prochain projet !"
       }
     },
+    "resume": {
+      "title": "Curriculum Vitae",
+      "home": "Page principale"
+    },
     "credits": {
       "made-with-love": "Fait avec {{icon}} par Akinyélé Café-Fébrissy",
       "copyright": "Copyright © 2014-{{year}} Akinyélé Café-Fébrissy"

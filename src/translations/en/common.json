@@ -73,6 +73,10 @@
         "outro": "Let's make your next project happen!"
       }
     },
+    "resume": {
+      "title": "Resume",
+      "home": "Home page"
+    },
     "credits": {
       "made-with-love": "Made with {{icon}} by Akinyele Cafe-Febrissy",
       "copyright": "Copyright © 2014-{{year}} Akinyele Cafe-Febrissy"
