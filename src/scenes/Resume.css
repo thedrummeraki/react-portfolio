@@ -1,6 +1,15 @@
+.Resume .resume-background {
+  background: linear-gradient(-30deg, hsl(0, 0%, 21%), hsl(0, 0%, 21%) 45%, hsl(0, 0%, 14%) 45%);
+  color: #fff !important;
+}
+
 .Resume .details {
   margin: 0 auto;
   width: 30%;
+}
+
+.Resume .details {
+  width: 50%;
 }
 
 .Resume .details .icon {
@@ -16,7 +25,7 @@
   color: #aaa;
 }
 
-.Resume .info-card:not(:last-child) {
+.Resume .info-card:first-child {
   margin-top: 4rem;
 }
 
@@ -26,4 +35,24 @@
 
 .Resume .info-card.details {
   width: 100%;
+}
+
+.Resume .Skill .expert {
+  opacity: 1;
+}
+
+.Resume .Skill .strong {
+  opacity: 0.7;
+}
+
+.Resume .Skill .average {
+  opacity: 0.5;
+}
+
+.Resume .Skill .okay {
+  opacity: 0.35;
+}
+
+.Resume .Skill .beginner {
+  opacity: 0.2;
 }
