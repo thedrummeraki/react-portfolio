@@ -14,7 +14,8 @@ import {
   Card,
   CardContent,
   Columns,
-  Column
+  Column,
+  Content
 } from 'bloomer';
 import {useTranslation as i18n} from 'react-i18next';
 import {myFace, github, linkedin, skype, mail, locale} from '../icons';
@@ -191,12 +192,28 @@ function Skills() {
     <div className='info-card'>
       <Card>
         <CardContent>
-          <Title isSize={6}>General Skills</Title>
-          <Skill name="Ruby - Rails" rating={5} />
-          <Skill name="JavaScript" rating={5} />
-          <Skill name="Python" rating={4} />
-          <Skill name="Android" rating={4} />
-          <Skill name="C++" rating={3} />
+          <Content>
+            <Title isSize={6}>General Skills</Title>
+            <Skill name="Ruby on Rails" rating={5} />
+            <Skill name="JavaScript" rating={5} />
+            <Skill name="Python" rating={4} />
+            <Skill name="Java" rating={4} />
+            <Skill name="Android" rating={3} />
+          </Content>
+
+          <Content>
+            <Title isSize={6}>I have also worked with...</Title>
+            <Chip text="C++" />
+            <Chip text="Unity" />
+            <Chip text="C#" />
+            <Chip text="React" />
+            <Chip text="Ruby" />
+            <Chip text="Apache" />
+            <Chip text="PHP" />
+            <Chip text="node.js" />
+            <Chip text="Spring" />
+            <Chip text="SOAP/WSDL" />
+          </Content>
         </CardContent>
       </Card>
     </div>
@@ -209,7 +226,7 @@ function SoftwareKnowledge() {
       <Card>
         <CardContent>
           <Title isSize={6}>Akinyele's keywords</Title>
-          <Chip text='Quality・Trust' />
+          <Chip text='Quality &amp; Trust' />
           <Chip text='Project management' />
           <Chip text='High impact' />
           <Chip text='Constant learner' />

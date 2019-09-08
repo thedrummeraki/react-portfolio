@@ -5,7 +5,6 @@ import {
 import {useTranslation as i18n} from 'react-i18next';
 import {myFace} from '../icons';
 import './Introduction.css';
-import {Link} from '../components';
 
 export default function Introduction() {
   const {t} = i18n();
@@ -36,9 +35,6 @@ export default function Introduction() {
         <div className="paragraph outro">
           <p><strong>{t('introduction.paragraph.outro')}</strong></p>
         </div>
-        <Link href="/resume">
-          <button className="discover">{t('resume.check')}</button>
-        </Link>
       </Container>
     </div>
   );
