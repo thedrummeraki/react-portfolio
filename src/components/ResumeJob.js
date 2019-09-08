@@ -31,11 +31,11 @@ export default function ResumeJob(props) {
           {title}
         </CardHeaderTitle>
       </CardHeader>
-      <CardImage>
+      <CardImage style={{display: 'none'}}>
         <Image isRatio='16:9' src={src} />
       </CardImage>
       <CardContent>
-        <Title isSize={4}>{company}</Title>
+        <Title isSize={4} className='has-text-dark'>{company}</Title>
         {experienceText}
       </CardContent>
     </Card>

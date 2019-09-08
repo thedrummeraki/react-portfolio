@@ -75,7 +75,78 @@
     },
     "resume": {
       "title": "Curriculum Vitae",
-      "home": "Page principale"
+      "home": "Page principale",
+      "check": "CV et Projets"
+    },
+    "projects": {
+      "title": {
+        "main": "PROJETS PRINCIPAUX",
+        "other": "Autres projets"
+      },
+      "main": {
+        "tanoshimu": {
+          "title": "Tanoshimu",
+          "description": "Site de streaming privé",
+          "text": "J'ai commencé le développement de ce site en 2016 afin de plus en apprendre sur Ruby on Rails. Le développement d'un API sécuritaire était le plus grand challenge. Une version Android est aussi disponible."
+        },
+        "notaki": {
+          "title": "Notaki.ca",
+          "description": "Appli pour prise de notes pour étudiants",
+          "text": "Originallement conçue comme prototype pour un cours universitaire d'interface usager, j'ai décider de compléter l'application. Un des pros gros challenges était d'implémenter le mécanisme pour sauvegarder les notes."
+        },
+        "crystal_clear": {
+          "title": "CrystalClear.ca",
+          "description": "Partagez vos infos persos à votre partenaire!",
+          "text": "En raison du fait que je suis sur le processus d'obtenir les droits d'auteurs ce se produit, je ne suis pas en mesure de trop de détails. Contactez-moi par email pour en savoir plus !"
+        }
+      },
+      "other": {
+        "hon_site": {
+          "title": "Akinyele.ca - Ce site",
+          "description": "Une approche plus moderne pour mon montrer mon potentiel",
+          "text": "Ce site est la dernière version de mon site réalisé récemment en 2019. Après avoir appris la technologie React durant mon stage à Shopify, j'ai décidé d'en apprendre plus et d'appliquer ce qu'est j'ai appris... et je suis fier des résultats."
+        },
+        "tanoshimu": {
+          "title": "Tanoshimu (version Android)",
+          "description": "Appli de streaming privé",
+          "text": "Cette version Android de Tanoshimu a été conçue pour améliorer l'expérience mobile de mes utilisateurs."
+        },
+        "spectrum": {
+          "title": "Système de visualisation de fréquences cellulaires 3D",
+          "description": "Voir les fréquences cellulaires en 3D",
+          "text": "Projet réalisé durant mon stage au Gouvernement du Canada afin de visionner les fréquences cellulaires 3G et 4G en trois dimensions. J'ai participé au project du début à la fin avec l'aide d'un autre collègue stagiaire."
+        },
+        "decode": {
+          "title": "Hackathon deCODE 2017 (Shopify)",
+          "description": "Permettre aux marchants Shopify de donner des produits",
+          "text": "Je me suis incris à mon hackathon (deCODE) en 2017 ayant eu lieu à l'Université d'Ottawa. Le but du projet était de permettres aux marchands de donner gratuitement des produits. Lorsque la période de donations est finie, un gagnant est sélectionné ayant que les prix."
+        },
+        "tanoshimu_admin": {
+          "title": "Console admin pour Tanoshimu",
+          "description": "Gestion de contenu pour Tanoshimu",
+          "text": "Application permettant de gérer les séries et les épisodes sur Tanoshimu à l'aide d'un compte administrateur."
+        },
+        "french": {
+          "title": "French Akinyele",
+          "description": "Apprenez le français dès aujourd'hui...!",
+          "text": "Ayant commencé à faire du tutorat pour un ami ayant envi d'apprendre le français, j'ai réalisé que nous utilisions trop de papier. J'ai donc décider de rapidement construire ce site pour ainsi faciliter son apprentissage."
+        },
+        "ctgs": {
+          "title": "SBCE (Système de bourses pour les conférences à l'étranger)",
+          "description": "Faites vos demande de bourse pour conférences à l'étranger",
+          "text": "Projet final pour mon cours d'architecture logicielle. C'est un système de gestion de bourses pour conférences à l'étranger. Le but était de permettre aux demandeurs de faire leur demande de bourse, et aux superviseurs de revoir ces dernières. Elles peuvent être soit acceptées, rejectées ou exiger que des changements soit apportés."
+        },
+        "reviews": {
+          "title": "Critiques Akinoid",
+          "description": "Critiques à propos de tout et n'importe quoi",
+          "text": "Mon premier site plus ou moins \"complexe\". Principalement permet aux utilisateurs de lire des critiques à propos de séries animées ou de films."
+        },
+        "bra": {
+          "title": "Banque Royale d'Aki",
+          "description": "Transations bancaires en sécurité",
+          "text": "Première application Android. Première application web faite en Rails. La version a été conçue pour garder mes informations de transations bancaires privées et sécuritaires."
+        }
+      }
     },
     "credits": {
       "made-with-love": "Fait avec {{icon}} par Akinyélé Café-Fébrissy",

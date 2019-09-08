@@ -19,8 +19,9 @@ import {
 import {useTranslation as i18n} from 'react-i18next';
 import {myFace, github, linkedin, skype, mail, locale} from '../icons';
 import {cbn, crc, rakuten, shopify} from '../companies';
-import {tanoshimu, notaki} from '../backgrounds';
+import {tanoshimu, notaki, crystal_clear} from '../backgrounds';
 import {Link, Skill, ResumeJob, Chip, Project} from '../components';
+import projects from '../config/projects';
 import './Resume.css';
 
 export default function Resume() {
@@ -30,7 +31,7 @@ export default function Resume() {
   return (
     <div className="Resume">
       <ResumeHeader i18n={i18n} />
-      <Container className="details wider">
+      <Container className="details">
         <Container>
           <Summary />
           <AboutMyself />
@@ -41,10 +42,18 @@ export default function Resume() {
           <SoftwareKnowledge />
         </Container>
       </Container>
-      
-      <Hero isSize='small' className='has-background-grey-dark'>
+
+      <Hero isSize='small' isColor='primary'>
         <HeroBody>
           <Container className='details wider'>
+            <WorkExperience />
+          </Container>
+        </HeroBody>
+      </Hero>
+      
+      <Hero isSize='small' className='has-background-dark'>
+        <HeroBody>
+          <Container className='details'>
             <Container>
               <MyProjects />
             </Container>
@@ -59,11 +68,11 @@ export default function Resume() {
 };
 
 function ResumeHeader(props) {
-  const {t} = props.i18n();
+  const {t} = i18n();
 
   return (
-    <Hero isSize='medium' className='resume-background'>
-      <HeroHeader>
+    <Hero isFullHeight className='resume-background'>
+      <HeroHeader style={{display: 'none'}}>
         <Nav>
           <NavLeft>
             <NavItem isBrand>{t('resume.title')}</NavItem>
@@ -84,7 +93,9 @@ function ResumeHeader(props) {
 
       <HeroBody>
         <Container hasTextAlign='centered'>
+          <Link href="/">
           <img src={myFace} alt={t('misc.name.oneline')} className="profile" />
+          </Link>
           <Title className='has-text-white' isSize={2}>{t('misc.name.oneline')}</Title>
 
           <div className="details">
@@ -183,7 +194,7 @@ function Skills() {
           <Title isSize={6}>General Skills</Title>
           <Skill name="Ruby - Rails" rating={5} />
           <Skill name="JavaScript" rating={5} />
-          <Skill name="Python" rating={5} />
+          <Skill name="Python" rating={4} />
           <Skill name="Android" rating={4} />
           <Skill name="C++" rating={3} />
         </CardContent>
@@ -198,10 +209,10 @@ function SoftwareKnowledge() {
       <Card>
         <CardContent>
           <Title isSize={6}>Akinyele's keywords</Title>
-          <Chip text='Quality and Trust' />
+          <Chip text='Quality・Trust' />
           <Chip text='Project management' />
           <Chip text='High impact' />
-          <Chip text='Always learning' />
+          <Chip text='Constant learner' />
           <Chip text='Long-term oriented' />
         </CardContent>
       </Card>
@@ -210,98 +221,25 @@ function SoftwareKnowledge() {
 }
 
 function MyProjects() {
-  const currentLocale = localStorage['current_locale'] || 'en';
+  const {t} = i18n();
+  const mainProjectsMarkup = projects.main.map(project => <Project {...project} />);
+
   return (
     <div className='info-card projects'>
-      <Title className='has-text-light' isSize={5}>PROJECTS</Title>
-      <Project
-        isClosedSource
-        title='Tanoshimu'
-        src='https://demo.youranime.moe'
-        image={tanoshimu[currentLocale]}
-        description='A private streaming anime website.'
-        text='I started this project in 2016 as a way to learn about Ruby on Rails. My challenge: development of a secure API for viewing the videos. Android version available.'
-        technologies={['Ruby on Rails', 'Ruby', 'Python', 'jQuery']} />
-
-      <Project 
-        title='Notaki.ca'
-        githubPath='thedrummeraki/notaki.ca'
-        src='http://www.forevernote.ca'
-        image={notaki}
-        description='A note-taking app targeted at students.'
-        text='Built as prototype for my UI class. I decided to take this further and complete the application. My biggest challenge was the mechanism for saving the notes.' />    
+      <Title className='has-text-light' isSize={5}>{t('projects.title.main')}</Title>
+      {mainProjectsMarkup}
     </div>
   )
 }
 
 function OtherProjects() {
+  const {t} = i18n();
+  const otherProjectsMarkup = projects.other.map(project => <Project {...project} />);
+
   return (
     <div className='info-card projects'>
-      <Title className='has-text-light' isSize={5}>Other projects</Title>
-      <Project 
-        title='This website'
-        githubPath='thedrummeraki/react-portfolio'
-        description='A more modern approach to my showing my potential'
-        text="A 2019 version of my website. After learning React at Shopify, I decided to learn more of this technology and I am very happy with the results. Of course, lots of aspects need to be improved, but I care very much about progress."
-        technologies={['React']} />
-
-      <Project
-        title='Tanoshimu (Android version)'
-        src='https://demo.youranime.moe'
-        githubPath='thedrummeraki/nTanoshimu'
-        description='A private streaming anime website.'
-        text="This is a mobile version of Have Fun (Tanoshimu). I primarily made this application to improve my anime website's mobile experience."
-        technologies={['Android']} />
-
-      <Project 
-        isClosedSource
-        title='3D Spectrum Visualization'
-        description='Visualize 3G and 4G networks in 3D'
-        text='This is the project I worked on during my Fall 2017 COOP term. This application built on Unity explores a new way to visualize spectrum in 3D, from scratch.'
-        technologies={['C#', 'Unity', 'Python']} /> 
-
-      <Project 
-        title='deCODE Hackathon 2017 (Shopify)'
-        description='Visualize 3G and 4G networks in 3D'
-        text="I participated to last year's deCODE Hackathon in Ottawa (2017). This application was designed for sellers to give away products of their choice, share a link to participants and let them enter the contest. Once the giveaway is over, a winner is automatically selected to receive the prize."
-        technologies={['Ruby on Rails']} /> 
-
-      <Project 
-        isClosedSource
-        title='Have Fun Admin console (for Tanoshimu)'
-        description='Visualize 3G and 4G networks in 3D'
-        text="Designed to manage the application described above. I log in as an administrator and start managing my anime website's contents." 
-        technologies={['Ruby on Rails']} /> 
-
-      <Project 
-        title='French Akinyele'
-        description='Visualize 3G and 4G networks in 3D'
-        src='https://french-akinyele.herokuapp.com'
-        text='I made this website for a friend who I started tutoring. I thought we were using too much paper, so I decided to make a quick Bootstrap website.' 
-        technologies={['Ruby on Rails']} /> 
-
-      <Project 
-        title='CTGS (Conference Travel Grant System)'
-        description='Visualize 3G and 4G networks in 3D'
-        src='https://seg3502-uottawa.herokuapp.com'
-        text='Final project for my "Software Architecture" class at university. This app is a Grant Management System where users can signup under a supervisor. A user may apply for a grant by filling the application. The latter may be granted, rejected or set pending by the supervisor.'
-        technologies={['Ruby on Rails']} /> 
-
-      <Project 
-        title='Akinoid Reviews'
-        description='Visualize 3G and 4G networks in 3D'
-        src='https://akinyele-reviews.herokuapp.com'
-        text='My first complex website yet. Its primary use is to read movie/anime/video games critiques.'
-        technologies={['Ruby on Rails']} /> 
-
-      <Project 
-        isClosedSource
-        title="Bank Royale d'Aki 2.0"
-        description='Visualize 3G and 4G networks in 3D'
-        googlePlaySrc='https://play.google.com/store/apps/details?id=com.akinyele.bra.brav20'
-        src='https://bra-akinyele.herokuapp.com'
-        text='My first Android application. I wanted an application where I can keep my custom banking in a secure way. A web version exists as well'
-        technologies={['Ruby on Rails', 'Android']} /> 
+      <Title className='has-text-light' isSize={5}>{t('projects.title.other')}</Title>
+      {otherProjectsMarkup}
     </div>
   )
 }
@@ -319,10 +257,10 @@ function WorkExperience() {
             to="August 2019"
             src={shopify}
             experience={[
-              'the best',
-              'experience',
-              'i have literally have',
-              'all of my life :o'
+              'High impact decision making affecting thousands of Shopify Partners',
+              'Shipping high quality code every day to keep systems sleemless',
+              'Further deeped my technical skills with Rails - learned React',
+              'Applied software eng skills by being involded in project from start to finish'
             ]}
           />
         </Column>

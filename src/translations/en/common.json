@@ -75,7 +75,78 @@
     },
     "resume": {
       "title": "Resume",
-      "home": "Home page"
+      "home": "Home page",
+      "check": "Resume / Projects"
+    },
+    "projects": {
+      "title": {
+        "main": "MY PROJECTS",
+        "other": "Other projects"
+      },
+      "main": {
+        "tanoshimu": {
+          "title": "Tanoshimu",
+          "description": "A private streaming anime website.",
+          "text": "I started this project in 2016 as a way to learn about Ruby on Rails. My challenge: development of a secure API for viewing the videos. Android version available."
+        },
+        "notaki": {
+          "title": "Notaki.ca",
+          "description": "A note-taking app targeted at students.",
+          "text": "Built as prototype for my UI class. I decided to take this further and complete the application. My biggest challenge was the mechanism for saving the notes."
+        },
+        "crystal_clear": {
+          "title": "CrystalClear.ca",
+          "description": "A personal dictionnary ;)",
+          "text": "This idea is still in progress, so I cannot publicly disclose any information about it. Let us say that you can share with your special someone some info about yourself. Reach me by email to learn more!"
+        }
+      },
+      "other": {
+        "hon_site": {
+          "title": "Akinyele.ca - This website",
+          "description": "A more modern approach to my showing my potential.",
+          "text": "A 2019 version of my website. After learning React at Shopify, I decided to learn more of this technology and I am very happy with the results. Of course, lots of aspects need to be improved, but I care very much about progress."
+        },
+        "tanoshimu": {
+          "title": "Tanoshimu (Android version)",
+          "description": "A private streaming anime website... on your Android device.",
+          "text": "This is a mobile version of Have Fun (Tanoshimu). I primarily made this application to improve my anime website's mobile experience."
+        },
+        "spectrum": {
+          "title": "3D Spectrum Visualization",
+          "description": "Visualize 3G and 4G networks in 3D.",
+          "text": "This is the project I worked on during my Fall 2017 COOP term. This application built on Unity explores a new way to visualize spectrum in 3D, from scratch."
+        },
+        "decode": {
+          "title": "deCODE Hackathon 2017 (Shopify)",
+          "description": "Allow merchants to give away products using Shopify's technologies.",
+          "text": "I participated to last year's deCODE Hackathon in Ottawa (2017). This application was designed for sellers to give away products of their choice, share a link to participants and let them enter the contest. Once the giveaway is over, a winner is automatically selected to receive the prize."
+        },
+        "tanoshimu_admin": {
+          "title": "Have Fun Admin console (for Tanoshimu)",
+          "description": "Manage show and episode content.",
+          "text": "Designed to manage the application described above. I log in as an administrator and start managing my anime website's contents."
+        },
+        "french": {
+          "title": "French Akinyele",
+          "description": "Start learning French today!",
+          "text": "I made this website for a friend who I started tutoring. I thought we were using too much paper, so I decided to make a quick Bootstrap website."
+        },
+        "ctgs": {
+          "title": "CTGS (Conference Travel Grant System)",
+          "description": "Apply for grands and bursaries for travelling.",
+          "text": "Final project for my \"Software Architecture\" class at university. This app is a Grant Management System where users can signup under a supervisor. A user may apply for a grant by filling the application. The latter may be granted, rejected or set pending by the supervisor."
+        },
+        "reviews": {
+          "title": "Akinoid Reviews",
+          "description": "Read reviews... on just about anything.",
+          "text": "My first complex website yet. Its primary use is to read movie/anime/video games critiques."
+        },
+        "bra": {
+          "title": "Bank Royale d'Aki 2.0",
+          "description": "Securely manage your banking transactions.",
+          "text": "My first Android application. I wanted an application where I can keep my custom banking in a secure way. A web version exists as well. This is my first Ruby on Rails application."
+        }
+      }
     },
     "credits": {
       "made-with-love": "Made with {{icon}} by Akinyele Cafe-Febrissy",

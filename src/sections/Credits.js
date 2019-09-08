@@ -23,7 +23,7 @@ export default function Credits(props) {
             </Column>
           </Columns>
           <Content isSize='small'>
-            <p>{t('credits.copyright')}</p>
+            <p>{t('credits.copyright', {year: 2019})}</p>
             {renderIconsCredits()}
           </Content>
         </Content>
