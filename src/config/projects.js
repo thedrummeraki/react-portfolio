@@ -9,7 +9,7 @@ const projects = {
     {
       isClosedSource: true,
       title: 'projects.main.tanoshimu.title',
-      src: 'https://demo.youranime.moe',
+      /* src: 'https://demo.youranime.moe', */
       image: defaultTanoshimu,
       description: 'projects.main.tanoshimu.description',
       text: 'projects.main.tanoshimu.text',
