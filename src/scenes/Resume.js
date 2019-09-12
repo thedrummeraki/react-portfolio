@@ -268,7 +268,7 @@ function WorkExperience() {
       <Columns isCentered>
         <Column isSize={6}>
           <ResumeJob 
-            title="Backend developer"
+            title="Backend developer (Internship)"
             company="Shopify"
             from="May 2019"
             to="August 2019"
@@ -313,7 +313,7 @@ function WorkExperience() {
         </Column>
         <Column isSize={6}>
           <ResumeJob 
-              title="Linux developer"
+              title="Linux developer (COOP)"
               company="Canadian Bank Note Company"
               from="4 months in 2016"
               to="4 months in 2017"
