@@ -274,10 +274,10 @@ function WorkExperience() {
             to="August 2019"
             src={shopify}
             experience={[
-              'High impact decision making affecting thousands of Shopify Partners',
-              'Shipping high quality code every day to keep systems sleemless',
-              'Further deeped my technical skills with Rails - learned React',
-              'Applied software eng skills by being involded in project from start to finish'
+              'Refined critical backend/frontend software by writing quality code affecting hundreds of thousands of customers.',
+              'Acquired a high impact attitude by making quick and great decisions.',
+              'Nurtured communication skills by asking the right questions.',
+              'Contributed to open source project for the first time.'
             ]}
           />
         </Column>
