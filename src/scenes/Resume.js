@@ -276,8 +276,8 @@ function WorkExperience() {
             experience={[
               'Refined critical backend/frontend software by writing quality code affecting hundreds of thousands of customers.',
               'Acquired a high impact attitude by making quick and great decisions.',
-              'Nurtured communication skills by asking the right questions.',
-              'Contributed to open source project for the first time.'
+              'Nurtured communication skills by asking the right questions to the right people.',
+              'Contributed to open source projects for the first time.'
             ]}
           />
         </Column>
