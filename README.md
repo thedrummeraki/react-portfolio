@@ -28,7 +28,7 @@ a shot.
 
 TLDR; **This is the third version of my website.**.
 
-My [older website](http://old.akinyele.ca) made in 2017 uses Ruby on Rails 
+My [older website](https://github.com/thedrummeraki/old.akinyele.ca) made in 2017 uses Ruby on Rails 
 in the backend and [MaterializeCSS](materializecss.com) on the front end. 
 I relied on this site for over 2 years. Managing the projects on the database
 because rather... cumbersome.
