@@ -1,9 +1,11 @@
 import React from 'react';
 import {
-  Container
+  Container,
+  Content
 } from 'bloomer';
 import {useTranslation as i18n} from 'react-i18next';
 import {myFace} from '../icons';
+import {Link} from '../components';
 import './Introduction.css';
 
 export default function Introduction() {
@@ -35,6 +37,12 @@ export default function Introduction() {
         <div className="paragraph outro">
           <p><strong>{t('introduction.paragraph.outro')}</strong></p>
         </div>
+
+        <Content>
+          <Link href="/resume">
+            <button className="discover">{t('resume.check')}</button>
+          </Link>
+        </Content>
       </Container>
     </div>
   );
