@@ -8,8 +8,7 @@ import {
   Subtitle,
   Content,
   CardImage,
-  Image,
-  CardFooter
+  Image
 } from 'bloomer';
 import {github, open_in_new, google_play} from '../icons';
 import Link from './Link';
@@ -25,7 +24,6 @@ export default function Project(props) {
     image,
     description,
     text,
-    isClosedSource,
     technologies
   } = props;
   const {t} = i18n();
@@ -52,12 +50,8 @@ export default function Project(props) {
 
   const projectImage = image ? (
     <CardImage>
-      <Image src={image} isRatio='16:9' />
+      <Image src={image} className='fit-cover' isRatio='16:9' />
     </CardImage>
-  ) : null;
-
-  const closedSource = isClosedSource ? (
-    <Chip text={'Closed Source'} />
   ) : null;
 
   const technologiesChips = technologies ? (

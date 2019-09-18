@@ -9,42 +9,42 @@
       "discover": "革新へ"
     },
     "about": {
-      "title": "My life story",
+      "title": "マイライフストリー",
       "entries": {
         "graduation": {
           "title": "卒業式",
-          "when": "２０２０年６月予定です"
+          "when": "2019年12月に授業が終わり、2020年6月は卒業予定です"
         },
         "shopify": {
           "company": "ショプファイ (Shopify)",
           "title": "開発者",
-          "start": "２０１９年９月"
+          "start": "2019年9月"
         },
         "rakuten": {
           "company": "楽天株式会社",
           "title": "データベース開発者",
-          "start": "２０１８年５月",
-          "end": "２０１８年１２月"
+          "start": "2018年5月",
+          "end": "2018年12月"
         },
         "crc": {
           "company": "カナダ通信技術研究センター (CRC)",
           "title": "ソフトウェア研究者",
-          "start": "２０１７年９月",
-          "end": "２０１７年１２月"
+          "start": "2017年9月",
+          "end": "2017年12月"
         },
         "cbn": {
           "company": "Canadian Bank Note Company",
           "title-1": "Linux開発者 (x1)",
           "title-2": "Linux開発者 (x2)",
-          "start-1": "２０１６年５月",
-          "end-1": "２０１６年８月",
-          "start-2": "２０１７年１月",
-          "end-2": "２０１７年４月"
+          "start-1": "2016年5月",
+          "end-1": "2016年8月",
+          "start-2": "2017年1月",
+          "end-2": "2017年4月"
         },
         "uottawa": {
           "program": "BASc in Software Engineering (COOP)",
           "school": "オタワ大学",
-          "start": "２０１４年９月"
+          "start": "2014年9月"
         }
       }
     },

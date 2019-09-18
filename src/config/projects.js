@@ -1,7 +1,8 @@
 import {
   defaultTanoshimu,
   notaki,
-  crystal_clear
+  crystal_clear,
+  capstone
 } from '../backgrounds';
 
 const projects = {
@@ -9,7 +10,8 @@ const projects = {
     {
       isClosedSource: true,
       title: 'projects.main.tanoshimu.title',
-      /* src: 'https://demo.youranime.moe', */
+      githubPath: 'thedrummeraki/tanoshimu',
+      src: 'https://beta-youranime.herokuapp.com',
       image: defaultTanoshimu,
       description: 'projects.main.tanoshimu.description',
       text: 'projects.main.tanoshimu.text',
@@ -32,6 +34,15 @@ const projects = {
       image: crystal_clear,
       text: 'projects.main.crystal_clear.text',
       technologies: ['Rails', 'Websockets (ActionCable)']
+    },
+    {
+      isClosedSource: true,
+      title: 'projects.school.capstone.title',
+      src: 'https://capstone-shamn.herokuapp.com/',
+      image: capstone,
+      description: 'projects.school.capstone.description',
+      text: 'projects.school.capstone.text',
+      technologies: ['Rails', 'Heroku', 'PostgreSQL']
     },
   ],
   other: [

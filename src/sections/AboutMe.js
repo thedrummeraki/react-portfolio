@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Title, Content} from 'bloomer';
+import {Container, Title} from 'bloomer';
 import {StyleRoot} from 'radium';
 import {useTranslation as i18n} from 'react-i18next';
 
@@ -13,7 +13,6 @@ import {
   shopify,
   uottawa,
 } from '../logos';
-import {Link} from '../components';
 
 export default function AboutMe() {
   const {t} = i18n();

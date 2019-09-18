@@ -9,11 +9,11 @@
       "discover": "Voir plus..."
     },
     "about": {
-      "title": "Mon parcours de vie",
+      "title": "Mon parcours",
       "entries": {
         "graduation": {
           "title": "Remise de diplômes !",
-          "when": "(prévue en juin 2020)"
+          "when": "Diplôme remis en Mars 2020. Graduation prévue en juin 2020"
         },
         "shopify": {
           "company": "Shopify",
@@ -60,7 +60,7 @@
           "stat2": "La raison pour laquelle j'étudie en ingénierie logicielle est que j'aime bien m'assurer que les choses soient faites avec le plus de facilité possible."
         },
         "kaizen": {
-          "stat1": "Le concept d'amélioration continue, ou de Kaizen, comme je l'ait appris durant mon stage de 8 mois au Japon, me fascine vraiment. J'ai eu l'occasion d'être dans le berceau de l'efficacité et de la technologie durant cette période."
+          "stat1": "Le concept d'amélioration continue ou de Kaizen, comme je l'ait appris durant mon stage de 8 mois au Japon, me fascine vraiment. J'ai eu l'occasion d'être dans le berceau de l'efficacité et de la technologie durant cette période."
         },
         "life": {
           "motto": "\"L'amélioration est toujours possible\" est ma devise.",

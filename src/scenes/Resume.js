@@ -20,7 +20,6 @@ import {
 import {useTranslation as i18n} from 'react-i18next';
 import {myFace, github, linkedin, skype, mail, locale} from '../icons';
 import {cbn, crc, rakuten, shopify} from '../companies';
-import {tanoshimu, notaki, crystal_clear} from '../backgrounds';
 import {Link, Skill, ResumeJob, Chip, Project} from '../components';
 import projects from '../config/projects';
 import './Resume.css';
