@@ -202,6 +202,7 @@ function Skills() {
 
           <Content>
             <Title isSize={6}>I have also worked with...</Title>
+            <Chip text="Artificial Intelligence" />
             <Chip text="C++" />
             <Chip text="Unity" />
             <Chip text="C#" />
