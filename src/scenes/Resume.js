@@ -40,6 +40,10 @@ export default function Resume() {
           <Languages />
           <Skills />
           <SoftwareKnowledge />
+          <Hackathons />
+        </Container>
+        <Container>
+          <HimaTsubishi />
         </Container>
       </Container>
 
@@ -231,6 +235,48 @@ function SoftwareKnowledge() {
           <Chip text='High impact' />
           <Chip text='Constant learner' />
           <Chip text='Long-term oriented' />
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+function Hackathons() {
+  return (
+    <div className='info-card dark-link'>
+      <Card>
+        <CardContent>
+          <Content>
+            <Title isSize={6}>Hackathons</Title>
+            <ul>
+              <li>Built an internal complaint dashboard during the <Link newTab href="https://www.shopify.com/partners/blog/18969895-why-hack-days-are-great-for-designers">Shopify Hackdays</Link> in August 2019.</li>
+              <li>Participated in <Link newTab href="https://events.carleton.ca/ihack-ottawa-2019/">iHack's CTF at Carleton University</Link> in June 2019.</li>
+              <li>Designed an <Link newTab href="https://github.com/SurienDG/UOttahacks2019">voice-operated racing game</Link> during University of Ottawa's <Link newTab href="https://2019.uottahack.ca">uOttaHack</Link> in February 2019.</li>
+              <li>Thought out an new ticketing system that uses a phone's camera during <Link newTab href="https://uottahack.ca">uOttaHack</Link> in February 2018.</li>
+              <li>Successfully designed a giveaway application using a public Shopify API during <Link newTab href="https://www.facebook.com/hackdecode/">deCODE Hackathon</Link> in April 2017.</li>
+            </ul>
+          </Content>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+
+function HimaTsubishi() {
+  return (
+    <div className='info-card dark-link'>
+      <Card>
+        <CardContent>
+          <Content>
+            <Title isSize={5}>MY HOBBIES</Title>
+            <ul>
+              <li>I love watching anime. When I have time, I watch 3-4 episodes in a row. My latest favourite anime: <Link newTab href="https://www.crunchyroll.com/demon-slayer-kimetsu-no-yaiba">Kimetsu no Yaiba (鬼滅の刃)</Link>.</li>
+              <li>I enjoy a little too much playing video games. My latest favourite game: <Link newTab href="https://www.nintendo.com/games/detail/fire-emblem-three-houses-switch/">Fire Emblem: Three Houses</Link> on the Nintendo Switch. Simply a blast.</li>
+              <li>Biking! I go to school/work from when I can (here, from March to November, basically when the temperature is higher than -5°C/23°F)! I own a vintage Bianchi bike in 2019. Stylish and quick ;)</li>
+              <li>I am rather fond of cooking. But I am even more fond of baking and preparing treats. I am mostly intrested in bread and jam.</li>
+              <li>And of course, I can't get enough of coding. My favourite language of all time is Ruby. Check out my projects below!</li>
+            </ul>
+          </Content>
         </CardContent>
       </Card>
     </div>

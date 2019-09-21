@@ -69,3 +69,11 @@
 .Resume .Skill .beginner {
   opacity: 0.2;
 }
+
+.Resume .info-card.dark-link a {
+  color: #aaa;
+}
+
+.Resume .info-card.dark-link a:hover {
+  color: #222;
+}
