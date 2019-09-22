@@ -76,7 +76,15 @@
     "resume": {
       "title": "Resume",
       "home": "Home page",
-      "check": "Resume / Projects"
+      "check": "Resume / Projects",
+      "urls": {
+        "jobs": {
+          "shopify": "https://shopify.ca",
+          "rakuten": "https://www.rakuten.ca",
+          "crc": "http://www.crc.gc.ca",
+          "cbn": "https://www.cbnco.com"
+        }
+      }
     },
     "projects": {
       "title": {

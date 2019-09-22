@@ -4,18 +4,18 @@ import {
   Card,
   CardHeader,
   CardHeaderTitle,
-  CardImage,
   CardContent,
-  Image,
   Title
 } from 'bloomer';
 
 import {useTranslation as i18n} from 'react-i18next';
+import {Link} from '../components';
 
 export default function ResumeJob(props) {
   const {
     title,
-    src,
+    logo,
+    logoURL,
     company,
     from,
     to,
@@ -28,16 +28,20 @@ export default function ResumeJob(props) {
     return <p>- {line}</p>
   });
 
+  const logoMarkup = logoURL && logo ? (
+    <Link newTab className="card-header-icon" href={logoURL}>
+      <img src={logo} alt='open in new tab' className='icon' />
+    </Link>
+  ) : null;
+
   return (
     <Card>
       <CardHeader>
         <CardHeaderTitle>
           {title}
         </CardHeaderTitle>
+        {logoMarkup}
       </CardHeader>
-      <CardImage style={{display: 'none'}}>
-        <Image isRatio='16:9' src={src} />
-      </CardImage>
       <CardContent>
         <Title isSize={4} className='has-text-dark'>{company}</Title>
         <p className='has-text-grey-light' style={{marginBottom: '10px'}}>{timeLineMarkup}</p>

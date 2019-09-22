@@ -19,7 +19,7 @@ import {
 } from 'bloomer';
 import {useTranslation as i18n} from 'react-i18next';
 import {myFace, github, linkedin, skype, mail, locale} from '../icons';
-import {cbn, crc, rakuten, shopify} from '../companies';
+import {cbn, crc, rakuten, shopify} from '../logos';
 import {Link, Skill, ResumeJob, Chip, Project} from '../components';
 import projects from '../config/projects';
 import './Resume.css';
@@ -265,10 +265,10 @@ function Hackathons() {
 function HimaTsubishi() {
   return (
     <div className='info-card dark-link'>
+      <Title isSize={5}>HOBBIES</Title>
       <Card>
         <CardContent>
           <Content>
-            <Title isSize={5}>MY HOBBIES</Title>
             <ul>
               <li>I love watching anime. When I have time, I watch 3-4 episodes in a row. My latest favourite anime: <Link newTab href="https://www.crunchyroll.com/demon-slayer-kimetsu-no-yaiba">Kimetsu no Yaiba (鬼滅の刃)</Link>.</li>
               <li>I enjoy a little too much playing video games. My latest favourite game: <Link newTab href="https://www.nintendo.com/games/detail/fire-emblem-three-houses-switch/">Fire Emblem: Three Houses</Link> on the Nintendo Switch. Simply a blast.</li>
@@ -308,6 +308,8 @@ function OtherProjects() {
 }
 
 function WorkExperience() {
+  const {t} = i18n();
+
   return (
     <Container>
       <Title isSize={5}>WORK EXPERIENCE</Title>
@@ -318,7 +320,8 @@ function WorkExperience() {
             company="Shopify"
             from="May 2019"
             to="August 2019"
-            src={shopify}
+            logo={shopify}
+            logoURL={t('resume.urls.jobs.shopify')}
             experience={[
               'Refined critical backend/frontend software by writing quality code affecting hundreds of thousands of customers.',
               'Acquired a high impact attitude by making quick and great decisions.',
@@ -333,7 +336,8 @@ function WorkExperience() {
               company="Rakuten"
               from="May 2018"
               to="December 2018"
-              src={rakuten}
+              logo={rakuten}
+              logoURL={t('resume.urls.jobs.rakuten')}
               experience={[
                 'Responsible for maintaining a Ruby on Rails MySQL administration tool used by over 1000 engineers.',
                 'Ensured stability for front-end / back-end with integration and unit testing.',
@@ -350,7 +354,8 @@ function WorkExperience() {
             company="Government of Canada (CRC)"
             from="September 2017"
             to="December 2017"
-            src={crc}
+            logo={crc}
+            logoURL={t('resume.urls.jobs.crc')}
             experience={[
               'Assigned to a Unity 3D project where visualizing 3G and 4G network spectrums was the key for optimizing implementation for the upcoming 5G cellular networks in Canada',
               'Requirements, prototypes and the final proof of concept were presented to the CEO and their colleagues.',
@@ -363,7 +368,8 @@ function WorkExperience() {
               company="Canadian Bank Note Company"
               from="4 months in 2016"
               to="4 months in 2017"
-              src={cbn}
+              logo={cbn}
+              logoURL={t('resume.urls.jobs.cbn')}
               experience={[
                 'Ensured reliability of security systems by introducing a certification protocol on legacy software',
                 'Stand-alone proprietary client-side application for creating more secure SSL certificates.',

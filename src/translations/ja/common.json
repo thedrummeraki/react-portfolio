@@ -76,7 +76,15 @@
     "resume": {
       "title": "履歴書",
       "home": "ホームページへ",
-      "check": "履歴書やプロジェクトへ"
+      "check": "履歴書やプロジェクトへ",
+      "urls": {
+        "jobs": {
+          "shopify": "https://shopify.jp",
+          "rakuten": "https://www.rakuten.co.jp",
+          "crc": "http://www.crc.gc.ca",
+          "cbn": "https://www.cbnco.com"
+        }
+      }
     },
     "projects": {
       "title": {

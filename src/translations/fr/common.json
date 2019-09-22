@@ -76,7 +76,15 @@
     "resume": {
       "title": "Curriculum Vitae",
       "home": "Page principale",
-      "check": "CV et Projets"
+      "check": "CV et Projets",
+      "urls": {
+        "jobs": {
+          "shopify": "https://fr.shopify.ca",
+          "rakuten": "https://www.rakuten.ca/fr/",
+          "crc": "http://www.crc.gc.ca",
+          "cbn": "https://www.cbnco.com/fr/"
+        }
+      }
     },
     "projects": {
       "title": {
