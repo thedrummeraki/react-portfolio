@@ -15,7 +15,8 @@ import {
   CardContent,
   Columns,
   Column,
-  Content
+  Content,
+  Section
 } from 'bloomer';
 import {useTranslation as i18n} from 'react-i18next';
 import {myFace, github, linkedin, skype, mail, locale} from '../icons';
@@ -31,40 +32,50 @@ export default function Resume() {
   return (
     <div className="Resume">
       <ResumeHeader i18n={i18n} />
-      <Container className="details">
-        <Container>
-          <Summary />
-          <AboutMyself />
-        </Container>
-        <Container>
-          <Languages />
-          <Skills />
-          <SoftwareKnowledge />
-          <Hackathons />
-        </Container>
-        <Container>
-          <HimaTsubishi />
-        </Container>
-      </Container>
+      <Hero isSize='small'>
+        <HeroBody>
+          <Columns isCentered>
+            <Column className="is-6">
+              <Container>
+                <Summary />
+                <AboutMyself />
+              </Container>
+              <Container>
+                <Languages />
+                <Skills />
+                <SoftwareKnowledge />
+                <Hackathons />
+              </Container>
+              <Container>
+                <HimaTsubishi />
+              </Container>
+            </Column>
+          </Columns>
+        </HeroBody>
+      </Hero>
 
       <Hero isSize='small' isColor='primary'>
         <HeroBody>
-          <Container className='details wider'>
-            <WorkExperience />
-          </Container>
+          <Columns isCentered>
+            <Column className="is-8">
+              <WorkExperience />
+            </Column>
+          </Columns>
         </HeroBody>
       </Hero>
       
       <Hero isSize='small' className='has-background-dark'>
         <HeroBody>
-          <Container className='details'>
-            <Container>
-              <MyProjects />
-            </Container>
-            <Container>
-              <OtherProjects />
-            </Container>
-          </Container>
+          <Columns isCentered>
+            <Column className="is-6">
+              <Container>
+                <MyProjects />
+              </Container>
+              <Container>
+                <OtherProjects />
+              </Container>
+            </Column>
+          </Columns>
         </HeroBody>
       </Hero>
     </div>
@@ -76,54 +87,39 @@ function ResumeHeader(props) {
 
   return (
     <Hero isFullHeight className='resume-background'>
-      <HeroHeader style={{display: 'none'}}>
-        <Nav>
-          <NavLeft>
-            <NavItem isBrand>{t('resume.title')}</NavItem>
-          </NavLeft>
-          <NavCenter>
-            <NavItem>
-              <Icon className="fa fa-github" />
-            </NavItem>
-            <NavItem>
-              <Icon className="fa fa-twitter" />
-            </NavItem>
-          </NavCenter>
-          <NavRight isMenu>
-            <NavItem><Link className="has-text-white" href="/">{t('resume.home')}</Link></NavItem>
-          </NavRight>
-        </Nav>
-      </HeroHeader>
-
       <HeroBody>
         <Container hasTextAlign='centered'>
           <Link href="/">
           <img src={myFace} alt={t('misc.name.oneline')} className="profile" />
           </Link>
-          <Title className='has-text-white' isSize={2}>{t('misc.name.oneline')}</Title>
+          <Section>
+            <Title className='has-text-white' isSize={2}>{t('misc.name.oneline')}</Title>
+          </Section>
 
-          <div className="details">
-            <Card className="has-background-grey-dark">
-              <CardContent className="has-text-left">
-                <p>
-                  <img className="icon" src={mail} alt='email' /> 
-                  <Link href={"mailto:me@akinyele.ca"}>me@akinyele.ca</Link>
-                </p>
-                <p>
-                  <img className="icon" src={github} alt='github' />
-                  <Link newTab href="https://github.com/thedrummeraki">thedrummeraki</Link>
-                </p>
-                <p>
-                  <img className="icon" src={linkedin} alt='linkedin' />
-                  <Link newTab href="https://www.linkedin.com/in/akinyele-cafe-febrissy/">akinyele-cafe-febrissy</Link>
-                </p>
-                <p>
-                  <img className="icon" src={skype} alt='skype' />
-                  <Link href="skype:aakin013@uottawa.ca">@aakin013</Link>
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+          <Columns isCentered>
+            <Column className="is-6 details">
+              <Card className="has-background-grey-dark">
+                <CardContent className="has-text-left">
+                  <p>
+                    <img className="icon" src={mail} alt='email' /> 
+                    <Link href={"mailto:me@akinyele.ca"}>me@akinyele.ca</Link>
+                  </p>
+                  <p>
+                    <img className="icon" src={github} alt='github' />
+                    <Link newTab href="https://github.com/thedrummeraki">thedrummeraki</Link>
+                  </p>
+                  <p>
+                    <img className="icon" src={linkedin} alt='linkedin' />
+                    <Link newTab href="https://www.linkedin.com/in/akinyele-cafe-febrissy/">akinyele-cafe-febrissy</Link>
+                  </p>
+                  <p>
+                    <img className="icon" src={skype} alt='skype' />
+                    <Link href="skype:aakin013@uottawa.ca">@aakin013</Link>
+                  </p>
+                </CardContent>
+              </Card>
+            </Column>
+          </Columns>
         </Container>
       </HeroBody>
     </Hero>
@@ -136,8 +132,8 @@ function Summary() {
       <Title isSize={5}>SUMMARY</Title>
       <Card>
         <CardContent>
-          <p>
-            Software Engineering student seeking a software engineering position in an environment striving for quality.
+          <p style={{fontWeight: 'bold'}}>
+            Software Engineer thriving in quality and creativity. My motto is: "There's a better way to do things."
           </p>
           <p>
             Explores creativity through curiosity and love of research, adores sharing knowledge and getting to know people.
@@ -155,13 +151,13 @@ function AboutMyself() {
         <CardContent>
           <Title isSize={6}>About myself</Title>
           <p>
-            I consider myself a Linux - Ruby - Rails Lover, hacker.
+            Linux - Ruby - Rails Lover, hacker.
           </p>
           <p>
-            I offer a “get-to-the-point”, detail oriented mind with a bright personality.
+            “Get-to-the-point”, detail oriented mind with a bright personality.
           </p>
           <p>
-            I also want to apply academic knowledge in a smart way.
+            "Foward thinking": Let's look at how it was, how it and <i>how it <u>will</u> be</i>.
           </p>
         </CardContent>
       </Card>
@@ -206,6 +202,11 @@ function Skills() {
 
           <Content>
             <Title isSize={6}>I have also worked with...</Title>
+            <Chip text="Utility bots" />
+            <Chip text="OAuth" />
+            <Chip text="Authorization/Authentication" />
+            <Chip text="Video processing" />
+            <br/><br/>
             <Chip text="Artificial Intelligence" />
             <Chip text="C++" />
             <Chip text="Unity" />
@@ -249,11 +250,12 @@ function Hackathons() {
           <Content>
             <Title isSize={6}>Hackathons</Title>
             <ul>
-              <li>Built an internal complaint dashboard during the <Link newTab href="https://www.shopify.com/partners/blog/18969895-why-hack-days-are-great-for-designers">Shopify Hackdays</Link> in August 2019.</li>
-              <li>Participated in <Link newTab href="https://events.carleton.ca/ihack-ottawa-2019/">iHack's CTF at Carleton University</Link> in June 2019.</li>
-              <li>Designed an <Link newTab href="https://github.com/SurienDG/UOttahacks2019">voice-operated racing game</Link> during University of Ottawa's <Link newTab href="https://2019.uottahack.ca">uOttaHack</Link> in February 2019.</li>
-              <li>Thought out an new ticketing system that uses a phone's camera during <Link newTab href="https://uottahack.ca">uOttaHack</Link> in February 2018.</li>
-              <li>Successfully designed a giveaway application using a public Shopify API during <Link newTab href="https://www.facebook.com/hackdecode/">deCODE Hackathon</Link> in April 2017.</li>
+              <li>In <b>March 2020</b>, during <Link newTab href="https://www.shopify.com/partners/blog/18969895-why-hack-days-are-great-for-designers">Shopify Hackdays</Link>, we designed a "first-party" app (a Shopify app developped by Shopify) aspiring to help people sell and purchase soup locally <Link newTab href="https://www.shopify.ca/covid19">during COVID-19</Link>.</li>
+              <li>Built an internal complaint dashboard during the Shopify Hackdays in <b>August 2019</b>. The project was picked up by another team and still beign worked on at this time in hopes to help employees express their frustrations at work.</li>
+              <li>Participated in <Link newTab href="https://events.carleton.ca/ihack-ottawa-2019/">iHack's CTF at Carleton University</Link> in <b>June 2019</b>. Learnt about basic security vulnerabilities in software, compiled or not.</li>
+              <li>Designed an <Link newTab href="https://github.com/SurienDG/UOttahacks2019">voice-operated racing game</Link> during University of Ottawa's <Link newTab href="https://2019.uottahack.ca">uOttaHack</Link> in <b>February 2019</b>. The goal was to make a game accessible to people with disabilities (namely paralysis).</li>
+              <li>Thought out an new ticketing system that uses a phone's camera during <Link newTab href="https://uottahack.ca">uOttaHack</Link> in <b>February 2018</b> that would improve the current ticketing system present mostly in clinics.</li>
+              <li>Successfully designed a giveaway application using a public Shopify API during <Link newTab href="https://www.facebook.com/hackdecode/">deCODE Hackathon</Link> in <b>April 2017</b>.</li>
             </ul>
           </Content>
         </CardContent>
@@ -270,11 +272,11 @@ function HimaTsubishi() {
         <CardContent>
           <Content>
             <ul>
-              <li>I love watching anime. When I have time, I watch 3-4 episodes in a row. My latest favourite anime: <Link newTab href="https://www.crunchyroll.com/demon-slayer-kimetsu-no-yaiba">Kimetsu no Yaiba (鬼滅の刃)</Link>.</li>
-              <li>I enjoy a little too much playing video games. My latest favourite game: <Link newTab href="https://www.nintendo.com/games/detail/fire-emblem-three-houses-switch/">Fire Emblem: Three Houses</Link> on the Nintendo Switch. Simply a blast.</li>
-              <li>Biking! I go to school/work from when I can (here, from March to November, basically when the temperature is higher than -5°C/23°F)! I own a vintage Bianchi bike in 2019. Stylish and quick ;)</li>
-              <li>I am rather fond of cooking. But I am even more fond of baking and preparing treats. I am mostly intrested in bread and jam.</li>
-              <li>And of course, I can't get enough of coding. My favourite language of all time is Ruby. Check out my projects below!</li>
+              <li>Watching anime. My latest favourite anime in 2020: <Link newTab href="https://www.funimation.com/shows/kaguya-sama-love-is-war">Kaguya-sama: Love is War? (かぐや様は告らせたい？天才たちの恋愛頭脳戦)</Link>.</li>
+              <li>Video games. My latest favourite game: <Link newTab href="https://www.nintendo.com/games/detail/muse-dash-switch/">Muse Dash</Link>, also on the Nintendo Switch.</li>
+              <li>Biking! I go to work from when I can (from March to November). I own a vintage Bianchi bike. Stylish and quick.</li>
+              <li>Cooking. And baking as well as preparing treats. I am mostly intrested in bread and jam.</li>
+              <li>Coding. My favourite language of is <Link newTab href="https://www.ruby-lang.org/en/">Ruby</Link>. Check out my projects below!</li>
             </ul>
           </Content>
         </CardContent>
@@ -313,20 +315,34 @@ function WorkExperience() {
   return (
     <Container>
       <Title isSize={5}>WORK EXPERIENCE</Title>
+      <Container style={{marginBottom: '2em'}}>
+        <ResumeJob
+          hidden
+          title="Software Developer (current)"
+          company="Shopify"
+          from="January 2020"
+          logo={shopify}
+          logoURL={t('resume.jobs.shopify.url')}
+          experience={[
+            'Significantly improved overall user experience',
+            ''
+          ]}
+        />
+      </Container>
       <Columns isCentered>
         <Column isSize={6}>
-          <ResumeJob 
+          <ResumeJob
             title="Backend developer (Internship)"
             company="Shopify"
             from="May 2019"
             to="August 2019"
             logo={shopify}
-            logoURL={t('resume.urls.jobs.shopify')}
+            logoURL={t('resume.jobs.shopify.url')}
             experience={[
-              'Refined critical backend/frontend software by writing quality code affecting hundreds of thousands of customers.',
-              'Acquired a high impact attitude by making quick and great decisions.',
-              'Nurtured communication skills by asking the right questions to the right people.',
-              'Contributed to open source projects for the first time.'
+              'resume.jobs.shopify.experience.1',
+              'resume.jobs.shopify.experience.2',
+              'resume.jobs.shopify.experience.3',
+              'resume.jobs.shopify.experience.4'
             ]}
           />
         </Column>
@@ -337,11 +353,11 @@ function WorkExperience() {
               from="May 2018"
               to="December 2018"
               logo={rakuten}
-              logoURL={t('resume.urls.jobs.rakuten')}
+              logoURL={t('resume.jobs.rakuten.url')}
               experience={[
-                'Responsible for maintaining a Ruby on Rails MySQL administration tool used by over 1000 engineers.',
-                'Ensured stability for front-end / back-end with integration and unit testing.',
-                'Front-end was improved to keep the same look & feel and giving it a more modern touch, making it easier to use.'
+                'resume.jobs.rakuten.experience.1',
+                'resume.jobs.rakuten.experience.2',
+                'resume.jobs.rakuten.experience.3'
               ]}
             />
         </Column>
@@ -355,10 +371,10 @@ function WorkExperience() {
             from="September 2017"
             to="December 2017"
             logo={crc}
-            logoURL={t('resume.urls.jobs.crc')}
+            logoURL={t('resume.jobs.crc.url')}
             experience={[
-              'Assigned to a Unity 3D project where visualizing 3G and 4G network spectrums was the key for optimizing implementation for the upcoming 5G cellular networks in Canada',
-              'Requirements, prototypes and the final proof of concept were presented to the CEO and their colleagues.',
+              'resume.jobs.crc.experience.1',
+              'resume.jobs.crc.experience.2'
             ]}
           />
         </Column>
@@ -369,11 +385,11 @@ function WorkExperience() {
               from="4 months in 2016"
               to="4 months in 2017"
               logo={cbn}
-              logoURL={t('resume.urls.jobs.cbn')}
+              logoURL={t('resume.jobs.cbn.url')}
               experience={[
-                'Ensured reliability of security systems by introducing a certification protocol on legacy software',
-                'Stand-alone proprietary client-side application for creating more secure SSL certificates.',
-                'Implemented software patterns to ensure maintainability of software.'
+                'resume.jobs.cbn.experience.1',
+                'resume.jobs.cbn.experience.2',
+                'resume.jobs.cbn.experience.3'
               ]}
             />
         </Column>

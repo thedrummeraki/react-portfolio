@@ -52,17 +52,13 @@ class Welcome extends React.PureComponent {
       previousBackground.classList.remove('showing');
     }
 
-    if (newBackground)
+    if (newBackground) {
       newBackground.classList.add('showing');
+    }
 
-    //const newBackground = `url('${newBackgroundFilename}')`;
-    //this.rootRef.current.style.backgroundSize = 'cover';
-
-    // this.rootRef.current.setAttribute('data-bg', newBackground);
     [].forEach.call(document.querySelectorAll('button[tag]'), (button) => {
       button.classList.remove('is-primary');
     });
-    //document.querySelector('button[tag="' + this.state.current_locale + '"]').classList.add('is-primary');
   }
 
   componentWillUnmount() {
@@ -84,6 +80,10 @@ class Welcome extends React.PureComponent {
       this.setState({current_locale: lng});
       localStorage['current_locale'] = lng;
     };
+
+    // Forcing locale to be en for now
+    if (i18n.language !== 'en')
+      i18n.changeLanguage('en');
 
     document.title = t('misc.name.oneline');
 
@@ -110,7 +110,7 @@ class Welcome extends React.PureComponent {
                       config={locationsConfig}  />
                   </NavItem>
                 </NavLeft>
-                <NavRight isMenu>
+                <NavRight isHidden isMenu>
                   <TranslationButtons selected={this.state.current_locale} changeLanguage={changeLanguage} />
                 </NavRight>
               </Nav>
@@ -131,8 +131,8 @@ class Welcome extends React.PureComponent {
               </Container>
             </HeroBody>
             <HeroFooter>
-              <p style={{display: 'none'}}>
-                <a ref={this.scrollRef} href="#about-me">
+              <p style={{marginBottom: '2em'}}>
+                <a ref={this.scrollRef} href="#introduction">
                   <Button className="discover">{t('welcome.discover')}</Button>
                 </a>
               </p>

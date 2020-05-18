@@ -19,13 +19,15 @@ export default function ResumeJob(props) {
     company,
     from,
     to,
-    experience
+    experience,
+    hidden
   } = props;
+  const {t} = i18n();
 
   const timeLineMarkup = getTimelineMarkup(from, to);
 
   const experienceText = experience.map(line => {
-    return <p>- {line}</p>
+    return <p>- {t(line)}</p>
   });
 
   const logoMarkup = logoURL && logo ? (
@@ -33,6 +35,10 @@ export default function ResumeJob(props) {
       <img src={logo} alt='open in new tab' className='icon' />
     </Link>
   ) : null;
+
+  if (hidden) {
+    return null;
+  }
 
   return (
     <Card>

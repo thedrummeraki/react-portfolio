@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   Card,
   CardContent,
@@ -8,9 +8,12 @@ import {
   Subtitle,
   Content,
   CardImage,
-  Image
+  Image,
+  Columns,
+  Column
 } from 'bloomer';
-import {github, open_in_new, google_play} from '../icons';
+import ReactTooltip from 'react-tooltip';
+import {github, open_in_new, google_play, share} from '../icons';
 import Link from './Link';
 import Chip from './Chip';
 import {useTranslation as i18n} from 'react-i18next';
@@ -22,11 +25,22 @@ export default function Project(props) {
     src,
     googlePlaySrc,
     image,
+    video,
     description,
     text,
-    technologies
+    technologies,
+    hidden
   } = props;
   const {t} = i18n();
+
+  const copyProjectLinkRef = useRef(null);
+  const projectTitleRef = useRef(null);
+  const videoRef = useRef(null);
+
+  const [videoPlaying, setVideoPlaying] = useState(false);
+
+  const project_id_parts = toPermalink(title).split('-');
+  const project_id = project_id_parts.slice(0, project_id_parts.length-1).join('-');
 
   const githubIcon = githubPath ? (
     <Link newTab href={`https://github.com/${githubPath}`}>
@@ -48,9 +62,25 @@ export default function Project(props) {
     </Link>
   ) : null;
 
-  const projectImage = image ? (
+  const shareFcn = useCallback((e) => {
+    e.preventDefault();
+
+    const currentDomain = window.location.host;
+    const projectLink = `${currentDomain}/resume#${project_id}`;
+
+    copyToClipboard(projectLink);
+    projectTitleRef.current.innerHTML = t('misc.copied');
+    projectTitleRef.current.classList.add('has-text-primary');
+
+    setTimeout(() => {
+      projectTitleRef.current.innerHTML = t(title);
+      projectTitleRef.current.classList.remove('has-text-primary');
+    }, 2000);
+  }, []);
+
+  const projectVideoOrImage = image || video ? (
     <CardImage>
-      <Image src={image} className='fit-cover' isRatio='16:9' />
+      <ImageOrVideo project_id={project_id} image={image} video={video} />
     </CardImage>
   ) : null;
 
@@ -58,33 +88,93 @@ export default function Project(props) {
     <div>{toChips(technologies)}</div>
   ) : null;
 
+  if (hidden) {
+    return null;
+  }
+
   return (
-    <Card className="has-background-grey-dark project">
-      <CardHeader>
-        <CardHeaderTitle>
-          <span className='has-text-white'>{t(title)}</span>
-        </CardHeaderTitle>
-        {openInNewIcon}
-        {googlePlay}
-        {githubIcon}
-      </CardHeader>
-      {projectImage}
-      <CardContent>
-        <Subtitle className='has-text-light' isSize={6}>{t(description)}</Subtitle>
-        <Content className='has-text-white'>
-          {t(text)}
-        </Content>
-        <Content>
-          {technologiesChips}
-        </Content>
-      </CardContent>
-    </Card>
+    <Columns>
+      <Column>
+        <Card id={project_id} className="has-background-grey-dark project">
+          <CardHeader>
+            <CardHeaderTitle>
+              <span ref={projectTitleRef} className='has-text-white'>{t(title)}</span>
+            </CardHeaderTitle>
+            {openInNewIcon}
+            {googlePlay}
+            {githubIcon}
+            <a
+              data-tip={'Copy project permalink'}
+              onClick={shareFcn}
+              className="card-header-icon"
+              href={`#${project_id}`}
+            >
+              <input type='text' style={{display: 'none'}} ref={copyProjectLinkRef} />
+              <img src={share} alt='open in new tab' className='icon' />
+            </a>
+          </CardHeader>
+          {projectVideoOrImage}
+          <CardContent>
+            <Subtitle className='has-text-light' isSize={6}>{t(description)}</Subtitle>
+            <Content className='has-text-white'>
+              {t(text)}
+            </Content>
+            <Content>
+              {technologiesChips}
+            </Content>
+          </CardContent>
+        </Card>
+      </Column>
+    </Columns>
+  );
+}
+
+function ImageOrVideo(props) {
+  const {video, image, project_id} = props;
+
+  if (!video && !image) {
+    return null;
+  }
+
+  if (!video) {
+    return <Image src={image} className='fit-cover' isRatio='16:9' />
+  }
+
+  const video_patg_parts = video.split('.')
+  const extension = video_patg_parts[video_patg_parts.length - 1];
+
+  return (
+    <video controls loop poster={image} id={`${project_id}-video`}>
+      <source src={video} type={`video/${extension}`} />
+      <source src={video} type="video/mp4" />
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a
+        web browser that
+        <a href="https://videojs.com/html5-video-support/" target="_blank"
+          >supports HTML5 video</a
+        >
+      </p>
+    </video>
   );
 }
 
 function toChips(array) {
   const find_color = text => intToRGB(hashCode(text));
   return array.map(text => <Chip key={text} color={find_color(text)} text={text} />);
+}
+
+// Source: https://stackoverflow.com/questions/2519818/create-a-permalink-with-javascript
+function toPermalink(str) {
+    return str.replace(/[^a-z0-9]+/gi, '-').replace(/^-*|-*$/g, '').toLowerCase();
+}
+
+function copyToClipboard(value) {
+  var tempInput = document.createElement("input");
+  tempInput.value = value;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempInput);
 }
 
 // Source: https://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-javascript

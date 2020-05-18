@@ -2,17 +2,39 @@ import {
   defaultTanoshimu,
   notaki,
   crystal_clear,
-  capstone
+  capstone,
+  misete,
+  discord_bot
 } from '../backgrounds';
 
 const projects = {
   main: [
     {
       isClosedSource: true,
+      title: 'projects.main.personal.bot.title',
+      description: 'projects.main.personal.bot.description',
+      image: discord_bot,
+      video: 'https://misete.s3.us-east-2.amazonaws.com/showcase/discord-bot.mov',
+      text: 'projects.main.personal.bot.text',
+      technologies: ['Node.JS', 'Ruby', 'GraphQL', 'Github API', 'Discord API']
+    },
+    {
+      isClosedSource: false,
+      title: 'projects.main.misete.title',
+      src: 'https://github.com/Misete-io',
+      image: misete,
+      video: 'https://misete.s3.us-east-2.amazonaws.com/showcase/misete.mov',
+      description: 'projects.main.misete.description',
+      text: 'projects.main.misete.text',
+      technologies: ['Rails', 'GraphQL', 'Sidekiq', 'OAuth', 'CAS', 'Misete.io']
+    },
+    {
+      isClosedSource: false,
       title: 'projects.main.tanoshimu.title',
       githubPath: 'thedrummeraki/tanoshimu',
-      src: 'https://beta-youranime.herokuapp.com',
+      src: 'http://demo.youranime.moe',
       image: defaultTanoshimu,
+      video: 'https://misete.s3.us-east-2.amazonaws.com/showcase/tanoshimu.mov',
       description: 'projects.main.tanoshimu.description',
       text: 'projects.main.tanoshimu.text',
       technologies: ['Rails', 'Ruby', 'Python', 'jQuery']
@@ -29,6 +51,7 @@ const projects = {
     },
     {
       isClosedSource: true,
+      hidden: true,
       title: 'projects.main.crystal_clear.title',
       description: 'projects.main.crystal_clear.description',
       image: crystal_clear,
@@ -42,7 +65,7 @@ const projects = {
       image: capstone,
       description: 'projects.school.capstone.description',
       text: 'projects.school.capstone.text',
-      technologies: ['Rails', 'Heroku', 'PostgreSQL']
+      technologies: ['Rails']
     },
   ],
   other: [

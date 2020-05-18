@@ -12,6 +12,7 @@ export {default as maps} from './maps.svg';
 export {default as mail} from './mail.svg';
 export {default as open_in_new} from './open_in_new.svg';
 export {default as google_play} from './google-play.svg';
+export {default as share} from './social-media.svg';
 
 // Icons
 export {default as myFace} from './akinyele.jpg';

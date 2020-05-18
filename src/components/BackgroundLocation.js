@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTooltip from 'react-tooltip'
+import ReactTooltip from 'react-tooltip';
 import {maps} from '../icons';
 import {useTranslation as i18n} from 'react-i18next';
 

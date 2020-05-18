@@ -21,11 +21,16 @@
   margin: 5px;
 }
 
-.Resume .details a {
+.Resume .details a, .Resume .column a {
   color: #fff;
 }
 
-.Resume .details a:hover {
+.Resume .column img.icon {
+  vertical-align: middle;
+  padding-right: 5px;
+}
+
+.Resume .details a:hover, .Resume .column a:hover {
   color: #aaa;
 }
 

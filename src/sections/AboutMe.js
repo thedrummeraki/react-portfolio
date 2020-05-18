@@ -23,6 +23,12 @@ export default function AboutMe() {
         <StyleRoot>
           <Timeline animations={false} activeColor='#00d1b2'>
             <Job
+              company={t('about.entries.shopify.company')}
+              logo={shopify}
+              title={t('about.entries.shopify.ft.title')}
+              start={t('about.entries.shopify.ft.start')}
+              location={t('misc.locations.ottawa')} />
+            <Job
               company={t('about.entries.graduation.title')}
               logo={graduation}
               title={t('about.entries.graduation.when')} />
@@ -30,8 +36,9 @@ export default function AboutMe() {
               isInternship
               company={t('about.entries.shopify.company')}
               logo={shopify}
-              title={t('about.entries.shopify.title')}
-              start={t('about.entries.shopify.start')}
+              title={t('about.entries.shopify.intern.title')}
+              start={t('about.entries.shopify.intern.start')}
+              end={t('about.entries.shopify.intern.end')}
               location={t('misc.locations.ottawa')} />
             <Job
               isInternship
