@@ -21,12 +21,13 @@ const projects = {
     {
       isClosedSource: false,
       title: 'projects.main.misete.title',
-      src: 'https://github.com/Misete-io',
+      src: 'https://misete.myshopify.io', //'https://misete-stg.herokuapp.com',
       image: misete,
       video: 'https://misete.s3.us-east-2.amazonaws.com/showcase/misete.mov',
       description: 'projects.main.misete.description',
       text: 'projects.main.misete.text',
-      technologies: ['Rails', 'GraphQL', 'Sidekiq', 'OAuth', 'CAS', 'Misete.io']
+      technologies: ['Rails', 'GraphQL', 'Sidekiq', 'OAuth', 'CAS', 'Misete.io'],
+      preview: 'misete'
     },
     {
       isClosedSource: false,
@@ -37,7 +38,8 @@ const projects = {
       video: 'https://misete.s3.us-east-2.amazonaws.com/showcase/tanoshimu.mov',
       description: 'projects.main.tanoshimu.description',
       text: 'projects.main.tanoshimu.text',
-      technologies: ['Rails', 'Ruby', 'Python', 'jQuery']
+      technologies: ['Rails', 'Ruby', 'Python', 'jQuery'],
+      preview: 'tanoshimu'
     },
     {
       isClosedSource: false,
@@ -47,7 +49,8 @@ const projects = {
       image: notaki,
       description: 'projects.main.notaki.description',
       text: 'projects.main.notaki.text',
-      technologies: ['Rails', 'JavaScript']
+      technologies: ['Rails', 'JavaScript'],
+      preview: 'notaki'
     },
     {
       isClosedSource: true,
@@ -56,7 +59,8 @@ const projects = {
       description: 'projects.main.crystal_clear.description',
       image: crystal_clear,
       text: 'projects.main.crystal_clear.text',
-      technologies: ['Rails', 'Websockets (ActionCable)']
+      technologies: ['Rails', 'Websockets (ActionCable)'],
+      preview: 'crystal_clear'
     },
     {
       isClosedSource: true,
@@ -76,6 +80,15 @@ const projects = {
       description: 'projects.other.hon_site.description',
       text: 'projects.other.hon_site.text',
       technologies: ['React']
+    },
+    {
+      isClosedSource: true,
+      src: 'https://lrt-up.herokuapp.com',
+      title: 'LRTup',
+      description: 'projects.other.lrtup.description',
+      text: 'projects.other.lrtup.text',
+      technologies: ['Node.js', 'React'],
+      preview: 'lrtup'
     },
     {
       isClosedSource: false,
@@ -130,7 +143,8 @@ const projects = {
       src: 'https://reviews-akinyele.herokuapp.com',
       description: 'projects.other.reviews.description',
       text: 'projects.other.reviews.text',
-      technologies: ['Rails']
+      technologies: ['Rails'],
+      preview: 'reviews-aki'
     },
     {
       isClosedSource: false,
@@ -140,9 +154,36 @@ const projects = {
       googlePlaySrc: 'https://play.google.com/store/apps/details?id=com.akinyele.bra.brav20',
       description: 'projects.other.bra.description',
       text: 'projects.other.bra.text',
-      technologies: ['Android', 'Rails']
+      technologies: ['Android', 'Rails'],
+      preview: 'bra'
     }
   ]
+}
+
+function findProjectFrom(src, key) {
+  let projectsList = null;
+  if (src === 'main') {
+    projectsList = projects.main;
+  } else if (src === 'other') {
+    projectsList = projects.other;
+  } else {
+    return null;
+  }
+
+  let project = null;
+
+  projectsList.forEach(mainProject => {
+    if (mainProject.preview === key) {
+      project = mainProject;
+      return;
+    }
+  });
+
+  return project;
+}
+
+export const projectFor = (key) => {
+  return findProjectFrom('main', key) || findProjectFrom('other', key);
 }
 
 export default projects;
