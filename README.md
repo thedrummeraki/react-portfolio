@@ -1,43 +1,44 @@
-## [akinyele.ca](https://www.akinyele.ca)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This is [Akinyele.ca](https://www.akinyele.ca), this is my site.
+## Available Scripts
 
-![akinyele.ca](https://github.com/thedrummeraki/react-portfolio/blob/master/showcase/my_site.png)
+In the project directory, you can run:
 
-## What is it?
+### `yarn start`
 
-After my amazing internship at Shopify, I learned this beautiful
-JavaScript library called [React](https://github.com/facebook/react).
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-I decided to put my skills to the test and learn more.
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-## How was it built?
+### `yarn test`
 
-I started this with `create-react-app`. Turns out this was exactly
-what I needed to get started with a React project.
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-I divided each component into its repective category:
+### `yarn build`
 
-- The stateful scenes (has many sections)
-- The sections (has many containers and/or components)
-- The stateful containers (though I don't have any) (has other components)
-- The stateless components (may have other components)
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Since my version of React is quite new, I dicided to give [Hooks](https://reactjs.org/docs/hooks-overview.html)
-a shot.
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-## Is this my first site?
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-TLDR; **This is the third version of my website.**.
+### `yarn eject`
 
-My [older website](http://old.akinyele.ca) made in 2017 uses Ruby on Rails 
-in the backend and [MaterializeCSS](materializecss.com) on the front end. 
-I relied on this site for over 2 years. Managing the projects on the database
-because rather... cumbersome.
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-Before that I made a Node.js website. I was just learning about JavaScript at
-that time (that would have been in 2016). So I overdid it with JavaScript and
-literally used JavaScript for **everything** - except for CSS ;). This made
-the site impossible to manage. Looking back, it looks like I was trying to
-achieve what React does without knowing... and that didn't work out very
-well.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
