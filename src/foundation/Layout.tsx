@@ -12,11 +12,7 @@ interface NavigationProps {
 
 export function MainLayout(props: Props) {
   return (
-    <section className={z`
-      width 100vw
-      height 100vh
-      background-image url('/main-bg.jpg')
-      background-size cover
+    <div className={z`
       display flex
       justify-content center
       align-items center
@@ -28,7 +24,7 @@ export function MainLayout(props: Props) {
       `}>
         {props.children}
       </main>
-    </section>
+    </div>
   );
 }
 
@@ -147,7 +143,6 @@ function NavigationLeft() {
     <div className={z`
       text-align right
       margin-left auto
-      padding 1.5vw
     `}>
       <div className={z`pointer-events auto`}>
         <NavigationList />
@@ -164,14 +159,24 @@ function NavigationList() {
       flex-wrap wrap
     `}>
       <NavigationItem title='My work' url='/projects' />
-      <NavigationItem title='Travelling' url='/projects' />
+      <NavigationItem external title='Travelling' url='http://japan.akinyele.ca' />
     </div>
   )
 }
 
 function NavigationItem(props: {title: string, url: string, external?: boolean}) {
-  const {title, url} = props;
+  const {title, url, external} = props;
 
+  const linkMarkup = (
+    external
+      ? (
+        <span className={z`color #fff; cursor pointer;`} onClick={() => window.open(url, '_blank')}>
+          <u>{title}</u>
+        </span>
+      )
+      : <Link className={z`color #fff;`} to={url}>{title}</Link>
+  );
+  
   return (
     <div className={z`
       white-space nowrap
@@ -186,9 +191,7 @@ function NavigationItem(props: {title: string, url: string, external?: boolean})
       padding-left 10
       padding-bottom 20
     `}>
-      <Link className={z`color #fff`} to={url}>
-        {title}
-      </Link>
+      {linkMarkup}
     </div>  
   )
 }
@@ -196,7 +199,7 @@ function NavigationItem(props: {title: string, url: string, external?: boolean})
 function NavigationActions() {
   return (
     <div>
-      
+
     </div>
   )
 }
