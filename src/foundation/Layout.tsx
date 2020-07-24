@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
 import { z } from 'utils';
 import { skype, github, linkedin, email, myFace } from 'icons';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { Link } from 'components';
 
 interface Props {
   children?: ReactNode;
@@ -179,16 +180,6 @@ function NavigationList() {
 function NavigationItem(props: {title: string, url: string, hidden?: boolean; external?: boolean}) {
   const {title, url, hidden, external} = props;
 
-  const linkMarkup = (
-    external
-      ? (
-        <span className={z`color #fff; cursor pointer;`} onClick={() => window.open(url, '_blank')}>
-          <u>{title}</u>
-        </span>
-      )
-      : <Link className={z`color #fff;`} to={url}>{title}</Link>
-  );
-
   if (hidden) {
     return null;
   }
@@ -207,7 +198,7 @@ function NavigationItem(props: {title: string, url: string, hidden?: boolean; ex
       padding-left 10
       padding-bottom 20
     `}>
-      {linkMarkup}
+      <Link external={external} className={z`color #fff;`} to={url}>{title}</Link>
     </div>  
   )
 }
@@ -227,7 +218,7 @@ function NavigationActions() {
       user-select none
     `}>
       <NavigationActionItems items={[
-        {icon: github, url: 'https://github.akinyele.ca', sameTab: true},
+        {icon: github, url: 'https://github.akinyele.ca'},
         {icon: linkedin, url: 'https://linkedin.akinyele.ca'},
         {icon: skype, url: 'skype:aakin013', sameTab: true},
         {icon: email, url: 'mailto:me@akinyele.ca', sameTab: true}
@@ -250,7 +241,9 @@ function NavigationActionItems(props: {items: ActionItem[]}) {
 function NavigationActionItem(props: {item: ActionItem}) {
   const {item: {url, icon, sameTab}} = props;
   return (
-    <span
+    <Link
+      to={url}
+      external={!sameTab}
       className={z`
         margin-left 1.5vw
         width 20
@@ -263,9 +256,8 @@ function NavigationActionItem(props: {item: ActionItem}) {
         cursor pointer
         background transparent
         padding-bottom 20
-      `}
-      onClick={() => window.open(url, sameTab ? undefined : '_blank')}>
+      `}>
       <img alt={url} src={icon} />
-    </span>
+    </Link>
   );
 }
