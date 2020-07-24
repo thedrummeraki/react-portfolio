@@ -1,2 +1,2 @@
 export * from './Loading';
-export * from './Typewriter';
+export * from './FadeIn';

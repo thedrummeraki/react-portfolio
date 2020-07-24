@@ -1,9 +1,15 @@
 import React, { ReactNode } from 'react';
 import { z } from 'utils';
+import { skype, github, linkedin } from 'icons';
 import { useHistory, Link } from 'react-router-dom';
 
 interface Props {
   children?: ReactNode;
+}
+
+interface ActionItem {
+  url: string;
+  icon: string;
 }
 
 interface NavigationProps {
@@ -159,13 +165,13 @@ function NavigationList() {
       flex-wrap wrap
     `}>
       <NavigationItem title='My work' url='/projects' />
-      <NavigationItem external title='Travelling' url='http://japan.akinyele.ca' />
+      <NavigationItem hidden external title='Travelling' url='http://japan.akinyele.ca' />
     </div>
   )
 }
 
-function NavigationItem(props: {title: string, url: string, external?: boolean}) {
-  const {title, url, external} = props;
+function NavigationItem(props: {title: string, url: string, hidden?: boolean; external?: boolean}) {
+  const {title, url, hidden, external} = props;
 
   const linkMarkup = (
     external
@@ -176,6 +182,10 @@ function NavigationItem(props: {title: string, url: string, external?: boolean})
       )
       : <Link className={z`color #fff;`} to={url}>{title}</Link>
   );
+
+  if (hidden) {
+    return null;
+  }
   
   return (
     <div className={z`
@@ -198,8 +208,56 @@ function NavigationItem(props: {title: string, url: string, external?: boolean})
 
 function NavigationActions() {
   return (
-    <div>
-
+    <div className={z`
+      margin-right 0
+      justify-content flex-end
+      flex-grow 0
+      flex-shrink 1
+      display inline-flex
+      align-items center
+      pointer-events auto
+      line-height 1
+      font-size calc(0vw + 1rem)
+    `}>
+      <NavigationActionItems items={[
+        {icon: github, url: 'https://github.akinyele.ca'},
+        {icon: linkedin, url: 'https://linkedin.akinyele.ca'},
+        {icon: skype, url: 'skype:aakin013'}
+      ]} />
     </div>
   )
+}
+
+function NavigationActionItems(props: {items: ActionItem[]}) {
+  return (
+    <div className={z`
+      margin 0
+      display flex
+    `}>
+      {props.items.map(item => <NavigationActionItem item={item} />)}
+    </div>
+  )
+}
+
+function NavigationActionItem(props: {item: ActionItem}) {
+  const {item: {url, icon}} = props;
+  return (
+    <span
+      className={z`
+        margin-left 1.5vw
+        width 20
+        height 20
+        position relative
+        display block
+        box-sizing content-box
+        line-height 1
+        color inherit
+        cursor pointer
+        background transparent
+        padding-bottom 20
+      `}
+      onClick={() => window.open(url, '_blank')}>
+      <img alt={url} src={icon} />
+    </span>
+  );
 }

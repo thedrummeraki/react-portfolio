@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import { z } from 'utils';
-import Typewriter from 'react-typing-effect';
+import ReactTypewriter from 'react-typing-effect';
+import { FadeIn } from 'components';
 
 
 interface BackgroundProps {
@@ -19,13 +20,6 @@ export function Welcome() {
 function LoadedContent(props: {punchline: string}) {
   //const history = useHistory();
   const {punchline} = props;
-  //const [currentlyHovered, setCurrentlyHovered] = useState(false);
-  /*const onMouseEnter = () => {
-    setCurrentlyHovered(true);
-  };
-  const onMouseExit = () => {
-    setCurrentlyHovered(false);
-  };*/
 
   return (
     <div className={z`width 100vw; height 100vh`}>
@@ -47,26 +41,12 @@ function LoadedContent(props: {punchline: string}) {
               text-align center
             `}
           >
-            <div className={z`color white;`}>
-              <span className={z`font-size 400%`}>{punchline}</span>
-              <div className={z`display grid; font-size 300%`}>
-                <span className={z`margin 20;`}>
-                  I believe in:
-                </span>
-                <Typewriter
-                  speed={100}
-                  typingDelay={100}
-                  eraseDelay={1000}
-                  text={[
-                    'Forward thinking',
-                    'Quality and trust',
-                    'Long-term oriented',
-                    'Constant learning',
-                    'Continuous improvement',
-                  ]}
-                />
-              </div>
-            </div>
+            <FadeIn fadeIn={5} className={z`color white;`}>
+              <span className={z`font-size 400%;`}>
+                {punchline}
+              </span>
+              <MyValues />
+            </FadeIn>
           </div>
         </Background>
       </div>
@@ -74,23 +54,71 @@ function LoadedContent(props: {punchline: string}) {
   )
 }
 
-function Background(props: BackgroundProps) {
-  const {url, /*hovered, */ children} = props;
-  //const opacity = hovered ? '0.3' : '0.6';
+function MyValues() {
+  const [visible, setVisible] = useState(false);
+  
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setVisible(true);
+    }, 2000);
+
+    return () => {
+      timeout && clearTimeout(timeout);
+    }
+  }, []);
+
+  if (!visible) {
+    return null;
+  }
 
   return (
-    <>
-      <div className={z`
-        top 0; bottom 0; left 0; right 0
-        position absolute
-        width 100%
-        height 100%
-        background url('${url}') no-repeat center/cover
-        transition opacity 0.3s ease-in-out
-        opacity 0.4
-      `}>
-      </div>
-      {children}
-    </>
+    <div className={z`display grid; font-size 300%`}>
+      <FadeIn fadeIn={1}>
+        <span className={z`margin 20;`}>
+          I believe in:
+        </span>
+      </FadeIn>
+      <FadeIn fadeIn={2}>
+        <ReactTypewriter
+          speed={100}
+          typingDelay={100}
+          eraseDelay={1000}
+          text={[
+            'Forward thinking',
+            'Quality and trust',
+            'Long-term oriented',
+            'Constant learning',
+            'Continuous improvement',
+          ]}
+        />
+      </FadeIn>
+    </div>
   );
+}
+
+function Background(props: BackgroundProps) {
+  const {url, children} = props;
+  const [loaded, setLoaded] = useState(false);
+
+  const imageLoader = new Image();
+  imageLoader.src = url;
+  imageLoader.onload = () => setLoaded(true);
+
+  if (loaded) {
+    return (
+      <>
+        <FadeIn fadeIn={1} targetOpacity={0.4} className={z`
+          top 0; bottom 0; left 0; right 0
+          position absolute
+          width 100%
+          height 100%
+          background url('${url}') no-repeat center/cover
+        `}>
+        </FadeIn>
+        {children}
+      </>
+    );
+  }
+
+  return null;
 }
