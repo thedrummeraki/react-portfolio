@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { z } from 'utils';
-import { skype, github, linkedin } from 'icons';
+import { skype, github, linkedin, email, myFace } from 'icons';
 import { useHistory, Link } from 'react-router-dom';
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 interface ActionItem {
   url: string;
   icon: string;
+  sameTab?: boolean;
 }
 
 interface NavigationProps {
@@ -137,8 +138,12 @@ function NavigationTitle(props: {title: string}) {
         margin 0
         font-size 1.75em
         color #fff
+        user-select none
       `}>
-        <span>{props.title}</span>
+        <div className={z`display flex; align-items center`}>
+          <img className={z`border-radius 100%; width 30; height 30; margin-right 10`} src={myFace} />
+          {props.title}
+        </div>
       </div>
     </div>
   )
@@ -165,6 +170,7 @@ function NavigationList() {
       flex-wrap wrap
     `}>
       <NavigationItem title='My work' url='/projects' />
+      <NavigationItem external title='Resume' url='https://resume.akinyele.ca' />
       <NavigationItem hidden external title='Travelling' url='http://japan.akinyele.ca' />
     </div>
   )
@@ -218,11 +224,13 @@ function NavigationActions() {
       pointer-events auto
       line-height 1
       font-size calc(0vw + 1rem)
+      user-select none
     `}>
       <NavigationActionItems items={[
-        {icon: github, url: 'https://github.akinyele.ca'},
+        {icon: github, url: 'https://github.akinyele.ca', sameTab: true},
         {icon: linkedin, url: 'https://linkedin.akinyele.ca'},
-        {icon: skype, url: 'skype:aakin013'}
+        {icon: skype, url: 'skype:aakin013', sameTab: true},
+        {icon: email, url: 'mailto:me@akinyele.ca', sameTab: true}
       ]} />
     </div>
   )
@@ -234,13 +242,13 @@ function NavigationActionItems(props: {items: ActionItem[]}) {
       margin 0
       display flex
     `}>
-      {props.items.map(item => <NavigationActionItem item={item} />)}
+      {props.items.map(item => <NavigationActionItem key={item.url} item={item} />)}
     </div>
   )
 }
 
 function NavigationActionItem(props: {item: ActionItem}) {
-  const {item: {url, icon}} = props;
+  const {item: {url, icon, sameTab}} = props;
   return (
     <span
       className={z`
@@ -256,7 +264,7 @@ function NavigationActionItem(props: {item: ActionItem}) {
         background transparent
         padding-bottom 20
       `}
-      onClick={() => window.open(url, '_blank')}>
+      onClick={() => window.open(url, sameTab ? undefined : '_blank')}>
       <img alt={url} src={icon} />
     </span>
   );

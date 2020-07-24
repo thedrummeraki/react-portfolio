@@ -8,7 +8,7 @@ interface Props extends DivProps {
 }
 
 export function FadeIn(props: Props) {
-  const htmlProps: DivProps = props;
+  const htmlProps: DivProps = props as DivProps;
   const {fadeIn, targetOpacity} = props;
 
   const fadeInStyle = z.anim`
@@ -20,7 +20,7 @@ export function FadeIn(props: Props) {
     animation ${fadeInStyle} ${fadeIn}s ease
     ${targetOpacity && `opacity ${targetOpacity}`}
   `;
-  const className = `${htmlProps.className} ${animationClassName}`;
+  const className = `${htmlProps.className || ''} ${animationClassName}`;
 
   return (
     <div

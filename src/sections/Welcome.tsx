@@ -1,5 +1,5 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import { z } from 'utils';
+import { z, shuffled } from 'utils';
 import ReactTypewriter from 'react-typing-effect';
 import { FadeIn } from 'components';
 
@@ -18,7 +18,6 @@ export function Welcome() {
 };
 
 function LoadedContent(props: {punchline: string}) {
-  //const history = useHistory();
   const {punchline} = props;
 
   return (
@@ -42,7 +41,10 @@ function LoadedContent(props: {punchline: string}) {
             `}
           >
             <FadeIn fadeIn={5} className={z`color white;`}>
-              <span className={z`font-size 400%;`}>
+              <span className={z`
+                font-size 4rem
+              `}
+              >
                 {punchline}
               </span>
               <MyValues />
@@ -68,32 +70,53 @@ function MyValues() {
   }, []);
 
   if (!visible) {
-    return null;
+    return <div className={z`margin 225`}></div>;
   }
 
   return (
-    <div className={z`display grid; font-size 300%`}>
+    <>
+    <div className={z`display grid; margin 20 0; font-size 300%`}>
       <FadeIn fadeIn={1}>
         <span className={z`margin 20;`}>
-          I believe in:
+          <u>My core values are:</u>
         </span>
       </FadeIn>
       <FadeIn fadeIn={2}>
-        <ReactTypewriter
-          speed={100}
-          typingDelay={100}
-          eraseDelay={1000}
-          text={[
-            'Forward thinking',
-            'Quality and trust',
-            'Long-term oriented',
-            'Constant learning',
-            'Continuous improvement',
-          ]}
-        />
+        <code>
+          <ReactTypewriter
+            speed={50}
+            typingDelay={500}
+            eraseDelay={2000}
+            cursor={'_'}
+            text={shuffled([
+              'Forward thinking',
+              'Quality and trust',
+              'Long-term oriented',
+              'Constant learning',
+              'Continuous improvement',
+              'Honest and Upfront',
+            ])}
+          />
+        </code>
       </FadeIn>
     </div>
+    <MyWork />
+    </>
   );
+}
+
+function MyWork() {
+  return (
+    <FadeIn fadeIn={1}>
+      <span className={z`
+        font-size 3rem
+        cursor pointer
+        :hover { font-weight bold }
+      `}>
+        <small><code>~/$ see-my-work --now</code></small>
+      </span>
+    </FadeIn>
+  )
 }
 
 function Background(props: BackgroundProps) {
