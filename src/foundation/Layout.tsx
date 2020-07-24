@@ -141,7 +141,7 @@ function NavigationTitle(props: {title: string}) {
         user-select none
       `}>
         <div className={z`display flex; align-items center`}>
-          <img className={z`border-radius 100%; width 30; height 30; margin-right 10`} src={myFace} />
+          <img alt='Akinyele C.F.' className={z`border-radius 100%; width 30; height 30; margin-right 10`} src={myFace} />
           {props.title}
         </div>
       </div>
