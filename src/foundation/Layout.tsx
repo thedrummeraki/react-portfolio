@@ -6,6 +6,7 @@ import { Link } from 'components';
 
 interface Props {
   children?: ReactNode;
+  activeFor?: string;
 }
 
 interface ActionItem {
@@ -25,7 +26,7 @@ export function MainLayout(props: Props) {
       justify-content center
       align-items center
     `}>
-      <NavigationBar />
+      <NavigationBar {...props} />
       <main className={z`
         z-index 1
         display block
@@ -46,12 +47,12 @@ export function ProjectLayout(props: Props) {
   );
 }
 
-function NavigationBar() {
+function NavigationBar(props: Props) {
   return (
     <NavigationHeader>
       <NavigationWrapper>
         <NavigationContainer>
-          <NavigationDisplay title={'Akinyele Cafe-Febrissy'} />
+          <NavigationDisplay {...props} title={'Akinyele Cafe-Febrissy'} />
           <NavigationActions />
         </NavigationContainer>
       </NavigationWrapper>
@@ -103,7 +104,7 @@ function NavigationContainer(props: Props) {
   )
 }
 
-function NavigationDisplay(props: NavigationProps) {
+function NavigationDisplay(props: NavigationProps & Props) {
   return (
     <div className={z`
       position relative
@@ -120,7 +121,7 @@ function NavigationDisplay(props: NavigationProps) {
         align-items center
       `}>
         <NavigationTitle {...props} />
-        <NavigationLeft />
+        <NavigationLeft {...props} />
       </div>
     </div>
   )
@@ -134,51 +135,53 @@ function NavigationTitle(props: {title: string}) {
       flex-grow 0
       flex-shrink 0
       backface-visibility hidden
+      user-select none
     `}>
-      <div onClick={() => history.push('/')} className={z`
+      <Link to='/' className={z`
         margin 0
         font-size 1.75em
         color #fff
-        user-select none
       `}>
         <div className={z`display flex; align-items center`}>
           <img alt='Akinyele C.F.' className={z`border-radius 100%; width 30; height 30; margin-right 10`} src={myFace} />
           {props.title}
         </div>
-      </div>
+      </Link>
     </div>
   )
 }
 
-function NavigationLeft() {
+function NavigationLeft(props: Props) {
   return (
     <div className={z`
       text-align right
       margin-left auto
     `}>
       <div className={z`pointer-events auto`}>
-        <NavigationList />
+        <NavigationList {...props} />
       </div>
     </div>
   )
 }
 
-function NavigationList() {
+function NavigationList(props: Props) {
+  const {activeFor} = props;
+
   return (
     <div className={z`
       justify-content flex-end
       display inline-flex
       flex-wrap wrap
     `}>
-      <NavigationItem title='My work' url='/projects' />
+      <NavigationItem active={activeFor === 'projects'} title='My work' url='/projects' />
       <NavigationItem external title='Resume' url='https://resume.akinyele.ca' />
       <NavigationItem hidden external title='Travelling' url='http://japan.akinyele.ca' />
     </div>
   )
 }
 
-function NavigationItem(props: {title: string, url: string, hidden?: boolean; external?: boolean}) {
-  const {title, url, hidden, external} = props;
+function NavigationItem(props: {title: string, url: string, hidden?: boolean; external?: boolean, active?: boolean}) {
+  const {title, url, hidden, external, active} = props;
 
   if (hidden) {
     return null;
@@ -198,7 +201,7 @@ function NavigationItem(props: {title: string, url: string, hidden?: boolean; ex
       padding-left 10
       padding-bottom 20
     `}>
-      <Link external={external} className={z`color #fff;`} to={url}>{title}</Link>
+      <Link external={external} active={active} className={z`color #fff;`} to={url}>{title}</Link>
     </div>  
   )
 }

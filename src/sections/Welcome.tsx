@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import { z, shuffled } from 'utils';
 import ReactTypewriter from 'react-typing-effect';
-import { FadeIn } from 'components';
+import { FadeIn, Link } from 'components';
 
 
 interface BackgroundProps {
@@ -70,7 +70,7 @@ function MyValues() {
   }, []);
 
   if (!visible) {
-    return <div className={z`margin 225`}></div>;
+    return <div className={z`margin 228`}></div>;
   }
 
   return (
@@ -111,9 +111,17 @@ function MyWork() {
       <span className={z`
         font-size 3rem
         cursor pointer
-        :hover { font-weight bold }
       `}>
-        <small><code>~/$ see-my-work --now</code></small>
+        <Link to='/projects'>
+          <small className={z`
+            background #0000006a
+            padding 2 10
+            transition all 0.5s ease
+            :hover { background #000 }
+          `}>
+            <code>~/$ see-my-work --now</code>
+          </small>
+        </Link>
       </span>
     </FadeIn>
   )

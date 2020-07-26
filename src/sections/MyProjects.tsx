@@ -1,8 +1,9 @@
 import React from 'react';
+import { z } from 'utils';
 
 export function MyProjects() {
   return (
-    <div>
+    <div className={z`color white`}>
       test
     </div>
   )
