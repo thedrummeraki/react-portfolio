@@ -1,6 +1,6 @@
 import React from 'react';
 import { RegularProject, ProjectWithVideo, z } from 'utils';
-import { Link } from 'components';
+import { play as playIcon, view as viewIcon } from 'icons';
 
 interface Props {
   project: ProjectWithVideo | RegularProject;
@@ -24,26 +24,44 @@ export function Project(props: Props)  {
 
 function ProjectImageOrVideo(props: Props) {
   const {project: {title, image, video}} = props;
+  const projectIcon = video ? playIcon : viewIcon;
 
-  if (video) {
-    const videoUrl = video.url;
-    const video_patg_parts = videoUrl.split('.')
-    const extension = video_patg_parts[video_patg_parts.length - 1];
-
-    return (
-      <video className={z`width 100%; height 100%; object-fit cover;`} controls loop poster={image}>
-        <source src={videoUrl} type={`video/${extension}`} />
-        <source src={videoUrl} type="video/mp4" />
-        <p className="vjs-no-js">
-          To view this video please enable JavaScript, and consider upgrading to a
-          web browser that
-          <Link external to="https://videojs.com/html5-video-support/">supports HTML5 video</Link>
-        </p>
-      </video>
-    );
-  }
+  const showProject = () => {
+    const project = props.project;
+    console.log('showing project', project);
+  };
 
   return (
-    <img src={image} alt={title} />
+    <>
+      <div className={z`width 100%; height 100%; position relative`}>
+        <img
+          src={image}
+          alt={title}
+          className={z`
+            width 100%
+            height 400
+            object-fit cover
+          `}
+        />
+        <div className={z`
+          position absolute
+          top 0
+          opacity 0
+          width 100%
+          height 100%
+          display flex
+          place-content center
+          cursor pointer
+          transition 0.5s ease
+          :hover {
+            opacity 1
+          }
+        `}
+        onClick={showProject}>
+          <img src={projectIcon} className={z`width 50`} />
+        </div>
+      </div>
+      
+    </>
   )
 }
