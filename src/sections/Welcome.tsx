@@ -13,12 +13,21 @@ interface BackgroundProps {
 export function Welcome() {
   return (
     <LoadedContent 
-      punchline="Hi, my name is Akinyele!" />
+      punchline="Hi, my name is Akinyele!"
+      iBelieveIn={shuffled([
+        'Forward thinking',
+        'Quality and trust',
+        'Long-term solutions',
+        'Constant learning',
+        'Continuous improvement',
+        'Being honest and Upfront',
+        'Collaboration',
+      ])} />
   )
 };
 
-function LoadedContent(props: {punchline: string}) {
-  const {punchline} = props;
+function LoadedContent(props: {punchline: string, iBelieveIn: string[]}) {
+  const {punchline, iBelieveIn} = props;
 
   return (
     <div className={z`width 100vw; height 100vh`}>
@@ -47,7 +56,7 @@ function LoadedContent(props: {punchline: string}) {
               >
                 {punchline}
               </span>
-              <MyValues />
+              <MyBeliefs iBelieveIn={iBelieveIn} />
             </FadeIn>
           </div>
         </Background>
@@ -56,8 +65,9 @@ function LoadedContent(props: {punchline: string}) {
   )
 }
 
-function MyValues() {
+function MyBeliefs(props: {iBelieveIn: string[]}) {
   const [visible, setVisible] = useState(false);
+  const {iBelieveIn} = props;
   
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -78,7 +88,7 @@ function MyValues() {
     <div className={z`display grid; margin 20 0; font-size 300%`}>
       <FadeIn fadeIn={1}>
         <span className={z`margin 20;`}>
-          <u>My core values are:</u>
+          <u>I believe in:</u>
         </span>
       </FadeIn>
       <FadeIn fadeIn={2}>
@@ -88,14 +98,7 @@ function MyValues() {
             typingDelay={500}
             eraseDelay={2000}
             cursor={'_'}
-            text={shuffled([
-              'Forward thinking',
-              'Quality and trust',
-              'Long-term oriented',
-              'Constant learning',
-              'Continuous improvement',
-              'Honest and Upfront',
-            ])}
+            text={iBelieveIn}
           />
         </code>
       </FadeIn>

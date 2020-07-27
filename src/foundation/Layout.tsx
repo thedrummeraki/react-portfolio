@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import { z } from 'utils';
 import { skype, github, linkedin, email, myFace } from 'icons';
-import { useHistory } from 'react-router-dom';
 import { Link } from 'components';
 
 interface Props {
@@ -128,8 +127,6 @@ function NavigationDisplay(props: NavigationProps & Props) {
 }
 
 function NavigationTitle(props: {title: string}) {
-  const history = useHistory();
-
   return (
     <div className={z`
       flex-grow 0
@@ -186,6 +183,18 @@ function NavigationItem(props: {title: string, url: string, hidden?: boolean; ex
   if (hidden) {
     return null;
   }
+
+  const activeClass = `
+    transition all 0.5s ease
+    :after {
+      display block
+      content ''
+      border-bottom solid 1px #fff;
+      transform scaleX(0)
+      transition transform 250ms ease-in-out
+    }
+    :hover:after { transform scaleX(1); }
+  `;
   
   return (
     <div className={z`
@@ -201,7 +210,14 @@ function NavigationItem(props: {title: string, url: string, hidden?: boolean; ex
       padding-left 10
       padding-bottom 20
     `}>
-      <Link external={external} active={active} className={z`color #fff;`} to={url}>{title}</Link>
+      <Link
+        external={external}
+        active={active}
+        className={z`color #fff; ${!active && activeClass}`}
+        to={url}
+      >
+        {title}
+      </Link>
     </div>  
   )
 }
