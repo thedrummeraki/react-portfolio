@@ -6,7 +6,7 @@ import { MainLayout } from './Layout';
 export function MainRoutes() {
   return (
     <Route exact path={['/']}>
-      <MainLayout>
+      <MainLayout title="Akinyele Cafe-Febrissy">
         <Switch>
           <Route exact path='/' component={Welcome} />
         </Switch>

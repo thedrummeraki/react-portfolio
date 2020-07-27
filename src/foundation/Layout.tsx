@@ -18,7 +18,11 @@ interface NavigationProps {
   title: string;
 }
 
-export function MainLayout(props: Props) {
+type ComposedProps = Props & NavigationProps;
+
+export function MainLayout(props: ComposedProps) {
+  document.title = "Welcome ~ Akinyele Cafe-Febrissy";
+
   return (
     <div className={z`
       display flex
@@ -36,22 +40,32 @@ export function MainLayout(props: Props) {
   );
 }
 
-export function ProjectLayout(props: Props) {
+export function ProjectLayout(props: ComposedProps) {
+  document.title = "Projects ~ Akinyele Cafe-Febrissy";
+
   return (
-    <section className={z`
-      width 100vw
+    <div className={z`
+      display flex
+      justify-content center
+      align-items center
     `}>
-      {props.children}
-    </section>
+      <NavigationBar {...props} />
+      <main className={z`
+        z-index 1
+        display block
+      `}>
+        {props.children}
+      </main>
+    </div>
   );
 }
 
-function NavigationBar(props: Props) {
+function NavigationBar(props: Props & NavigationProps) {
   return (
     <NavigationHeader>
       <NavigationWrapper>
         <NavigationContainer>
-          <NavigationDisplay {...props} title={'Akinyele Cafe-Febrissy'} />
+          <NavigationDisplay {...props} />
           <NavigationActions />
         </NavigationContainer>
       </NavigationWrapper>
