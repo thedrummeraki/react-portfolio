@@ -1,5 +1,5 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import { z, shuffled } from 'utils';
+import { z, shuffled, useImageLoaded } from 'utils';
 import ReactTypewriter from 'react-typing-effect';
 import { FadeIn, Link } from 'components';
 
@@ -122,7 +122,7 @@ function MyWork() {
             transition all 0.5s ease
             :hover { background #000 }
           `}>
-            <code>~/$ see-my-work --now</code>
+            <code>~/$ see-my-work --now &#62;</code>
           </small>
         </Link>
       </span>
@@ -132,11 +132,7 @@ function MyWork() {
 
 function Background(props: BackgroundProps) {
   const {url, children} = props;
-  const [loaded, setLoaded] = useState(false);
-
-  const imageLoader = new Image();
-  imageLoader.src = url;
-  imageLoader.onload = () => setLoaded(true);
+  const loaded = useImageLoaded(url);
 
   if (loaded) {
     return (
