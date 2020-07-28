@@ -1,6 +1,7 @@
 import React from 'react';
-import { RegularProject, ProjectWithVideo, z } from 'utils';
+import { RegularProject, ProjectWithVideo, useImageLoaded, z } from 'utils';
 import { play as playIcon, view as viewIcon } from 'icons';
+import { puffLoader } from 'anim';
 
 interface Props {
   project: ProjectWithVideo | RegularProject;
@@ -15,7 +16,7 @@ export function Project(props: Props)  {
         <ProjectImageOrVideo project={project} />
       </div>
       <p className={z`display grid; font-weight bold; padding 0 1rem`}>
-        <span>{project.title}</span>
+        <span>{project.title} ({project.year})</span>
         <small className={z`color #aaa`}>{project.description}</small>
       </p>
     </div>
@@ -25,15 +26,24 @@ export function Project(props: Props)  {
 function ProjectImageOrVideo(props: Props) {
   const {project: {title, image, video}} = props;
   const projectIcon = video ? playIcon : viewIcon;
+  const imageLoaded = useImageLoaded(props.project.image);
 
   const showProject = () => {
     const project = props.project;
     console.log('showing project', project);
   };
 
+  if (!imageLoaded) {
+    return <img src={puffLoader} alt='loading...' />
+  }
+
   return (
     <>
-      <div className={z`width 100%; height 100%; position relative`}>
+      <div className={z`
+        width 100%
+        height 100%
+        position relative
+      `}>
         <img
           src={image}
           alt={title}
@@ -41,6 +51,7 @@ function ProjectImageOrVideo(props: Props) {
             width 100%
             height 400
             object-fit cover
+            opacity 0.6
           `}
         />
         <div className={z`
@@ -58,7 +69,7 @@ function ProjectImageOrVideo(props: Props) {
           }
         `}
         onClick={showProject}>
-          <img src={projectIcon} className={z`width 50`} />
+          <img alt='select project' src={projectIcon} className={z`width 50`} />
         </div>
       </div>
       

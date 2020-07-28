@@ -51,6 +51,16 @@ export interface ProjectWithVideo extends BasicProject {
 
 export const mainProjects: ProjectWithVideo[] = [
   {
+    title: "YourAnime.moe",
+    description: "Your anime. Yours alone.",
+    year: 2016,
+    type: 'showcase',
+    nature: 'web',
+    image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/tanoshimu_en.png',
+    video: {url: 'https://misete.s3.us-east-2.amazonaws.com/showcase/tanoshimu.mov', duration: 0},
+    technologies: []
+  },
+  {
     title: "Misete.io",
     description: "A space for watching and sharing Nintendo Switch clips.",
     year: 2020,
@@ -63,32 +73,12 @@ export const mainProjects: ProjectWithVideo[] = [
     technologies: buildTechnologies('Rails', 'GraphQL', 'Sidekiq', 'OAuth', 'CAS', 'Misete.io')
   },
   {
-    title: "YourAnime.moe",
-    description: "Your anime. Yours alone.",
-    year: 2016,
+    title: "Osusume (Let's watch anime together!)",
+    description: "A tool serving as Shopify's internal recommendation anime system.",
+    year: 2020,
     type: 'showcase',
     nature: 'web',
-    image: '',
-    video: {url: 'https://misete.s3.us-east-2.amazonaws.com/showcase/tanoshimu.mov', duration: 0},
-    technologies: []
-  },
-  {
-    title: "Notaki.ca (formerly forevernote.ca)",
-    description: "A note-taking app for students.",
-    year: 2017,
-    type: 'showcase',
-    nature: 'web',
-    image: '',
-    video: {url: '', duration: 0},
-    technologies: []
-  },
-  {
-    title: "Notaki.ca (formerly forevernote.ca)",
-    description: "A note-taking app for students.",
-    year: 2017,
-    type: 'showcase',
-    nature: 'web',
-    image: '',
+    image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/osusume.png',
     video: {url: '', duration: 0},
     technologies: []
   },
@@ -98,7 +88,17 @@ export const mainProjects: ProjectWithVideo[] = [
     year: 2019,
     type: 'showcase',
     nature: 'web',
-    image: '',
+    image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/discord-bot.png',
+    video: {url: '', duration: 0},
+    technologies: []
+  },
+  {
+    title: "Notaki.ca (formerly forevernote.ca)",
+    description: "A note-taking app for students.",
+    year: 2017,
+    type: 'showcase',
+    nature: 'web',
+    image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/forevernote.png',
     video: {url: '', duration: 0},
     technologies: []
   },
@@ -108,7 +108,7 @@ export const mainProjects: ProjectWithVideo[] = [
     year: 2019,
     type: 'showcase',
     nature: 'web',
-    image: '',
+    image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/capstone.png',
     video: {url: '', duration: 0},
     technologies: []
   }

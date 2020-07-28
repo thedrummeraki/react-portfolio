@@ -18,7 +18,7 @@ export function MyProjects() {
 function Projects() {
   return (
     <div className={z`display flex; flex-wrap wrap; justify-content space-around`}>
-      {allProjectsList.main.map(project => <Project project={project} />)}
+      {allProjectsList.main.map(project => <Project key={project.title} project={project} />)}
     </div>
   )
 }

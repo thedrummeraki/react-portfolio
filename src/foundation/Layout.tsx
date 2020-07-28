@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
-import { z } from 'utils';
+import { z, useImageLoaded } from 'utils';
 import { skype, github, linkedin, email, myFace } from 'icons';
 import { Link } from 'components';
+import { puffLoader } from 'anim';
 
 interface Props {
   children?: ReactNode;
@@ -141,6 +142,9 @@ function NavigationDisplay(props: NavigationProps & Props) {
 }
 
 function NavigationTitle(props: {title: string}) {
+  const imageLoaded = useImageLoaded(myFace);
+  const logo = imageLoaded ? myFace : puffLoader;
+
   return (
     <div className={z`
       flex-grow 0
@@ -154,7 +158,7 @@ function NavigationTitle(props: {title: string}) {
         color #fff
       `}>
         <div className={z`display flex; align-items center`}>
-          <img alt='Akinyele C.F.' className={z`border-radius 100%; width 30; height 30; margin-right 10`} src={myFace} />
+          <img alt='Akinyele C.F.' className={z`border-radius 100%; width 30; height 30; margin-right 10`} src={logo} />
           {props.title}
         </div>
       </Link>

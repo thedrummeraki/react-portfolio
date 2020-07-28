@@ -1,5 +1,6 @@
 // @ts-ignore
 import zaftig from 'zaftig';
+import { useState } from 'react';
 
 zaftig``.__proto__.valueOf = function () {
   return this.className;
@@ -31,6 +32,16 @@ export function intToRGB(i: number){
       .toUpperCase();
 
   return "00000".substring(0, 6 - c.length) + c;
+}
+
+export function useImageLoaded(url: string) {
+  const [loaded, setLoaded] = useState(false);
+
+  const imageLoader = new Image();
+  imageLoader.src = url;
+  imageLoader.onload = () => setLoaded(true);
+
+  return loaded;
 }
 
 export * from './projects';
