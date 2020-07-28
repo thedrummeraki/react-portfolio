@@ -1,6 +1,6 @@
 // @ts-ignore
 import zaftig from 'zaftig';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 zaftig``.__proto__.valueOf = function () {
   return this.className;
@@ -42,6 +42,26 @@ export function useImageLoaded(url: string) {
   imageLoader.onload = () => setLoaded(true);
 
   return loaded;
+}
+
+export function useHoverableImageRef(hoverOpacity: number, defaultOpacity: number) {
+  const imageRef = useRef<HTMLImageElement|null>(null);
+
+  const onHover = () => {
+    if (!imageRef.current) return;
+
+    imageRef.current.style.opacity = hoverOpacity.toString();
+    imageRef.current.style.filter = 'blur(1px)';
+  }
+
+  const onLeave = () => {
+    if (!imageRef.current) return;
+
+    imageRef.current.style.opacity = defaultOpacity.toString();
+    imageRef.current.style.filter = 'none';
+  }
+
+  return {imageRef, onHover, onLeave};
 }
 
 export * from './projects';

@@ -1,5 +1,5 @@
-import React from 'react';
-import { RegularProject, ProjectWithVideo, useImageLoaded, z } from 'utils';
+import React, { useRef } from 'react';
+import { RegularProject, ProjectWithVideo, useImageLoaded, z, useHoverableImageRef } from 'utils';
 import { play as playIcon, view as viewIcon } from 'icons';
 import { puffLoader } from 'anim';
 
@@ -25,6 +25,8 @@ export function Project(props: Props)  {
 
 function ProjectImageOrVideo(props: Props) {
   const {project: {title, image, video}} = props;
+  const {imageRef, onHover, onLeave} = useHoverableImageRef(0.6, 0.8);
+
   const projectIcon = video ? playIcon : viewIcon;
   const imageLoaded = useImageLoaded(props.project.image);
 
@@ -39,7 +41,7 @@ function ProjectImageOrVideo(props: Props) {
 
   return (
     <>
-      <div className={z`
+      <div onMouseEnter={onHover} onMouseLeave={onLeave} className={z`
         width 100%
         height 100%
         position relative
@@ -47,11 +49,13 @@ function ProjectImageOrVideo(props: Props) {
         <img
           src={image}
           alt={title}
+          ref={imageRef}
           className={z`
             width 100%
             height 400
             object-fit cover
             opacity 0.6
+            transition all 0.5s ease
           `}
         />
         <div className={z`
