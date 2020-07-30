@@ -80,7 +80,7 @@ function MyBeliefs(props: {iBelieveIn: string[]}) {
   }, []);
 
   if (!visible) {
-    return <div className={z`margin 228`}></div>;
+    return <div className={z`margin 206`}></div>;
   }
 
   return (
@@ -112,7 +112,7 @@ function MyWork() {
   return (
     <FadeIn fadeIn={1}>
       <span className={z`
-        font-size 3rem
+        font-size 2rem
         cursor pointer
       `}>
         <Link to='/projects'>

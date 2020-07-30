@@ -8,6 +8,15 @@ zaftig``.__proto__.valueOf = function () {
 
 export const z = zaftig;
 
+export function queryParam(key: string, defaultValue = '') {
+  return new URLSearchParams(window.location.search).get(key) || defaultValue;
+}
+
+// Source: https://stackoverflow.com/questions/2519818/create-a-permalink-with-javascript
+export function toPermalink(str: string) {
+  return str.replace(/[^a-z0-9]+/gi, '-').replace(/^-*|-*$/g, '').toLowerCase();
+}
+
 export const shuffled = (array: any[]) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -51,7 +60,7 @@ export function useHoverableImageRef(hoverOpacity: number, defaultOpacity: numbe
     if (!imageRef.current) return;
 
     imageRef.current.style.opacity = hoverOpacity.toString();
-    imageRef.current.style.filter = 'blur(1px)';
+    imageRef.current.style.filter = 'blur(2px)';
   }
 
   const onLeave = () => {

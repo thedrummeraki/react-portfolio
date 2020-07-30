@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
-import { RegularProject, ProjectWithVideo, useImageLoaded, z, useHoverableImageRef } from 'utils';
+import { RegularProject, ProjectWithVideo, useImageLoaded, z, useHoverableImageRef, getProjectId } from 'utils';
 import { play as playIcon, view as viewIcon } from 'icons';
 import { puffLoader } from 'anim';
+import { useHistory } from 'react-router-dom';
+import { IconOverlay } from './IconOverlay';
 
 interface Props {
   project: ProjectWithVideo | RegularProject;
@@ -24,6 +26,7 @@ export function Project(props: Props)  {
 }
 
 function ProjectImageOrVideo(props: Props) {
+  const history = useHistory();
   const {project: {title, image, video}} = props;
   const {imageRef, onHover, onLeave} = useHoverableImageRef(0.6, 0.8);
 
@@ -32,7 +35,9 @@ function ProjectImageOrVideo(props: Props) {
 
   const showProject = () => {
     const project = props.project;
-    console.log('showing project', project);
+    const projectId = getProjectId(project);
+
+    history.push(`/view?project=${projectId}`);
   };
 
   if (!imageLoaded) {
@@ -58,23 +63,7 @@ function ProjectImageOrVideo(props: Props) {
             transition all 0.5s ease
           `}
         />
-        <div className={z`
-          position absolute
-          top 0
-          opacity 0
-          width 100%
-          height 100%
-          display flex
-          place-content center
-          cursor pointer
-          transition 0.5s ease
-          :hover {
-            opacity 1
-          }
-        `}
-        onClick={showProject}>
-          <img alt='select project' src={projectIcon} className={z`width 50`} />
-        </div>
+        <IconOverlay icon={projectIcon} onClick={showProject} />
       </div>
       
     </>

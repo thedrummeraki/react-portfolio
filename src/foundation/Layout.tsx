@@ -257,8 +257,8 @@ function NavigationActions() {
       <NavigationActionItems items={[
         {icon: github, url: 'https://github.akinyele.ca'},
         {icon: linkedin, url: 'https://linkedin.akinyele.ca'},
-        {icon: skype, url: 'skype:aakin013', sameTab: true},
-        {icon: email, url: 'mailto:me@akinyele.ca', sameTab: true}
+        {icon: skype, url: 'skype:aakin013'},
+        {icon: email, url: 'mailto:me@akinyele.ca'}
       ]} />
     </div>
   )

@@ -1,17 +1,13 @@
 import React from 'react';
-import { z, allProjectsList } from 'utils';
-import { Project } from 'components';
+import { z, allProjectsList, nextProjectOf } from 'utils';
+import allProjects, { previousProjectOf } from 'utils/projects';
+import { Project, SectionContainer } from 'components';
 
 export function MyProjects() {
   return (
-    <section className={z`padding 170 0; color #fff`}>
-      <div className={z`text-align center`}>
-        <h1 className={z`user-select none`}>My work</h1>
-        <article className={z`max-width 90%; margin 0 auto`}>
-          <Projects />
-        </article>
-      </div>
-    </section>
+    <SectionContainer title='My work'>
+      <Projects />
+    </SectionContainer>
   )
 }
 
