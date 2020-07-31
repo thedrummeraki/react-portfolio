@@ -5,7 +5,10 @@ import { Project, SectionContainer } from 'components';
 
 export function MyProjects() {
   return (
-    <SectionContainer title='My work'>
+    <SectionContainer title='My work' breadcrumbs={[
+      {url: '#', text: 'My projects', active: true},
+      {url: '/', text: 'Home'},
+    ]}>
       <Projects />
     </SectionContainer>
   )

@@ -28,7 +28,8 @@ export function Project(props: Props)  {
 function ProjectImageOrVideo(props: Props) {
   const history = useHistory();
   const {project: {title, image, video}} = props;
-  const {imageRef, onHover, onLeave} = useHoverableImageRef(0.6, 0.8);
+  const defaultOpacity = 0.8;
+  const {imageRef, onHover, onLeave} = useHoverableImageRef(0.6, defaultOpacity);
 
   const projectIcon = video ? playIcon : viewIcon;
   const imageLoaded = useImageLoaded(props.project.image);
@@ -59,7 +60,7 @@ function ProjectImageOrVideo(props: Props) {
             width 100%
             height 400
             object-fit cover
-            opacity 0.6
+            opacity ${defaultOpacity}
             transition all 0.5s ease
           `}
         />

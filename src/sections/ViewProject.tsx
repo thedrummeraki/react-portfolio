@@ -1,6 +1,6 @@
 import React, { useState, CSSProperties } from 'react';
 import { ProjectWithVideo, RegularProject, queryParam, getProjectById, z, useImageLoaded } from 'utils';
-import { SectionContainer, Link, IconOverlay, ProgressBar } from 'components';
+import { SectionContainer, Link, IconOverlay, ProgressBar, Tag, Breadcrumbs } from 'components';
 import ReactPlayer from 'react-player'
 import { puffLoader } from 'anim';
 import { play, pause } from 'icons';
@@ -28,7 +28,11 @@ export function ViewProject() {
     <ViewRegularProject project={project as RegularProject} />;
   
   return (
-    <SectionContainer title={project.title}>
+    <SectionContainer title={project.title} breadcrumbs={[
+      {url: '#', text: project.title, active: true},
+      {url: '/projects', text: 'My projects'},
+      {url: '/', text: 'Home'},
+    ]} >
       {projectMarkup}
     </SectionContainer>
   )
@@ -76,16 +80,23 @@ function ProjectMarkup(props: {project: ProjectWithVideo | RegularProject, loade
   }
 
   return (
-    <div className={z`display grid`}>
+    <div className={z`display flex; flex-flow column nowrap;`}>
       <span className={z`font-weight bold; margin-bottom 10`}>{project.description}</span>
 
-      <div className={z`display flex; padding 1rem`}>
+      <div className={z`display flex; padding 2rem`}>
         <div className={z`width 70%`}>
           {loaded ? <DemoMarkup /> : <DemoLoading />}
         </div>
-        <div className={z`width 30%; padding 5 50`}>
-          <div className={z`display grid`}>
-            <small>{project.text}</small>
+        <div className={z`display flex; width 30%; padding 1rem 2rem; place-content center; flex-flow column nowrap;`}>
+          <small className={z`color #aaa; padding-bottom 1rem; text-align center; width 100%`}>About</small>
+          <span>{project.text}</span>
+
+          <span className={z`color #aaa; padding 1.5rem 0 1rem 0; text-align center; width 100%`}>
+            Made in {project.yearPeriod} {project.year}
+          </span>
+
+          <div>
+            {project.technologies && project.technologies.map(technology => <Tag key={technology.title} colour={technology.color()}>{technology.title}</Tag>)}
           </div>
         </div>
       </div>
@@ -130,16 +141,14 @@ function DemoVideo(props: {project: ProjectWithVideo}) {
     >
       <DemoLoading style={{display: loadingDisplay}} />
       <div className={z`width 100%; height 100%; position relative`}>
-        {!playing && <IconOverlay icon={overlayIcon} />}
         <div
           className={z`
             cursor pointer
             transition opacity 0.5s ease
             border 1px solid #222
             background #111
-            ${className}
           `}>
-          <ProgressBar filledPercentage={progress * 100} />
+          {videoReady && <ProgressBar errored={errored} filledPercentage={progress * 100} />}
           <ReactPlayer
             playing={playing}
             style={{display: videoDisplay}}
@@ -147,10 +156,7 @@ function DemoVideo(props: {project: ProjectWithVideo}) {
             height='50vh'
             url={project.video.url}
             onProgress={onVideoProgress}
-            onError={(error) => {
-              console.error(error);
-              setErrored(true);
-            }}
+            onError={() => setErrored(true)}
             onReady={() => setVideoReady(true)} />
         </div>
       </div>

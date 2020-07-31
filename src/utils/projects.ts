@@ -7,7 +7,7 @@ interface ProjectConfig {
 
 interface ProjectVideo {
   url: string;
-  duration: number;
+  duration?: number;
 }
 
 type ProjectType = 'showcase' | 'regular' | 'professional' | 'other';
@@ -21,7 +21,7 @@ class Technology {
   }
 
   public color(): string {
-    return intToRGB(hashCode(this.title));
+    return '#' + intToRGB(hashCode(this.title));
   }
 }
 
@@ -35,6 +35,7 @@ interface BasicProject {
   description: string;
   text?: string;
   year: number;
+  yearPeriod: 'late' | 'early' | 'mid';
   type: ProjectType;
   nature: ProjectNature;
   technologies?: Technology[];
@@ -61,11 +62,12 @@ export const mainProjects: RegularProject[] = [
       I also wrote my own HTML5 video player.
     `,
     year: 2016,
+    yearPeriod: 'late',
     type: 'showcase',
     nature: 'web',
     image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/tanoshimu_en.png',
-    video: {url: 'https://misete.s3.us-east-2.amazonaws.com/showcase/tanoshimu.mov', duration: 0},
-    technologies: []
+    video: {url: 'https://youtu.be/BSsPekiET0A'},
+    technologies: buildTechnologies('Rails', 'Ruby', 'Python', 'Node.js', 'jQuery')
   },
   {
     title: "Misete.io",
@@ -76,13 +78,14 @@ export const mainProjects: RegularProject[] = [
       of data.
     `,
     year: 2020,
+    yearPeriod: 'early',
     type: 'showcase',
     nature: 'web',
     closedSource: false,
     hidden: false,
     image: "https://misete.s3.us-east-2.amazonaws.com/showcase/misete.png",
-    video: {url: "https://misete.s3.us-east-2.amazonaws.com/showcase/misete.mov", duration: 161},
-    technologies: buildTechnologies('Rails', 'GraphQL', 'Sidekiq', 'OAuth', 'CAS', 'Misete.io')
+    video: {url: "https://youtu.be/oc4UwJunsGs"},
+    technologies: buildTechnologies('Rails', 'GraphQL', 'Sidekiq', 'OAuth', 'CAS')
   },
   {
     title: "O SUSUME (Let's watch anime together!)",
@@ -94,10 +97,11 @@ export const mainProjects: RegularProject[] = [
       internal Anime recommendation platform!
     `,
     year: 2020,
+    yearPeriod: 'mid',
     type: 'showcase',
     nature: 'web',
     image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/osusume.png',
-    technologies: []
+    technologies: buildTechnologies('Rails', 'Go', 'Python', 'React')
   },
   {
     title: "Github Discord Bot",
@@ -107,11 +111,12 @@ export const mainProjects: RegularProject[] = [
       Discord. I used Github's latest GraphQL API for cleaner management of queries and mutations.
     `,
     year: 2019,
+    yearPeriod: 'early',
     type: 'showcase',
     nature: 'web',
     image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/discord-bot.png',
-    video: {url: '', duration: 0},
-    technologies: []
+    video: {url: 'https://youtu.be/xQeAJQJvhJM'},
+    technologies: buildTechnologies('Node.JS', 'Ruby', 'GraphQL', 'Github API', 'Discord API')
   },
   {
     title: "Notaki.ca (formerly forevernote.ca)",
@@ -123,11 +128,11 @@ export const mainProjects: RegularProject[] = [
       front end in React.
     `,
     year: 2017,
+    yearPeriod: 'late',
     type: 'showcase',
     nature: 'web',
     image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/forevernote.png',
-    video: {url: '', duration: 0},
-    technologies: []
+    technologies: buildTechnologies('Rails', 'JavaScript')
   },
   {
     title: "Rent Management Dashboard (Capstone)",
@@ -139,10 +144,11 @@ export const mainProjects: RegularProject[] = [
       unit/lease information. Property managers are able to manage users and lease information.
     `,
     year: 2019,
+    yearPeriod: 'early',
     type: 'showcase',
     nature: 'web',
     image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/capstone.png',
-    technologies: []
+    technologies: buildTechnologies('Rails')
   }
 ];
 
