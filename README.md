@@ -5,8 +5,8 @@ This is [Akinyele.ca](https://www.akinyele.ca), this is my site.
 ![akinyele.ca](https://github.com/thedrummeraki/react-portfolio/blob/master/showcase/my_site.gif)
 
 ## What is it?
-
-A complete re-write for my [old website](https://github.com/thedrummeraki/react-portfolio/commit/dd98813e2ca5e893c545a2aed356a399181c3656), all in React and TypeScript.
+- My portfolio that showcases some of my projects.
+- A complete re-write for my [old website](https://github.com/thedrummeraki/react-portfolio/tree/old-site), all in React and TypeScript.
 
 ## What next?
 
