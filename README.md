@@ -2,7 +2,7 @@
 
 This is [Akinyele.ca](https://www.akinyele.ca), this is my site.
 
-![akinyele.ca](https://github.com/thedrummeraki/react-portfolio/blob/master/showcase/my_site.png)
+![akinyele.ca](https://github.com/thedrummeraki/react-portfolio/blob/old-site/showcase/my_site.png)
 
 ## What is it?
 
