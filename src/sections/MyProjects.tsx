@@ -1,6 +1,5 @@
 import React from 'react';
-import { z, allProjectsList, nextProjectOf } from 'utils';
-import allProjects, { previousProjectOf } from 'utils/projects';
+import { z, allProjectsList } from 'utils';
 import { Project, SectionContainer } from 'components';
 
 export function MyProjects() {

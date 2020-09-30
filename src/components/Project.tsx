@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { RegularProject, ProjectWithVideo, useImageLoaded, z, useHoverableImageRef, getProjectId } from 'utils';
 import { play as playIcon, view as viewIcon } from 'icons';
 import { puffLoader } from 'anim';

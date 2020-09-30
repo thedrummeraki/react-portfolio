@@ -1,19 +1,14 @@
 import React, { useState, CSSProperties } from 'react';
-import { ProjectWithVideo, RegularProject, queryParam, getProjectById, z, useImageLoaded } from 'utils';
-import { SectionContainer, Link, IconOverlay, ProgressBar, Tag, Breadcrumbs } from 'components';
+import { ProjectWithVideo, RegularProject, queryParam, getProjectById, z, useImageLoaded, ProjectUrl } from 'utils';
+import { SectionContainer, Link, ProgressBar, Tag } from 'components';
 import ReactPlayer from 'react-player'
 import { puffLoader } from 'anim';
-import { play, pause } from 'icons';
 
 interface RegularProjectProps {
   project: RegularProject;
 }
 
-interface ProjectWithVideoProps {
-  project: ProjectWithVideo;
-}
-
-const dimensions = 'width 100%; height 50vh';
+const dimensions = 'width 100%; height 60vh';
 
 export function ViewProject() {
   const project = getProjectById(queryParam('project'));
@@ -22,18 +17,13 @@ export function ViewProject() {
     return <ProjectNotFound />;
   }
 
-  const projectMarkup = (project as ProjectWithVideo).video ?
-    //<ViewProjectWithVideo project={project as ProjectWithVideo} /> :
-    <ViewRegularProject project={project as RegularProject} /> :
-    <ViewRegularProject project={project as RegularProject} />;
-  
   return (
     <SectionContainer title={project.title} breadcrumbs={[
       {url: '#', text: project.title, active: true},
       {url: '/projects', text: 'My projects'},
       {url: '/', text: 'Home'},
     ]} >
-      {projectMarkup}
+      <ViewRegularProject project={project as RegularProject} />
     </SectionContainer>
   )
 }
@@ -58,16 +48,6 @@ function ViewRegularProject(props: RegularProjectProps) {
   )
 }
 
-function ViewProjectWithVideo(props: ProjectWithVideoProps) {
-  const {project} = props;
-
-  return (
-    <>
-      Project
-    </>
-  )
-}
-
 function ProjectMarkup(props: {project: ProjectWithVideo | RegularProject, loaded: boolean}) {
   const {project, loaded} = props;
 
@@ -82,6 +62,7 @@ function ProjectMarkup(props: {project: ProjectWithVideo | RegularProject, loade
   return (
     <div className={z`display flex; flex-flow column nowrap;`}>
       <span className={z`font-weight bold; margin-bottom 10`}>{project.description}</span>
+      <ProjectActionItems urlInfos={project.urls || []} />
 
       <div className={z`display flex; padding 2rem`}>
         <div className={z`width 70%`}>
@@ -89,6 +70,7 @@ function ProjectMarkup(props: {project: ProjectWithVideo | RegularProject, loade
         </div>
         <div className={z`display flex; width 30%; padding 1rem 2rem; place-content center; flex-flow column nowrap;`}>
           <small className={z`color #aaa; padding-bottom 1rem; text-align center; width 100%`}>About</small>
+          {project.pre && <div className={z`margin-bottom 10`}><i>{project.pre}</i></div>}
           <span>{project.text}</span>
 
           <span className={z`color #aaa; padding 1.5rem 0 1rem 0; text-align center; width 100%`}>
@@ -123,17 +105,12 @@ function DemoVideo(props: {project: ProjectWithVideo}) {
   const [videoReady, setVideoReady] = useState(false);
   const videoDisplay = videoReady ? 'inherit' : 'none';
   const loadingDisplay = videoReady ? 'none' : 'inherit';
-  const overlayIcon = playing ? pause : play;
   
   const onVideoProgress = (state: { played: number, playedSeconds: number, loaded: number, loadedSeconds: number }) => {
     const {played} = state;
 
     setProgress(played);
   }
-
-  const className = playing ?
-    `opacity 1` :
-    `opacity 0.4`;
 
   return (
     <div
@@ -153,7 +130,7 @@ function DemoVideo(props: {project: ProjectWithVideo}) {
             playing={playing}
             style={{display: videoDisplay}}
             width='100%'
-            height='50vh'
+            height='60vh'
             url={project.video.url}
             onProgress={onVideoProgress}
             onError={() => setErrored(true)}
@@ -173,5 +150,42 @@ function DemoImage(props: {project: RegularProject}) {
       alt={project.title}
       className={z`${dimensions}; object-fit cover`}
     />
+  );
+}
+
+function ProjectActionItems(props: { urlInfos: ProjectUrl[] }) {
+  return (
+    <div className={z`
+      margin-top 15
+      display flex
+      justify-content center
+    `}>
+      {props.urlInfos.map(urlInfo => <ActionItem key={urlInfo.url} urlInfo={urlInfo} />)}
+    </div>
+  )
+}
+
+function ActionItem(props: { urlInfo: ProjectUrl }) {
+  const { urlInfo: { url, icon, alt } } = props;
+  return (
+    <Link
+      external
+      to={url}
+      className={z`
+        margin-left 1.5vw
+        width 20
+        height 20
+        position relative
+        display block
+        box-sizing content-box
+        line-height 1
+        color inherit
+        cursor pointer
+        background transparent
+        padding 10
+        border solid 1 white
+      `}>
+      <img alt={alt} src={icon} />
+    </Link>
   );
 }

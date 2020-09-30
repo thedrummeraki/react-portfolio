@@ -1,4 +1,5 @@
 import { intToRGB, hashCode, toPermalink } from 'utils';
+import { github, view } from 'icons';
 
 interface ProjectConfig {
   main: BasicProject[];
@@ -8,6 +9,12 @@ interface ProjectConfig {
 interface ProjectVideo {
   url: string;
   duration?: number;
+}
+
+export interface ProjectUrl {
+  icon: string;
+  url: string;
+  alt: string;
 }
 
 type ProjectType = 'showcase' | 'regular' | 'professional' | 'other';
@@ -33,6 +40,7 @@ interface BasicProject {
   title: string;
   image: string;
   description: string;
+  pre?: string;
   text?: string;
   year: number;
   yearPeriod: 'late' | 'early' | 'mid';
@@ -41,6 +49,7 @@ interface BasicProject {
   technologies?: Technology[];
   closedSource?: boolean;
   hidden?: boolean;
+  urls?: ProjectUrl[];
 }
 
 export interface RegularProject extends BasicProject {
@@ -54,9 +63,13 @@ export interface ProjectWithVideo extends BasicProject {
 export const mainProjects: RegularProject[] = [
   {
     title: "YourAnime.moe",
-    description: "Your anime. Yours alone.",
+    description: "Your anime, your games. Yours alone.",
+    pre: `
+      This is a place where you can get the latest info about anime and games!
+      Support the anime and game industries, comment and share your thoughts on the latest shows and games.
+    `,
     text: `
-      This is my first full-fledged website. This was originally designed for anime streaming but I
+      Formerly named "Tanoshimu". This is my first full-fledged website. This was originally designed for anime streaming but I
       then decided not to host anything due to legal reasons. I have developed a separate admin dashboard
       for managing content on the site. My focus was on providing top-notch user experience.
       I also wrote my own HTML5 video player.
@@ -66,8 +79,53 @@ export const mainProjects: RegularProject[] = [
     type: 'showcase',
     nature: 'web',
     image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/tanoshimu_en.png',
-    video: {url: 'https://youtu.be/BSsPekiET0A'},
-    technologies: buildTechnologies('Rails', 'Ruby', 'Python', 'Node.js', 'jQuery')
+    video: { url: 'https://youtu.be/k2ZRwajkxFI' },
+    technologies: buildTechnologies('Rails', 'OAuth', 'Sidekiq', 'Ruby', 'Python', 'Node.js', 'jQuery'),
+    urls: [
+      { url: 'https://www.youranime.moe', alt: 'Main link', icon: view },
+    ]
+  },
+  {
+    title: "YourAnime.moe Admin panel",
+    description: "YourAnime.moe: supercharged.",
+    text: `
+      The admin for my favourite project, YourAnime.moe. Logging as an admin user allows one to navigate the
+      site in the same way as a regular user. Admin users are however not allowed to perform any actions on
+      the site (ie: like, comment, etc.). The admin panel allows a user to manage existing users, shows, games,
+      and events.
+    `,
+    year: 2020,
+    yearPeriod: 'late',
+    type: 'showcase',
+    nature: 'web',
+    image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/tanoshimu-admin.png',
+    video: { url: 'https://youtu.be/rTm8zPP59XU' },
+    technologies: buildTechnologies('Rails', 'OAuth', 'Sidekiq', 'Ruby', 'Python', 'Node.js', 'jQuery')
+  },
+  {
+    title: "Misete Accounts",
+    description: 'My solution to authentication. "Show me" everything I need to know!',
+    pre: `
+      「見せて」("misete") stands for "show me" in Japanese. It's important for me that users have complete control
+      over their personal information, whether it be name, username or password.
+    `,
+    text: `
+      Originally part of Misete.io. This is currently used in YourAnime.moe (and is the only to create
+      an account). This is a closed-source self-contained authentication system where your account information
+      is safely stored. No critical information is currently stored on the server.
+    `,
+    year: 2020,
+    yearPeriod: 'mid',
+    type: 'showcase',
+    nature: 'web',
+    closedSource: true,
+    hidden: false,
+    image: "https://misete.s3.us-east-2.amazonaws.com/showcase/misete-accounts.png",
+    video: { url: 'https://youtu.be/5mvfGUjjYUE' },
+    technologies: buildTechnologies('Rails', 'OAuth'),
+    urls: [
+      { url: 'https://accounts-misete-stg.herokuapp.com', alt: 'Main link', icon: view },
+    ]
   },
   {
     title: "Misete.io",
@@ -81,11 +139,14 @@ export const mainProjects: RegularProject[] = [
     yearPeriod: 'early',
     type: 'showcase',
     nature: 'web',
-    closedSource: false,
+    closedSource: true,
     hidden: false,
     image: "https://misete.s3.us-east-2.amazonaws.com/showcase/misete.png",
     video: {url: "https://youtu.be/oc4UwJunsGs"},
-    technologies: buildTechnologies('Rails', 'GraphQL', 'Sidekiq', 'OAuth', 'CAS')
+    technologies: buildTechnologies('Rails', 'GraphQL', 'Sidekiq', 'OAuth', 'CAS'),
+    urls: [
+      { url: 'https://misete-stg.herokuapp.com', alt: 'Main link', icon: view },
+    ]
   },
   {
     title: "O SUSUME (Let's watch anime together!)",
@@ -132,7 +193,12 @@ export const mainProjects: RegularProject[] = [
     type: 'showcase',
     nature: 'web',
     image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/forevernote.png',
-    technologies: buildTechnologies('Rails', 'JavaScript')
+    video: { url: 'https://youtu.be/5JVJGMZssmw' },
+    technologies: buildTechnologies('Rails', 'JavaScript'),
+    urls: [
+      { url: 'http://www.forevernote.ca', icon: view, alt: 'main' },
+      { url: 'https://github.com/thedrummeraki/notaki.ca', icon: github, alt: 'github' }
+    ]
   },
   {
     title: "Rent Management Dashboard (Capstone)",
@@ -149,6 +215,23 @@ export const mainProjects: RegularProject[] = [
     nature: 'web',
     image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/capstone.png',
     technologies: buildTechnologies('Rails')
+  },
+  {
+    title: 'gem tanoshimu_utils',
+    description: "A couple of Rails utilities to make my life simpler.",
+    text: `
+      Just a couple of utilities shared accross the apps to make development much easier. 
+    `,
+    year: 2020,
+    yearPeriod: 'early',
+    type: 'other',
+    nature: 'api',
+    image: 'https://misete.s3.us-east-2.amazonaws.com/showcase/tanoshimu_utils_gem.png',
+    technologies: buildTechnologies('Ruby'),
+    urls: [
+      { url: 'https://github.com/thedrummeraki/tanoshimu_utils', icon: github, alt: 'github' },
+      { url: 'https://rubygems.org/gems/tanoshimu_utils', icon: view, alt: 'rubygems' },
+    ]
   }
 ];
 
