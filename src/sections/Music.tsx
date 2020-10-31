@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { ClickableImage, SectionContainer } from 'components';
 import { z } from 'utils';
 
@@ -27,7 +26,6 @@ export interface Track {
 }
 
 export function Music() {
-  const history = useHistory();
   const {loading, artists} = useArtists();
   const subtitleMarkup = loading
     ? <i>Did you know there are 2 species on Earth that like spicy food?</i>

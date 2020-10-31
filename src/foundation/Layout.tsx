@@ -3,7 +3,6 @@ import { z, useImageLoaded } from 'utils';
 import { skype, github, linkedin, email, myFace, spotify } from 'icons';
 import { Link } from 'components';
 import { puffLoader } from 'anim';
-import { title } from 'process';
 import { CurrentTrackContext } from './EntryPoint';
 
 interface Props {
