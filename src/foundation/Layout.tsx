@@ -1,8 +1,10 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { z, useImageLoaded } from 'utils';
-import { skype, github, linkedin, email, myFace } from 'icons';
+import { skype, github, linkedin, email, myFace, spotify } from 'icons';
 import { Link } from 'components';
 import { puffLoader } from 'anim';
+import { title } from 'process';
+import { CurrentTrackContext } from './EntryPoint';
 
 interface Props {
   children?: ReactNode;
@@ -19,7 +21,12 @@ interface NavigationProps {
   title: string;
 }
 
+interface AnyProps {
+  for: string;
+}
+
 type ComposedProps = Props & NavigationProps;
+type AnyComposedProps = ComposedProps & AnyProps;
 
 export function MainLayout(props: ComposedProps) {
   document.title = "Welcome ~ Akinyele Cafe-Febrissy";
@@ -42,7 +49,15 @@ export function MainLayout(props: ComposedProps) {
 }
 
 export function ProjectLayout(props: ComposedProps) {
-  document.title = "Projects ~ Akinyele Cafe-Febrissy";
+  return (
+    <AnyLayout for="Projects" {...props}>
+      {props.children}
+    </AnyLayout>
+  )
+}
+
+export function AnyLayout(props: AnyComposedProps) {
+  document.title = `${props.for} ~ Akinyele Cafe-Febrissy`;
 
   return (
     <div className={z`
@@ -144,6 +159,10 @@ function NavigationDisplay(props: NavigationProps & Props) {
 function NavigationTitle(props: {title: string}) {
   const imageLoaded = useImageLoaded(myFace);
   const logo = imageLoaded ? myFace : puffLoader;
+  const currentTrack = useContext(CurrentTrackContext).track;
+  const subtitle = currentTrack
+    ? <span><b>Listening to</b> {currentTrack.name} by {currentTrack.artists.join(', ')}</span>
+    : null;
 
   return (
     <div className={z`
@@ -159,11 +178,26 @@ function NavigationTitle(props: {title: string}) {
       `}>
         <div className={z`display flex; align-items center`}>
           <img alt='Akinyele C.F.' className={z`border-radius 100%; width 30; height 30; margin-right 10`} src={logo} />
-          {props.title}
+          <TitleWithSubtitle title={props.title} subtitle={subtitle} />
         </div>
       </Link>
     </div>
   )
+}
+
+function TitleWithSubtitle(props: {title: string, subtitle?: ReactNode}) {
+  const {title, subtitle} = props;
+
+  if (subtitle) {
+    return (
+      <div className={z`display inline-grid`}>
+        <span className={z`font-size 0.8em; margin-bottom 5`}>{title}</span>
+        <small className={z`font-size 0.5em`}>{subtitle}</small>
+      </div>
+    );
+  }
+
+  return <span>{title}</span>
 }
 
 function NavigationLeft(props: Props) {
@@ -241,6 +275,18 @@ function NavigationItem(props: {title: string, url: string, hidden?: boolean; ex
 }
 
 function NavigationActions() {
+  const items: ActionItem[] = [
+    { icon: github, url: 'https://github.akinyele.ca' },
+    { icon: linkedin, url: 'https://linkedin.akinyele.ca' },
+    { icon: skype, url: 'skype:aakin013' },
+    { icon: email, url: 'mailto:me@akinyele.ca' }
+  ];
+
+  const currentTrackInfo = useContext(CurrentTrackContext);
+  if (currentTrackInfo.track) {
+    items.splice(0, 0, {icon: spotify, url: '/music', sameTab: true});
+  }
+
   return (
     <div className={z`
       margin-right 0
@@ -254,12 +300,7 @@ function NavigationActions() {
       font-size calc(0vw + 1rem)
       user-select none
     `}>
-      <NavigationActionItems items={[
-        {icon: github, url: 'https://github.akinyele.ca'},
-        {icon: linkedin, url: 'https://linkedin.akinyele.ca'},
-        {icon: skype, url: 'skype:aakin013'},
-        {icon: email, url: 'mailto:me@akinyele.ca'}
-      ]} />
+      <NavigationActionItems items={items} />
     </div>
   )
 }
