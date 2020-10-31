@@ -1,7 +1,10 @@
-import React from 'react';
+import { Link, SectionContainer } from 'components';
+import React, { useContext } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Welcome } from 'sections';
-import { MainLayout } from './Layout';
+import { Welcome, Music } from 'sections';
+import { z } from 'utils';
+import { CurrentTrackContext } from './EntryPoint';
+import { AnyLayout, MainLayout } from './Layout';
 
 export function MainRoutes() {
   return (
@@ -12,5 +15,40 @@ export function MainRoutes() {
         </Switch>
       </MainLayout>
     </Route>
+  )
+}
+
+export function MusicRoutes() {
+  const currentTrackInfo = useContext(CurrentTrackContext);
+  if (!currentTrackInfo.track) {
+    return (
+      <Route>
+        <Switch>
+          <Route path='/music' component={NotFound}></Route>
+        </Switch>
+      </Route>
+    );
+  }
+
+  return (
+    <Route exact path={['/music']}>
+      <AnyLayout for="Music" title="Akinyele's Music Now">
+        <Switch>
+          <Route exact path='/music' component={Music} />
+        </Switch>
+      </AnyLayout>
+    </Route>
+  );
+}
+
+function NotFound() {
+  return (
+    <SectionContainer title='404 not found'>
+      <p className={z`> span { color grey; :hover { color #aaa } }`}>
+        I'm sorry! I tried... everything I could! Nothing. What a shame.
+        Well, not all hope is lost!
+        You can <Link to='/'>go back home</Link> or <Link to='/projects'>view all projects</Link>.
+      </p>
+    </SectionContainer>
   )
 }

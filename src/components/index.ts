@@ -7,3 +7,4 @@ export * from './SectionContainer';
 export * from './ProgressBar';
 export * from './Tag';
 export * from './Breadcrumbs';
+export * from './ClickableImage';

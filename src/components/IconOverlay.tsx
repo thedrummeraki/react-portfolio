@@ -2,7 +2,7 @@ import React from 'react';
 import {z} from 'utils';
 
 interface Props {
-  icon: string;
+  icon?: string;
   onClick?: () => any;
 }
 
@@ -19,7 +19,7 @@ export function IconOverlay(props: Props) {
       cursor pointer
     `}
     onClick={onClick}>
-      <img alt='select project' src={icon} className={z`width 50`} />
+      {icon && <img alt='select project' src={icon} className={z`width 50`} />}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 // @ts-ignore
 import zaftig from 'zaftig';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 zaftig``.__proto__.valueOf = function () {
   return this.className;
@@ -71,6 +71,22 @@ export function useHoverableImageRef(hoverOpacity: number, defaultOpacity: numbe
   }
 
   return {imageRef, onHover, onLeave};
+}
+
+export function useInterval(callback: () => any, delay: number) {
+  const savedCallback = useRef(callback);
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+
+    const id = setInterval(tick, delay);
+    return () => clearInterval(id);
+  });
 }
 
 export * from './projects';
