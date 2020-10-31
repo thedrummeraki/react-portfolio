@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext } from 'react';
 import { z, useImageLoaded } from 'utils';
-import { skype, github, linkedin, email, myFace, spotify } from 'icons';
+import { skype, github, linkedin, email, myFace, spotify, spotifyOffline } from 'icons';
 import { Link } from 'components';
 import { puffLoader } from 'anim';
 import { CurrentTrackContext } from './EntryPoint';
@@ -159,7 +159,7 @@ function NavigationTitle(props: {title: string}) {
   const imageLoaded = useImageLoaded(myFace);
   const logo = imageLoaded ? myFace : puffLoader;
   const currentTrack = useContext(CurrentTrackContext).track;
-  const subtitle = currentTrack
+  const subtitle = currentTrack && currentTrack.artists
     ? <span><b>Listening to</b> {currentTrack.name} by {currentTrack.artists.join(', ')}</span>
     : null;
 
@@ -283,7 +283,8 @@ function NavigationActions() {
 
   const currentTrackInfo = useContext(CurrentTrackContext);
   if (currentTrackInfo.track) {
-    items.splice(0, 0, {icon: spotify, url: '/music', sameTab: true});
+    const icon = currentTrackInfo.track.artists ? spotify : spotifyOffline;
+    items.splice(0, 0, {icon: icon, url: '/music', sameTab: true});
   }
 
   return (
