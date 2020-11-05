@@ -19,7 +19,9 @@ export function Link(props: ComposedProps) {
   const className = `${props.className || ''} ${ourClassName}`;
 
   const goToLink = (url: H.LocationDescriptor<S> | ((location: H.Location<S>) => H.LocationDescriptor<S>)) => {
-    return () => props.external ? window.open(url.toString(), '_blank') : history.push(url.toString());
+    return () => {
+      props.external ? window.open(url.toString(), '_blank') : history.push(url.toString())
+    };
   }
 
   return (

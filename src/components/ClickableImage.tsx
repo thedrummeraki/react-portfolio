@@ -8,16 +8,35 @@ interface Props {
   image: string;
   icon?: string;
   onClick(): any;
-  flex?: number;
+  selectable?: boolean;
+  rounded?: boolean;
+  divideBy?: number;
   width?: number;
   height?: number;
   description?: string;
 }
 
 export function ClickableImage(props: Props) {
+  const selectableClass = props.selectable ? '' : 'user-select none';
+
   return (
-    <div className={z`flex 1 0 ${props.flex || 30}%; height ${props.height || 400}; width ${props.width || 500}; margin 3.5rem 5; user-select none;`}>
-      <div className={z`display flex; height 100%; width 100%; justify-content center; align-items center; background #222; color white`}>
+    <div className={z`
+      flex 1 0 ${toFlex(props.divideBy || 3)}%
+      height ${props.height || 400}
+      width ${props.width || 500}
+      margin 3.5rem 5
+      ${selectableClass}
+    `}>
+      <div className={z`
+        display flex
+        height 100%
+        width 100%
+        justify-content center
+        align-items center
+        ${!props.rounded && 'background #222'}
+        color white
+        user-select none
+      `}>
         <ImageOrVideo {...props} />
       </div>
       <p className={z`display grid; font-weight bold; padding 0 1rem`}>
@@ -29,7 +48,7 @@ export function ClickableImage(props: Props) {
 }
 
 function ImageOrVideo(props: Props) {
-  const { title, image, icon, onClick } = props;
+  const { title, image, icon, onClick, rounded } = props;
   const defaultOpacity = 0.8;
   const { imageRef, onHover, onLeave } = useHoverableImageRef(0.6, defaultOpacity);
   const imageLoaded = useImageLoaded(props.image);
@@ -50,11 +69,12 @@ function ImageOrVideo(props: Props) {
           alt={title}
           ref={imageRef}
           className={z`
-            width 100%
+            ${!rounded && `width 100%`}
             height ${props.height}
             object-fit cover
             opacity ${defaultOpacity}
             transition all 0.5s ease
+            ${rounded && 'border-radius 10000'}
           `}
         />
         <IconOverlay icon={icon} onClick={onClick} />
@@ -62,4 +82,8 @@ function ImageOrVideo(props: Props) {
 
     </>
   )
+}
+
+function toFlex(divideBy: number) {
+  return Math.round((100 / divideBy) - 1);
 }

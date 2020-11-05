@@ -89,4 +89,15 @@ export function useInterval(callback: () => any, delay: number) {
   });
 }
 
+export function fetchSpotifyInfo(path: string) {
+  const host = process.env.NODE_ENV === 'production'
+    ? 'https://music-akinyele-api.herokuapp.com'
+    : 'http://localhost:5000';
+
+  const urlPath = path.startsWith('/') ? path : '/'.concat(path);
+  const url = host.concat(urlPath);
+
+  return fetch(url).then(response => response.json());
+}
+
 export * from './projects';

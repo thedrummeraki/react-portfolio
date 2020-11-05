@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Welcome, Music } from 'sections';
 import { z } from 'utils';
-import { CurrentTrackContext } from './EntryPoint';
 import { AnyLayout, MainLayout } from './Layout';
 
 export function MainRoutes() {
@@ -19,17 +18,6 @@ export function MainRoutes() {
 }
 
 export function MusicRoutes() {
-  const currentTrackInfo = useContext(CurrentTrackContext);
-  if (!currentTrackInfo.track) {
-    return (
-      <Route>
-        <Switch>
-          <Route path='/music' component={NotFound}></Route>
-        </Switch>
-      </Route>
-    );
-  }
-
   return (
     <Route exact path={['/music']}>
       <AnyLayout for="Music" title="Akinyele's Music Now">

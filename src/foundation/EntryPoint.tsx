@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MainRoutes, ProjectRoutes, MusicRoutes } from 'foundation';
 import { BrowserRouter } from 'react-router-dom';
 import { Track } from 'sections/Music';
-import { useInterval } from 'utils';
+import { useInterval, fetchSpotifyInfo } from 'utils';
 
 interface PlayingState {
   track: Track|null;
@@ -10,6 +10,7 @@ interface PlayingState {
 }
 
 export const CurrentTrackContext = React.createContext<PlayingState>({track: null, loading: true});
+export const ShowCurrentTrackContext = React.createContext(false);
 
 export function EntryPoint() {
   const trackInto = useCurrentTrack();
@@ -18,7 +19,9 @@ export function EntryPoint() {
     <CurrentTrackContext.Provider value={trackInto}>
       <BrowserRouter>
         <MainRoutes />
-        <MusicRoutes />
+        <ShowCurrentTrackContext.Provider value={true}>
+          <MusicRoutes />
+        </ShowCurrentTrackContext.Provider>
         <ProjectRoutes />
       </BrowserRouter>
     </CurrentTrackContext.Provider>
@@ -27,11 +30,14 @@ export function EntryPoint() {
 
 function useCurrentTrack() {
   const [track, setTrack] = useState<Track|null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const checkCurrentTrack = () => {
-    fetch('https://music-akinyele-api.herokuapp.com/playing/now')
-      .then(response => response.json())
+    if (loading) return;
+
+    setLoading(true);
+
+    fetchSpotifyInfo('playing/now')
       .then((track: Track) => {
         setTrack(track);
       })
@@ -39,7 +45,7 @@ function useCurrentTrack() {
   };
 
   useEffect(checkCurrentTrack, []);
-  useInterval(checkCurrentTrack, 30000);
+  useInterval(checkCurrentTrack, 10000);
 
   return {loading, track};
 }

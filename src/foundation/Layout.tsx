@@ -3,7 +3,7 @@ import { z, useImageLoaded } from 'utils';
 import { skype, github, linkedin, email, myFace, spotify, spotifyOffline } from 'icons';
 import { Link } from 'components';
 import { puffLoader } from 'anim';
-import { CurrentTrackContext } from './EntryPoint';
+import { CurrentTrackContext, ShowCurrentTrackContext } from './EntryPoint';
 
 interface Props {
   children?: ReactNode;
@@ -159,8 +159,29 @@ function NavigationTitle(props: {title: string}) {
   const imageLoaded = useImageLoaded(myFace);
   const logo = imageLoaded ? myFace : puffLoader;
   const currentTrack = useContext(CurrentTrackContext).track;
-  const subtitle = currentTrack && currentTrack.artists
-    ? <span><b>Listening to</b> {currentTrack.name} by {currentTrack.artists.join(', ')}</span>
+  const showCurrentTrack = useContext(ShowCurrentTrackContext);
+
+  const trackMarkup = (
+    <span>
+      {currentTrack && (
+        <Link external to={`https://open.spotify.com/track/${currentTrack.id}`}>
+          <u>{currentTrack.name}</u>
+        </Link>
+      )}
+    </span>
+  )
+
+  const artistsMarkup = (
+    <span>
+      {currentTrack && currentTrack.artists && currentTrack.artists.map<React.ReactNode>(artist => (
+        <Link external to={`https://open.spotify.com/artist/${artist.id}`}>
+          <u>{artist.name}</u>
+        </Link>
+      )).reduce((prev, curr) => [prev, ', ', curr])}</span>
+  );
+
+  const subtitle = showCurrentTrack && currentTrack && currentTrack.artists
+    ? <span><b>Listening to</b> {trackMarkup} <b>by</b> {artistsMarkup}</span>
     : null;
 
   return (
@@ -170,16 +191,18 @@ function NavigationTitle(props: {title: string}) {
       backface-visibility hidden
       user-select none
     `}>
-      <Link to='/' className={z`
+      <div className={z`
         margin 0
         font-size 1.75em
         color #fff
       `}>
         <div className={z`display flex; align-items center`}>
-          <img alt='Akinyele C.F.' className={z`border-radius 100%; width 30; height 30; margin-right 10`} src={logo} />
+          <Link to='/'>
+            <img alt='Akinyele C.F.' className={z`border-radius 100%; width 30; height 30; margin-right 10`} src={logo} />
+          </Link>
           <TitleWithSubtitle title={props.title} subtitle={subtitle} />
         </div>
-      </Link>
+      </div>
     </div>
   )
 }
@@ -190,13 +213,15 @@ function TitleWithSubtitle(props: {title: string, subtitle?: ReactNode}) {
   if (subtitle) {
     return (
       <div className={z`display inline-grid`}>
-        <span className={z`font-size 0.8em; margin-bottom 5`}>{title}</span>
+        <Link to='/'>
+          <span className={z`font-size 0.8em; margin-bottom 5`}>{title}</span>
+        </Link>
         <small className={z`font-size 0.5em`}>{subtitle}</small>
       </div>
     );
   }
 
-  return <span>{title}</span>
+  return <Link to='/'><span>{title}</span></Link>
 }
 
 function NavigationLeft(props: Props) {
@@ -274,18 +299,16 @@ function NavigationItem(props: {title: string, url: string, hidden?: boolean; ex
 }
 
 function NavigationActions() {
+  const currentTrackInfo = useContext(CurrentTrackContext).track;
+  const spotifyIcon = currentTrackInfo && currentTrackInfo.artists ? spotify : spotifyOffline;
+
   const items: ActionItem[] = [
+    { icon: spotifyIcon, url: '/music', sameTab: true },
     { icon: github, url: 'https://github.akinyele.ca' },
     { icon: linkedin, url: 'https://linkedin.akinyele.ca' },
     { icon: skype, url: 'skype:aakin013' },
     { icon: email, url: 'mailto:me@akinyele.ca' }
   ];
-
-  const currentTrackInfo = useContext(CurrentTrackContext);
-  if (currentTrackInfo.track) {
-    const icon = currentTrackInfo.track.artists ? spotify : spotifyOffline;
-    items.splice(0, 0, {icon: icon, url: '/music', sameTab: true});
-  }
 
   return (
     <div className={z`
