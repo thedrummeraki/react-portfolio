@@ -45,7 +45,7 @@ function useCurrentTrack() {
   };
 
   useEffect(checkCurrentTrack, []);
-  useInterval(checkCurrentTrack, 10000);
+  useInterval(checkCurrentTrack, 1000);
 
   return {loading, track};
 }

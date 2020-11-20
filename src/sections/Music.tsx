@@ -60,9 +60,9 @@ function TopArtists() {
           <ClickableImage
             selectable
             rounded
-            divideBy={13}
-            width={300}
-            height={300}
+            divideBy={6}
+            width={'20%'}
+            height={225}
             title={artist.name}
             image={artist.img}
             description={artist.genres.join(', ') || 'N/A'}
@@ -115,8 +115,9 @@ function useArtists() {
     
     fetchSpotifyInfo('/top/artists')
       .then((artists: Artist[]) => {
-        setArtists(artists);
+        setArtists(artists || []);
       })
+      .catch(e => console.error('error', e))
       .finally(() => setLoading(false));
   }, []);
 
@@ -136,6 +137,7 @@ function useTracks() {
       .then((tracks: Track[]) => {
         setTracks(tracks);
       })
+      .catch(e => console.error('error', e))
       .finally(() => setLoading(false));
   }, []);
 

@@ -11,8 +11,8 @@ interface Props {
   selectable?: boolean;
   rounded?: boolean;
   divideBy?: number;
-  width?: number;
-  height?: number;
+  width?: number|string;
+  height?: number|string;
   description?: string;
 }
 
