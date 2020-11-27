@@ -36,7 +36,7 @@ export function Music() {
   return (
     <SectionContainer>
       <TopArtists />
-      {false && <TopTracks />}
+      {<TopTracks />}
     </SectionContainer>
   )
 }
@@ -49,32 +49,41 @@ function TopArtists() {
     : <p>
         <i><u><b>Note</b></u>: Clicking will redirect you to <u>open.spotify.com</u>.</i>
       </p>
+
+  const currentTrack = useContext(CurrentTrackContext).track;
+  const currentArtists = (currentTrack && currentTrack.artists) || [];
   
   return (
     <div className={z`padding-bottom 40`}>
       {titleMarkup}
       {subtitleMarkup}
       <div className={z`display flex; flex-wrap wrap; justify-content space-around`}>
-        {artists.map(artist => (
-          <ClickableImage
-            selectable
-            rounded
-            divideBy={6}
-            width={'20%'}
-            height={225}
-            title={artist.name}
-            image={artist.img}
-            description={artist.genres.join(', ') || 'N/A'}
-            onClick={() => openSpotifyLink(artist, 'artist')}
-          />
-        ))}
+        {artists.map(artist => {
+          const playing = currentArtists.filter(a => a.id === artist.id).length > 0 || undefined;
+
+          return (
+            <ClickableImage
+              selectable
+              rounded
+              icon={playing && play}
+              divideBy={5}
+              width={225}
+              height={225}
+              title={artist.name}
+              titleColor={playing && '#00D95F'}
+              image={artist.img}
+              description={artist.genres.join(', ') || 'N/A'}
+              onClick={() => openSpotifyLink(artist, 'artist')}
+            />
+          )
+        })}
       </div>
     </div>
   );
 }
 
 function TopTracks() {
-  const {loading, tracks} = useTracks();
+  const {loading, tracks} = useTracks(48);
   const currentTrack = useContext(CurrentTrackContext).track;
 
   const titleMarkup = <h1>{loading ? 'Please wait...' : `My top ${tracks.length} tracks`}</h1>;
@@ -93,10 +102,11 @@ function TopTracks() {
           return (
             <ClickableImage
               selectable
+              roundedBorders
               icon={trackPlaying && play}
-              divideBy={5}
-              width={100}
-              height={75}
+              divideBy={6}
+              width={225}
+              height={225}
               title={track.name}
               titleColor={trackPlaying && '#00D95F'}
               image={track.album.img}
@@ -146,7 +156,7 @@ function useArtists() {
   return {loading, artists};
 }
 
-function useTracks() {
+function useTracks(topTracks: number) {
   const [loading, setLoading] = useState(false);
   const [tracks, setTracks] = useState<Track[]>([]);
 
@@ -155,7 +165,7 @@ function useTracks() {
 
     setLoading(true);
 
-    fetchSpotifyInfo('/top/tracks')
+    fetchSpotifyInfo(`/top/tracks?top_tracks=${topTracks}`)
       .then((tracks: Track[]) => {
         setTracks(tracks);
       })

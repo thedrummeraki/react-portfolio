@@ -11,6 +11,7 @@ interface Props {
   onClick(): any;
   selectable?: boolean;
   rounded?: boolean;
+  roundedBorders?: boolean;
   divideBy?: number;
   width?: number|string;
   height?: number|string;
@@ -34,7 +35,7 @@ export function ClickableImage(props: Props) {
         width 100%
         justify-content center
         align-items center
-        ${!props.rounded && 'background #222'}
+        ${!(props.rounded || props.roundedBorders) && 'background #222'}
         color white
         user-select none
       `}>
@@ -51,7 +52,7 @@ export function ClickableImage(props: Props) {
 }
 
 function ImageOrVideo(props: Props) {
-  const { title, image, icon, onClick, rounded } = props;
+  const { title, image, icon, onClick, rounded, roundedBorders } = props;
   const defaultOpacity = 0.8;
   const { imageRef, onHover, onLeave } = useHoverableImageRef(0.6, defaultOpacity);
   const imageLoaded = useImageLoaded(props.image);
@@ -72,11 +73,12 @@ function ImageOrVideo(props: Props) {
           alt={title}
           ref={imageRef}
           className={z`
-            ${!rounded && `width 100%`}
+            ${!(rounded || roundedBorders) && `width 100%`}
             height ${props.height}
             object-fit cover
             opacity ${defaultOpacity}
             transition all 0.5s ease
+            ${roundedBorders && 'border-radius 30'}
             ${rounded && 'border-radius 10000'}
           `}
         />

@@ -1,9 +1,15 @@
-import React, { ReactNode, useContext } from 'react';
-import { z, useImageLoaded } from 'utils';
+import React, { ReactNode, useContext, useEffect, useState } from 'react';
+import { z, useImageLoaded, fetchSpotifyInfo, useInterval } from 'utils';
 import { skype, github, linkedin, email, myFace, spotify, spotifyOffline } from 'icons';
 import { Link } from 'components';
 import { puffLoader } from 'anim';
-import { CurrentTrackContext, ShowCurrentTrackContext } from './EntryPoint';
+import { Track } from 'sections/Music';
+import { ShowCurrentTrackContext } from './EntryPoint';
+
+interface PlayingState {
+  track: Track|null;
+  loading: boolean;
+}
 
 interface Props {
   children?: ReactNode;
@@ -24,26 +30,40 @@ interface AnyProps {
   for: string;
 }
 
+interface WithPlayingStateProps {
+  currentTrackInfo: PlayingState;
+}
+
 type ComposedProps = Props & NavigationProps;
 type AnyComposedProps = ComposedProps & AnyProps;
 
+interface PlayingState {
+  track: Track|null;
+  loading: boolean;
+}
+
+export const CurrentTrackContext = React.createContext<PlayingState>({track: null, loading: true});
+
 export function MainLayout(props: ComposedProps) {
   document.title = "Welcome ~ Akinyele Cafe-Febrissy";
+  const currentTrackInfo = useCurrentTrack();
 
   return (
-    <div className={z`
-      display flex
-      justify-content center
-      align-items center
-    `}>
-      <NavigationBar {...props} />
-      <main className={z`
-        z-index 1
-        display block
+    <CurrentTrackContext.Provider value={currentTrackInfo}>
+      <div className={z`
+        display flex
+        justify-content center
+        align-items center
       `}>
-        {props.children}
-      </main>
-    </div>
+        <NavigationBar {...props} currentTrackInfo={currentTrackInfo} />
+        <main className={z`
+          z-index 1
+          display block
+        `}>
+          {props.children}
+        </main>
+      </div>
+    </CurrentTrackContext.Provider>
   );
 }
 
@@ -57,31 +77,35 @@ export function ProjectLayout(props: ComposedProps) {
 
 export function AnyLayout(props: AnyComposedProps) {
   document.title = `${props.for} ~ Akinyele Cafe-Febrissy`;
+  const currentTrackInfo = useCurrentTrack();
 
   return (
-    <div className={z`
-      display flex
-      justify-content center
-      align-items center
-    `}>
-      <NavigationBar {...props} />
-      <main className={z`
-        z-index 1
-        display block
+    <CurrentTrackContext.Provider value={currentTrackInfo}>
+      <div className={z`
+        display flex
+        justify-content center
+        align-items center
       `}>
-        {props.children}
-      </main>
-    </div>
+        <NavigationBar {...props} currentTrackInfo={currentTrackInfo} />
+        <main className={z`
+          z-index 1
+          display block
+        `}>
+          {props.children}
+        </main>
+      </div>
+    </CurrentTrackContext.Provider>
   );
 }
 
-function NavigationBar(props: Props & NavigationProps) {
+function NavigationBar(props: Props & NavigationProps & WithPlayingStateProps) {
+
   return (
     <NavigationHeader>
       <NavigationWrapper>
         <NavigationContainer>
           <NavigationDisplay {...props} />
-          <NavigationActions />
+          <NavigationActions {...props} />
         </NavigationContainer>
       </NavigationWrapper>
     </NavigationHeader>
@@ -132,7 +156,7 @@ function NavigationContainer(props: Props) {
   )
 }
 
-function NavigationDisplay(props: NavigationProps & Props) {
+function NavigationDisplay(props: NavigationProps & Props & WithPlayingStateProps) {
   return (
     <div className={z`
       position relative
@@ -155,10 +179,10 @@ function NavigationDisplay(props: NavigationProps & Props) {
   )
 }
 
-function NavigationTitle(props: {title: string}) {
+function NavigationTitle(props: NavigationProps & WithPlayingStateProps) {
   const imageLoaded = useImageLoaded(myFace);
   const logo = imageLoaded ? myFace : puffLoader;
-  const currentTrack = useContext(CurrentTrackContext).track;
+  const currentTrack = props.currentTrackInfo.track;
   const showCurrentTrack = useContext(ShowCurrentTrackContext);
 
   const trackMarkup = (
@@ -298,9 +322,10 @@ function NavigationItem(props: {title: string, url: string, hidden?: boolean; ex
   )
 }
 
-function NavigationActions() {
-  const currentTrackInfo = useContext(CurrentTrackContext).track;
-  const spotifyIcon = currentTrackInfo && currentTrackInfo.artists ? spotify : spotifyOffline;
+function NavigationActions(props: WithPlayingStateProps) {
+  const currentTrackInfo = props.currentTrackInfo;
+  const currentTrack = currentTrackInfo.track;
+  const spotifyIcon = currentTrack && currentTrack.artists ? spotify : spotifyOffline;
 
   const items: ActionItem[] = [
     { icon: spotifyIcon, url: '/music', sameTab: true },
@@ -361,4 +386,26 @@ function NavigationActionItem(props: {item: ActionItem}) {
       <img alt={url} src={icon} />
     </Link>
   );
+}
+
+function useCurrentTrack() {
+  const [track, setTrack] = useState<Track|null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const checkCurrentTrack = () => {
+    if (loading) return;
+
+    setLoading(true);
+
+    fetchSpotifyInfo('playing/now')
+      .then((track: Track) => {
+        setTrack(track);
+      })
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(checkCurrentTrack, []);
+  useInterval(checkCurrentTrack, 1000);
+
+  return {loading, track};
 }

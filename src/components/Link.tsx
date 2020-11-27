@@ -15,7 +15,7 @@ type ComposedProps = LinkProps & Props;
 
 export function Link(props: ComposedProps) {
   const history = useHistory();
-  const ourClassName = z`cursor pointer; ${props.active && 'border-bottom 1px solid'}`;
+  const ourClassName = z`cursor pointer; ${props.active && 'border-bottom 1px solid; padding-bottom 4px'}`;
   const className = `${props.className || ''} ${ourClassName}`;
 
   const goToLink = (url: H.LocationDescriptor<S> | ((location: H.Location<S>) => H.LocationDescriptor<S>)) => {
