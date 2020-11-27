@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ClickableImage, SectionContainer } from 'components';
 import { z, fetchSpotifyInfo } from 'utils';
 import { play } from 'icons';
+import { CurrentTrackContext } from 'foundation';
 
 type ID = string;
 type Genre = string;
@@ -46,9 +47,7 @@ function TopArtists() {
   const subtitleMarkup = loading
     ? <i>Did you know there are 2 species on Earth that like spicy food?</i>
     : <p>
-      When I'm at work, I need tune in and listen to my favourite songs on Spotify.
-        This is what I really enjoy listening at the moment.<br /><br />
-      <i><u><b>Note</b></u>: Do you have Spotify installed? Click and open on Spotify!</i>
+        <i><u><b>Note</b></u>: Clicking will redirect you to <u>open.spotify.com</u>.</i>
       </p>
   
   return (
@@ -66,7 +65,7 @@ function TopArtists() {
             title={artist.name}
             image={artist.img}
             description={artist.genres.join(', ') || 'N/A'}
-            onClick={() => window.location.assign(`spotify:artist:${artist.id}`)}
+            onClick={() => openSpotifyLink(artist, 'artist')}
           />
         ))}
       </div>
@@ -76,6 +75,8 @@ function TopArtists() {
 
 function TopTracks() {
   const {loading, tracks} = useTracks();
+  const currentTrack = useContext(CurrentTrackContext).track;
+
   const titleMarkup = <h1>{loading ? 'Please wait...' : `My top ${tracks.length} tracks`}</h1>;
   const subtitleMarkup = loading
     ? <i>Did you know there are 2 species on Earth that like spicy food?</i>
@@ -85,41 +86,62 @@ function TopTracks() {
     <div className={z`padding-bottom 40`}>
       {titleMarkup}
       {subtitleMarkup}
-      <div className={z`display divideBy; flex-wrap wrap; justify-content space-around`}>
-        {tracks.map(track => (
-          <ClickableImage
-            selectable
-            icon={play}
-            divideBy={5}
-            width={200}
-            height={200}
-            title={track.name}
-            image={track.album.img}
-            description={track.album.name || 'N/A'}
-            onClick={() => window.location.assign(`spotify:track:${track.id}`)}
-          />
-        ))}
+      <div className={z`display flex; flex-wrap wrap; justify-content space-around`}>
+        {tracks.map(track => {
+          var trackPlaying = (currentTrack && currentTrack.id === track.id) || undefined;
+
+          return (
+            <ClickableImage
+              selectable
+              icon={trackPlaying && play}
+              divideBy={5}
+              width={100}
+              height={75}
+              title={track.name}
+              titleColor={trackPlaying && '#00D95F'}
+              image={track.album.img}
+              description={track.album.name || 'N/A'}
+              onClick={() => openSpotifyLink(track, 'track')}
+            />
+          )
+        })}
       </div>
     </div>
   );
+}
+
+function openSpotifyLink(resource: Album | Artist | Track, type: string) {
+  // var now = new Date().valueOf();
+  // setTimeout(function () {
+  //   const then = new Date().valueOf();
+  //   if (then - now > 100) return;
+
+  //   console.log(then, now, (then - now));
+    window.location.assign(
+      `https://open.spotify.com/${type}/${resource.id}`,
+    );
+  // }, 25);
+  // window.location.assign(`spotify:${type}:${resource.id}`);
 }
 
 function useArtists() {
   const [loading, setLoading] = useState(false);
   const [artists, setArtists] = useState<Artist[]>([]);
 
-  useEffect(() => {
+  const fetchArtists = () => {
     if (loading) return;
 
     setLoading(true);
-    
+
     fetchSpotifyInfo('/top/artists')
       .then((artists: Artist[]) => {
         setArtists(artists || []);
       })
       .catch(e => console.error('error', e))
       .finally(() => setLoading(false));
-  }, []);
+  };
+
+  useEffect(fetchArtists, []);
 
   return {loading, artists};
 }
@@ -128,18 +150,20 @@ function useTracks() {
   const [loading, setLoading] = useState(false);
   const [tracks, setTracks] = useState<Track[]>([]);
 
-  useEffect(() => {
+  const fetchTracks = () => {
     if (loading) return;
 
     setLoading(true);
-    
+
     fetchSpotifyInfo('/top/tracks')
       .then((tracks: Track[]) => {
         setTracks(tracks);
       })
       .catch(e => console.error('error', e))
       .finally(() => setLoading(false));
-  }, []);
+  };
+
+  useEffect(fetchTracks, []);
 
   return {loading, tracks};
 }

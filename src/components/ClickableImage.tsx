@@ -5,6 +5,7 @@ import { useHoverableImageRef, useImageLoaded, z } from 'utils';
 
 interface Props {
   title: string;
+  titleColor?: string;
   image: string;
   icon?: string;
   onClick(): any;
@@ -40,7 +41,9 @@ export function ClickableImage(props: Props) {
         <ImageOrVideo {...props} />
       </div>
       <p className={z`display grid; font-weight bold; padding 0 1rem`}>
-        <span>{props.title}</span>
+        <span className={props.titleColor && z`color ${props.titleColor}`}>
+          {props.title}
+        </span>
         {props.description && <small className={z`color #aaa`}>{props.description}</small>}
       </p>
     </div>

@@ -1,8 +1,8 @@
-import { Link, SectionContainer } from 'components';
-import React, { useContext } from 'react';
+// import { Link, SectionContainer } from 'components';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Welcome, Music } from 'sections';
-import { z } from 'utils';
+// import { z } from 'utils';
 import { AnyLayout, MainLayout } from './Layout';
 
 export function MainRoutes() {
@@ -29,7 +29,7 @@ export function MusicRoutes() {
   );
 }
 
-function NotFound() {
+/*function NotFound() {
   return (
     <SectionContainer title='404 not found'>
       <p className={z`> span { color grey; :hover { color #aaa } }`}>
@@ -39,4 +39,4 @@ function NotFound() {
       </p>
     </SectionContainer>
   )
-}
+}*/
