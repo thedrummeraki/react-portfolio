@@ -25,6 +25,13 @@ interface TrackArtist {
   name: string;
 }
 
+type TrackTimeRange = 'short' | 'medium' | 'long';
+
+interface TracksProps {
+  top: number;
+  timeRange: TrackTimeRange;
+}
+
 export interface Track {
   id: ID;
   album: Album;
@@ -36,7 +43,9 @@ export function Music() {
   return (
     <SectionContainer>
       <TopArtists />
-      {<TopTracks />}
+      <TopTracks top={5} timeRange='short' />
+      <TopTracks top={10} timeRange='medium' />
+      <TopTracks top={15} timeRange='long' />
     </SectionContainer>
   )
 }
@@ -54,7 +63,7 @@ function TopArtists() {
   const currentArtists = (currentTrack && currentTrack.artists) || [];
   
   return (
-    <div className={z`padding-bottom 40`}>
+    <div className={z`padding-bottom 60`}>
       {titleMarkup}
       {subtitleMarkup}
       <div className={z`display flex; flex-wrap wrap; justify-content space-around`}>
@@ -82,17 +91,17 @@ function TopArtists() {
   );
 }
 
-function TopTracks() {
-  const {loading, tracks} = useTracks(48);
+function TopTracks(props: TracksProps) {
+  const {loading, tracks} = useTracks({...props});
   const currentTrack = useContext(CurrentTrackContext).track;
 
-  const titleMarkup = <h1>{loading ? 'Please wait...' : `My top ${tracks.length} tracks`}</h1>;
+  const titleMarkup = <h1>{loading ? 'Please wait...' : `My top ${tracks.length} tracks ${getTracksDescriber(props.timeRange)}`}</h1>;
   const subtitleMarkup = loading
     ? <i>Did you know there are 2 species on Earth that like spicy food?</i>
-    : null;
+    : <i>{getTracksDescription(props.timeRange)}</i>;
   
   return (
-    <div className={z`padding-bottom 40`}>
+    <div className={z`padding-bottom 60`}>
       {titleMarkup}
       {subtitleMarkup}
       <div className={z`display flex; flex-wrap wrap; justify-content space-around`}>
@@ -104,7 +113,7 @@ function TopTracks() {
               selectable
               roundedBorders
               icon={trackPlaying && play}
-              divideBy={6}
+              divideBy={5}
               width={225}
               height={225}
               title={track.name}
@@ -156,7 +165,7 @@ function useArtists() {
   return {loading, artists};
 }
 
-function useTracks(topTracks: number) {
+function useTracks({top, timeRange}: TracksProps) {
   const [loading, setLoading] = useState(false);
   const [tracks, setTracks] = useState<Track[]>([]);
 
@@ -165,7 +174,7 @@ function useTracks(topTracks: number) {
 
     setLoading(true);
 
-    fetchSpotifyInfo(`/top/tracks?top_tracks=${topTracks}`)
+    fetchSpotifyInfo(`/top/tracks?top_tracks=${top}&time_range=${timeRange}`)
       .then((tracks: Track[]) => {
         setTracks(tracks);
       })
@@ -176,4 +185,20 @@ function useTracks(topTracks: number) {
   useEffect(fetchTracks, []);
 
   return {loading, tracks};
+}
+
+function getTracksDescription(timeRange: TrackTimeRange) {
+  switch (timeRange) {
+    case 'short': return "🎶 What I've been jamming to lately. 🎧"
+    case 'medium': return null;
+    case 'long': return null;
+  }
+}
+
+function getTracksDescriber(timeRange: TrackTimeRange) {
+  switch (timeRange) {
+    case 'short': return "this month"
+    case 'medium': return "this season"
+    case 'long': return "this year"
+  }
 }
