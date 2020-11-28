@@ -21,7 +21,8 @@ export function Welcome() {
         'Long-term solutions',
         'Constant learning',
         'Continuous improvement',
-        'Being honest and Upfront',
+        'Being honest',
+        'Beign upfront',
         'Collaboration',
       ])} />
   )
