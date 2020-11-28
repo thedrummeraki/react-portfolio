@@ -2,6 +2,7 @@ import React, { ReactNode, useState, useEffect } from 'react';
 import { z, shuffled, useImageLoaded } from 'utils';
 import ReactTypewriter from 'react-typing-effect';
 import { FadeIn, Link } from 'components';
+import facts from '175-fun-facts';
 
 
 interface BackgroundProps {
@@ -20,7 +21,8 @@ export function Welcome() {
         'Long-term solutions',
         'Constant learning',
         'Continuous improvement',
-        'Being honest and Upfront',
+        'Being honest',
+        'Beign upfront',
         'Collaboration',
       ])} />
   )
@@ -46,6 +48,7 @@ function LoadedContent(props: {punchline: string, iBelieveIn: string[]}) {
               display block
               width 50%
               max-width 900
+              heigh 100vh
               text-align center
             `}
           >
@@ -126,6 +129,7 @@ function MyWork() {
           </small>
         </Link>
       </span>
+      <LearnSomethingNew />
     </FadeIn>
   )
 }
@@ -151,4 +155,37 @@ function Background(props: BackgroundProps) {
   }
 
   return null;
+}
+
+function LearnSomethingNew() {
+  const [currentFact, setCurrentFact] = useState('');
+  const [showingFact, setShowingFact] = useState(false);
+
+  const learnSomethingNew = () => {
+    setCurrentFact(getRandomFact());
+    setShowingFact(true);
+  };
+
+  return (
+    <div className={z`margin 2rem`}>
+      <span onClick={learnSomethingNew} className={z`cursor pointer;`}>
+        {!showingFact && <strong>Click to learn something new!</strong>}
+        {showingFact && <u>Refresh!</u>}
+      </span>
+      {showingFact &&
+        <FadeIn fadeIn={0.5}>
+          <footer className={z`display flex; width 100%;`}>
+            <p className={z`text-align center; width 100%;`}>
+              <strong>Did you know?</strong><br />
+              {<span dangerouslySetInnerHTML={{__html: currentFact}} />}
+            </p>
+          </footer>
+        </FadeIn>
+      }
+    </div>
+  )
+}
+
+function getRandomFact() {
+  return facts[Math.floor(Math.random() * facts.length)];
 }

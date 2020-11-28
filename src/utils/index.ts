@@ -89,4 +89,21 @@ export function useInterval(callback: () => any, delay: number) {
   });
 }
 
+export async function fetchSpotifyInfo(path: string) {
+  const host = process.env.NODE_ENV === 'production'
+    ? 'https://music-akinyele-api.herokuapp.com'
+    : 'http://localhost:5000';
+
+  const urlPath = path.startsWith('/') ? path : '/'.concat(path);
+  const url = host.concat(urlPath);
+
+  const result = await fetch(url).then(response => response.json());
+  if (result.success !== false) {
+    return result;
+  } else {
+    console.error('fetchSpotifyInfo:', result.error?.message || 'Unknown error');
+    return;
+  }
+}
+
 export * from './projects';

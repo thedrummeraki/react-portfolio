@@ -1,9 +1,8 @@
-import { Link, SectionContainer } from 'components';
-import React, { useContext } from 'react';
+// import { Link, SectionContainer } from 'components';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Welcome, Music } from 'sections';
-import { z } from 'utils';
-import { CurrentTrackContext } from './EntryPoint';
+// import { z } from 'utils';
 import { AnyLayout, MainLayout } from './Layout';
 
 export function MainRoutes() {
@@ -19,17 +18,6 @@ export function MainRoutes() {
 }
 
 export function MusicRoutes() {
-  const currentTrackInfo = useContext(CurrentTrackContext);
-  if (!currentTrackInfo.track) {
-    return (
-      <Route>
-        <Switch>
-          <Route path='/music' component={NotFound}></Route>
-        </Switch>
-      </Route>
-    );
-  }
-
   return (
     <Route exact path={['/music']}>
       <AnyLayout for="Music" title="Akinyele's Music Now">
@@ -41,7 +29,7 @@ export function MusicRoutes() {
   );
 }
 
-function NotFound() {
+/*function NotFound() {
   return (
     <SectionContainer title='404 not found'>
       <p className={z`> span { color grey; :hover { color #aaa } }`}>
@@ -51,4 +39,4 @@ function NotFound() {
       </p>
     </SectionContainer>
   )
-}
+}*/
