@@ -1,5 +1,5 @@
-import React from 'react';
-import {z} from 'utils';
+import React from "react";
+import { z } from "utils";
 
 interface Props {
   icon?: string;
@@ -7,19 +7,21 @@ interface Props {
 }
 
 export function IconOverlay(props: Props) {
-  const {onClick, icon} = props;
+  const { onClick, icon } = props;
   return (
-    <div className={z`
+    <div
+      className={z`
       position absolute
       top 0
       width 100%
       height 100%
       display flex
       place-content center
-      cursor pointer
+      ${onClick && "cursor pointer"}
     `}
-    onClick={onClick}>
-      {icon && <img alt='select project' src={icon} className={z`width 50`} />}
+      onClick={onClick}
+    >
+      {icon && <img alt="select project" src={icon} className={z`width 50`} />}
     </div>
-  )
+  );
 }
