@@ -1,12 +1,10 @@
-import React from 'react';
-import { MainRoutes, ProjectRoutes, MusicRoutes, ResumeRoutes } from 'foundation';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import { MainRoutes, ProjectRoutes, MusicRoutes } from "foundation";
+import { BrowserRouter } from "react-router-dom";
 
 export const ShowCurrentTrackContext = React.createContext(false);
 
 export function EntryPoint() {
-
-
   return (
     <BrowserRouter>
       <MainRoutes />
@@ -14,7 +12,6 @@ export function EntryPoint() {
         <MusicRoutes />
       </ShowCurrentTrackContext.Provider>
       <ProjectRoutes />
-      <ResumeRoutes />
     </BrowserRouter>
-  )
+  );
 }

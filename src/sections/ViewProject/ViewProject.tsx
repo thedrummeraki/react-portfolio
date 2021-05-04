@@ -8,7 +8,7 @@ import {
   useImageLoaded,
   ProjectUrl,
 } from "utils";
-import { SectionContainer, Link, ProgressBar, Tag } from "components";
+import { SectionContainer, Link, Tag } from "components";
 import ReactPlayer from "react-player";
 import { puffLoader } from "anim";
 import { ViewProjectGallery } from "./components/ViewProjectGallery";
@@ -148,8 +148,12 @@ function DemoLoading(props: { style?: CSSProperties }) {
       style={props.style}
       className={z`${dimensions}; border 1px solid #222; background #111`}
     >
-      <div className={z`display flex; place-content center; height 100%`}>
-        <img alt="loading..." src={puffLoader} />
+      <div className={z`display flex; align-items center; height 100%`}>
+        <img
+          alt="loading..."
+          src={puffLoader}
+          className={z`width 48px; height 48px; margin 0 auto`}
+        />
       </div>
     </div>
   );
