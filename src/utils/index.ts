@@ -1,20 +1,23 @@
 // @ts-ignore
-import zaftig from 'zaftig';
-import { useState, useRef, useEffect } from 'react';
+import zaftig from "zaftig";
+import { useState, useRef, useEffect } from "react";
 
 zaftig``.__proto__.valueOf = function () {
   return this.className;
-}
+};
 
 export const z = zaftig;
 
-export function queryParam(key: string, defaultValue = '') {
+export function queryParam(key: string, defaultValue = "") {
   return new URLSearchParams(window.location.search).get(key) || defaultValue;
 }
 
 // Source: https://stackoverflow.com/questions/2519818/create-a-permalink-with-javascript
 export function toPermalink(str: string) {
-  return str.replace(/[^a-z0-9]+/gi, '-').replace(/^-*|-*$/g, '').toLowerCase();
+  return str
+    .replace(/[^a-z0-9]+/gi, "-")
+    .replace(/^-*|-*$/g, "")
+    .toLowerCase();
 }
 
 export const shuffled = (array: any[]) => {
@@ -24,21 +27,20 @@ export const shuffled = (array: any[]) => {
   }
 
   return array;
-}
+};
 
 // Source: https://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-javascript
-export function hashCode(str: string) { // java String#hashCode
+export function hashCode(str: string) {
+  // java String#hashCode
   var hash = 0;
   for (var i = 0; i < str.length; i++) {
-     hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
   }
   return hash;
 }
 
-export function intToRGB(i: number){
-  var c = (i & 0x00FFFFFF)
-      .toString(16)
-      .toUpperCase();
+export function intToRGB(i: number) {
+  var c = (i & 0x00ffffff).toString(16).toUpperCase();
 
   return "00000".substring(0, 6 - c.length) + c;
 }
@@ -53,24 +55,27 @@ export function useImageLoaded(url: string) {
   return loaded;
 }
 
-export function useHoverableImageRef(hoverOpacity: number, defaultOpacity: number) {
-  const imageRef = useRef<HTMLImageElement|null>(null);
+export function useHoverableImageRef(
+  hoverOpacity: number,
+  defaultOpacity: number
+) {
+  const imageRef = useRef<HTMLImageElement | null>(null);
 
   const onHover = () => {
     if (!imageRef.current) return;
 
     imageRef.current.style.opacity = hoverOpacity.toString();
-    imageRef.current.style.filter = 'blur(2px)';
-  }
+    imageRef.current.style.filter = "blur(2px)";
+  };
 
   const onLeave = () => {
     if (!imageRef.current) return;
 
     imageRef.current.style.opacity = defaultOpacity.toString();
-    imageRef.current.style.filter = 'none';
-  }
+    imageRef.current.style.filter = "none";
+  };
 
-  return {imageRef, onHover, onLeave};
+  return { imageRef, onHover, onLeave };
 }
 
 export function useInterval(callback: () => any, delay: number) {
@@ -90,20 +95,28 @@ export function useInterval(callback: () => any, delay: number) {
 }
 
 export async function fetchSpotifyInfo(path: string) {
-  const host = process.env.NODE_ENV === 'production'
-    ? 'https://music-akinyele-api.herokuapp.com'
-    : 'http://localhost:5000';
+  const host =
+    process.env.NODE_ENV === "production"
+      ? "https://music-akinyele-api.herokuapp.com"
+      : "http://localhost:5000";
 
-  const urlPath = path.startsWith('/') ? path : '/'.concat(path);
+  const urlPath = path.startsWith("/") ? path : "/".concat(path);
   const url = host.concat(urlPath);
 
-  const result = await fetch(url).then(response => response.json());
-  if (result.success !== false) {
-    return result;
-  } else {
-    console.error('fetchSpotifyInfo:', result.error?.message || 'Unknown error');
+  try {
+    const result = await fetch(url).then((response) => response.json());
+    if (result.success !== false) {
+      return result;
+    } else {
+      console.error(
+        "fetchSpotifyInfo:",
+        result.error?.message || "Unknown error"
+      );
+      return;
+    }
+  } catch (error) {
     return;
   }
 }
 
-export * from './projects';
+export * from "./projects";
